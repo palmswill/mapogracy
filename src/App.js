@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import './styles/default.scss';
+import { Routes, Route} from "react-router-dom";
+import LandingPage from './pages/LandingPage';
+import UserInterface from './pages/UserInterface';
+import PollDisplay from './pages/PollDisplay';
+import Navbar from './pages/components/Navbar';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar/>
+      <Routes>
+        {/* landing page */}
+        <Route absolute path="/" element={<LandingPage/>} />
+        {/* page showing the user interface */}
+        <Route path="/user" element={<UserInterface/>}/>
+        {/* page showing individual poll */}
+        <Route path="/polls/:pollid" element={<PollDisplay/>}/>
+      </Routes>
     </div>
   );
 }
