@@ -10,11 +10,11 @@ function App() {
     <div className="App">
       <Navbar/>
       <Routes>
-        {/* landing page */}
+        {/* landing page link:"/"*/}
         <Route absolute path="/" element={<LandingPage/>} />
-        {/* page showing the user interface */}
+        {/* page showing the user interface linke eg. "/user" */}
         <Route path="/user" element={<UserInterface/>}/>
-        {/* page showing individual poll */}
+        {/* page showing individual poll link eg. "/polls/1"*/}
         <Route path="/polls/:pollid" element={<PollDisplay/>}/>
       </Routes>
     </div>
