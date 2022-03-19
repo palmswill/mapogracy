@@ -1,4 +1,5 @@
 import "./styles/default.scss";
+import "./styles/app.scss";
 import { Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import UserInterface from "./pages/UserInterface";
@@ -13,26 +14,26 @@ function App() {
 
   const appTheme = createTheme({
     palette: {
-      mode:"dark",
+      mode: "dark",
       primary: {
         main: "#9147FF",
       },
       secondary: {
         main: "#3A3A3D",
       },
-      common:{
-        black:"#18181B"
+      common: {
+        black: "#18181B",
       },
 
       background: {
         default: "#0E0E10",
-        paper:"#0E0E10"
+        paper: "#0E0E10",
       },
     },
     typography: {
       button: {
-        textTransform: 'none'
-      }
+        textTransform: "none",
+      },
     },
   });
 
@@ -40,17 +41,19 @@ function App() {
     <div className="App">
       <ThemeProvider theme={appTheme}>
         <Navbar />
-        <Routes>
-          {/* landing page link:"/"*/}
-          <Route absolute path="/" element={<LandingPage />} />
-          {/* page showing the user interface linke eg. "/user" */}
-          <Route
-            path="/user"
-            element={isAuthenticated ? <UserInterface /> : <></>}
-          />
-          {/* page showing individual poll link eg. "/polls/1"*/}
-          <Route path="/polls/:pollid" element={<PollDisplay />} />
-        </Routes>
+        <main>
+          <Routes>
+            {/* landing page link:"/"*/}
+            <Route absolute path="/" element={<LandingPage />} />
+            {/* page showing the user interface linke eg. "/user" */}
+            <Route
+              path="/user"
+              element={isAuthenticated ? <UserInterface /> : <></>}
+            />
+            {/* page showing individual poll link eg. "/polls/1"*/}
+            <Route path="/polls/:pollid" element={<PollDisplay />} />
+          </Routes>
+        </main>
       </ThemeProvider>
     </div>
   );

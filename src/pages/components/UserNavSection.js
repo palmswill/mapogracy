@@ -5,6 +5,7 @@ import LoginButton from "./LoginButton";
 
 const Usernavsection = () => {
   const { user, isAuthenticated } = useAuth0();
+  console.log(user);
 
   return (
     <>
