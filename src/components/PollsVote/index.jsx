@@ -14,7 +14,7 @@ export default function PollsVote(props) {
   const { choice } = props;
 
   function onClose() {
-    transition(MAPEVIEW, true);
+    transition(MAPEVIEW, false);
   }
 
   return (
