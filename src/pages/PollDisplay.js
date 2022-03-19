@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-import Mainpollpanel from "../components/PollsVote/components/MainPollPanel";
+import Mainpollpanel from "../components/MainPollPanel";
 
 const Polldisplay = () => {
   const pollId = useParams().pollid;
