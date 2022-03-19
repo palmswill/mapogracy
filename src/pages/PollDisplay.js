@@ -1,18 +1,17 @@
-import React from 'react';
-import { useParams,Link } from 'react-router-dom';
-import Mainpollpanel from './components/MainPollPanel';
+import React from "react";
+import { useParams, Link } from "react-router-dom";
+import Mainpollpanel from "./components/MainPollPanel";
 
 const Polldisplay = () => {
-  const pollId=useParams().pollid;
-  
+  const pollId = useParams().pollid;
+
   return (
     <div>
       <h1>Poll Id:{pollId}</h1>
       <Link to="/">Go back</Link>
-      <Mainpollpanel/>
-
+      <Mainpollpanel />
     </div>
   );
-}
+};
 
 export default Polldisplay;
