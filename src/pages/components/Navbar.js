@@ -1,4 +1,4 @@
-import { AppBar,Box,Toolbar,IconButton,Typography,Button } from '@mui/material';
+import { AppBar,Box,Toolbar,IconButton,Typography} from '@mui/material';
 import Usernavsection from './UserNavSection';
 
 const Navbar = () => {
