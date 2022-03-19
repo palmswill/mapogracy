@@ -9,8 +9,9 @@ const LoginButton = () => {
     <Button
       onClick={() => loginWithRedirect({ returnTo: window.location.origin })}
       variant="contained"
+      color="primary"
     >
-      Log in
+      Log in / Sign up
     </Button>
   );
 };
