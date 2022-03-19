@@ -8,6 +8,8 @@ import reportWebVitals from "./reportWebVitals";
 
 
 
+
+
 const auth0Domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const auth0ClientID = process.env.REACT_APP_CLIENT_ID;
 
