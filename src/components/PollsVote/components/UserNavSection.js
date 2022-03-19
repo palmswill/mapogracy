@@ -3,7 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import LogoutButton from "./LogOutButton";
 import LoginButton from "./LoginButton";
 
-const Usernavsection = () => {
+const UserNavSection = () => {
   const { user, isAuthenticated } = useAuth0();
   console.log(user);
 
@@ -20,4 +20,4 @@ const Usernavsection = () => {
   );
 };
 
-export default Usernavsection;
+export default UserNavSection;
