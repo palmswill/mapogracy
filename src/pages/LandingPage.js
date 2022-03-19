@@ -1,9 +1,10 @@
 import React from 'react';
-import Arcmap from './components/map/Arcmap';
+import Arcmap from '../components/map/Arcmap';
 
 
 const Landingpage = () => {
  
+  console.log("test")
 
   return (
     <>

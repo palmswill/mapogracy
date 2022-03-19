@@ -1,7 +1,7 @@
 import { AppBar,Box,Toolbar,Typography} from '@mui/material';
 import Usernavsection from './UserNavSection';
 
-const Navbar = () => {
+const NavBar = () => {
 
   return (
     <>
@@ -19,4 +19,4 @@ const Navbar = () => {
   );
 }
 
-export default Navbar;
+export default NavBar;
