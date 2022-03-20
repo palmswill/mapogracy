@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Arcmap from "../components/map/Arcmap";
+import PolygonArcmap from "../components/map/PolygonArcMapPanel";
+// import Arcmap from "../components/map/Arcmap";
+
 import axios from "axios";
 
 const Landingpage = () => {
@@ -14,8 +16,6 @@ const Landingpage = () => {
 
   const voteList = poll.votes ? poll.votes : [];
 
- 
-
   const getPolygonPoints = (points) => {
     console.log(points);
   };
@@ -23,12 +23,18 @@ const Landingpage = () => {
   return (
     <>
       <h1>Landing</h1>
-      <Arcmap
+      <PolygonArcmap
         height="500px"
-        voteList={voteList}
         zoom={5}
         getPolygonPoints={getPolygonPoints}
       />
+      {/* <Arcmap
+        height="500px"
+        center={[-118.244, 34.052]}
+        voteList={voteList}
+        zoom={5}
+        getPolygonPoints={getPolygonPoints}
+      /> */}
     </>
   );
 };
