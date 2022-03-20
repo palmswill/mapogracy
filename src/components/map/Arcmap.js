@@ -1,75 +1,67 @@
-import React, { useEffect } from "react";
-import Map from "@arcgis/core/Map";
+import React, { useEffect, useRef } from "react";
+
+import {
+  getClickedCoordinates,
+  getMap,
+  setPoint,
+  setPolygon,
+} from "../../helpers/mapHelpers";
+
 import esriConfig from "@arcgis/core/config";
-import MapView from "@arcgis/core/views/MapView";
-import Graphic from "@arcgis/core/Graphic";
+
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
+
 const Arcmap = ({
   width = "100%",
   height = "100%",
   center = [-118.244, 34.052],
   zoom = 12,
   voteList = [],
+  getPolygonPoints,
 }) => {
+  const areaPoints = useRef([]);
+
   const mapStyle = {
     height,
     width,
   };
 
-  esriConfig.apiKey =process.env.REACT_APP_ARCGIS_KEY
+  //esriconfig that takes the api key
+  esriConfig.apiKey = process.env.REACT_APP_ARCGIS_KEY;
 
   // initialize map
-  
-  // settting map if center or zoom Change
+
   useEffect(() => {
-    // start map with coordinates and zoom level
-    const map = new Map({
-      basemap: "arcgis-topographic", // Basemap layer service
-    });
+    const [map, view] = getMap(zoom, center, "viewDiv");
 
-    
-    const view = new MapView({
-      map: map, //the arcGISMap class object;
-      container: "viewDiv", //div id where it should be put
-      center: center, // [long,lad] center of map
-      zoom: zoom, // zoom level
-    });
-    // event after when map runs
-    view.when(() => {
-      console.log("Map is loaded");
-    });
+    // create points layer
+    const pointGraphicsLayer = new GraphicsLayer();
+    map.add(pointGraphicsLayer);
 
-    const graphicsLayer = new GraphicsLayer();
-    map.add(graphicsLayer);
-
+    // add points according to voter list;
     voteList.forEach((vote) => {
-      const [long, lat] = vote.cords;
-      const point = {
-        //Create a point
-        type: "point",
-        longitude: long,
-        latitude: lat,
-      };
-      const simpleMarkerSymbol = {
-        type: "simple-marker",
-        color: [226, 119, 40], // Orange
-        outline: {
-          color: [255, 255, 255], // White
-          width: 1,
-        },
-      };
-
-      const pointGraphic = new Graphic({
-        geometry: point,
-        symbol: simpleMarkerSymbol,
-      });
-      graphicsLayer.add(pointGraphic);
+      setPoint(vote.cords, pointGraphicsLayer);
     });
 
-
-  }, [zoom,voteList, center]);
+    // create polygon layer (area);
+    const polygonPointsLayer= new GraphicsLayer();
+    map.add(polygonPointsLayer);
+    const polygonGraphicsLayer = new GraphicsLayer();
+    map.add(polygonGraphicsLayer);
 
   
+    if (getPolygonPoints) {
+      view.on("click", (e) => {
+        polygonGraphicsLayer.removeAll()
+        const coords = getClickedCoordinates(e);
+        areaPoints.current = [...areaPoints.current, coords];
+        getPolygonPoints(areaPoints.current);
+        setPoint(coords, polygonPointsLayer);
+
+        setPolygon(areaPoints.current, polygonGraphicsLayer);
+      });
+    }
+  }, [zoom, voteList, center, areaPoints, getPolygonPoints]);
 
   return <div id="viewDiv" style={mapStyle}></div>;
 };

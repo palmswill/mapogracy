@@ -15,14 +15,6 @@ const LoginButton = () => {
         >
           Log in
         </Button>
-
-        <Button
-          onClick={() => loginWithRedirect({ returnTo: window.location.origin })}
-          variant="contained"
-          color="primary"
-        >
-          Sign up
-        </Button>
       </div>
 
     </section>
