@@ -7,7 +7,9 @@ import PollDisplay from "./pages/PollDisplay";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+
 import NavBar from "./components/NavBar";
+import { Container, CssBaseline } from "@mui/material";
 
 function App() {
   const { isAuthenticated } = useAuth0();
@@ -26,8 +28,8 @@ function App() {
       },
 
       background: {
-        default: "#0E0E10",
-        paper: "#0E0E10",
+        default: "#181818",
+        paper: "#181818",
       },
     },
     typography: {
@@ -40,8 +42,8 @@ function App() {
   return (
     <div className="App">
       <ThemeProvider theme={appTheme}>
-        <NavBar/>
-        <main>
+        <NavBar />
+        <CssBaseline/>
           <Routes>
             {/* landing page link:"/"*/}
             <Route absolute path="/" element={<LandingPage />} />
@@ -53,7 +55,6 @@ function App() {
             {/* page showing individual poll link eg. "/polls/1"*/}
             <Route path="/polls/:pollid" element={<PollDisplay />} />
           </Routes>
-        </main>
       </ThemeProvider>
     </div>
   );
