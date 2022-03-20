@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import PolygonArcmap from "../components/map/PolygonArcMapPanel";
+import Drawablemap from "../components/map/DrawableMap";
 // import Arcmap from "../components/map/Arcmap";
 
 import axios from "axios";
@@ -23,7 +23,7 @@ const Landingpage = () => {
   return (
     <>
       <h1>Landing</h1>
-      <PolygonArcmap
+      <Drawablemap
         height="500px"
         zoom={5}
         getPolygonPoints={getPolygonPoints}

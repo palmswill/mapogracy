@@ -1,6 +1,7 @@
 import Map from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
 import Graphic from "@arcgis/core/Graphic";
+import Circle from "@arcgis/core/geometry/Circle";
 
 
 // get the
@@ -15,10 +16,6 @@ export const getMap = (zoom, center, divId) => {
     container: divId, //div id where it should be put
     center: center, // [long,lad] center of map
     zoom: zoom, // zoom level
-  });
-  // event after when map runs
-  view.when(() => {
-    console.log("Map is loaded");
   });
 
   return [map, view];
@@ -74,7 +71,7 @@ export const setPolygon = (points, graphicsLayer) => {
   
     const simpleFillSymbol = {
       type: "simple-fill",
-      color: [227, 139, 79, 0.1], // Orange, opacity 80%
+      color: [227, 139, 79, 0.1], // Orange, opacity 10%
       outline: {
         color: [255, 255, 255],
         width: 1,
@@ -91,3 +88,29 @@ export const setPolygon = (points, graphicsLayer) => {
   }
  
 };
+
+
+export const setCircle=(center,radius,graphicLayer)=>{
+  const circleGeometry = new Circle({
+    center: center,
+    geodesic: true,
+    numberOfPoints: 100,
+    radius: radius,
+    radiusUnit: "kilometers"
+  });
+
+  const simpleFillSymbol = {
+    type: "simple-fill",
+    color: [227, 139, 79, 0.1], // Orange, opacity 10%
+    outline: {
+      color: [255, 255, 255],
+      width: 1,
+    },
+  };
+  
+  graphicLayer.add(new Graphic({
+    geometry: circleGeometry,
+    symbol: simpleFillSymbol 
+  }));
+
+}
