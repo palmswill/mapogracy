@@ -33,7 +33,15 @@ const Landingpage = () => {
         zoom={5}
         getPolygonPoints={getPolygonPoints}
       />
-      <TotalVote />
+        <section className="result-view">
+     
+     <div>
+       <li>Finished Pollings</li>
+       <li>Ongoing Pollings</li>
+     </div>
+     <li>Current polls</li>
+     <li>{current_polls}</li>
+   </section>
       <Population />
     </>
   );

@@ -11,6 +11,7 @@ const TotalVote = () => {
         <li>Finished Pollings</li>
         <li>Ongoing Pollings</li>
       </div>
+      <li>Current polls</li>
       <li>{current_polls}</li>
     </section>
   )
