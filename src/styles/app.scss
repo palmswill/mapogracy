@@ -1,8 +1,6 @@
 main{
   margin-top:10vh;
-
-
-
+  background-color: black;
 
   #viewDiv {
         padding: 0;
@@ -22,8 +20,21 @@ main{
 }
 
 .mapView {
-  width: 500px;
-  height: 350px;
-  margin: 284, 80, 10, 80;
+  width: 80%;
+  // margin: 284, 80, 10, 80;
   
+}
+
+.result-view {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  height: inherit;
+  background-color: black;
+  color: rgb(208, 72, 241)
+}
+.whats-hot {
+  font-weight: bold;
+  font-size: x-large;
+  margin: 1rem;
 }

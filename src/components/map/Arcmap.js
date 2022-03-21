@@ -12,7 +12,7 @@ import esriConfig from "@arcgis/core/config";
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
 
 const Arcmap = ({
-  width = "100%",
+  width = "95%",
   height = "100%",
   center = [-118.244, 34.052],
   zoom = 12,

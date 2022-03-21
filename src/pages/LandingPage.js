@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Arcmap from '../components/map/Arcmap';
 import Population from '../components/Population';
 import Race from '../components/Race';
+import TotalVote from '../components/Total_vote';
 import "../styles/app.scss";
 import axios from 'axios';
 
@@ -25,14 +26,14 @@ const Landingpage = () => {
 
   return (
     <>
-      <h1>Landing</h1>
+      <Race />
       <Arcmap
         height="500px"
         voteList={voteList}
         zoom={5}
         getPolygonPoints={getPolygonPoints}
       />
-      <Race />
+      <TotalVote />
       <Population />
     </>
   );

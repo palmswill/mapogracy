@@ -3,10 +3,9 @@ import React from "react";
 const Race = () => {
   //  fake data 3 lines
   const total_vote = 24567;  
-  const current_polls = "POLITIC";
 
   return (
-    <>
+    <section className="result-view">
       <div className="whats-hot">
         <p>Whats hot?</p>
       </div>
@@ -35,12 +34,8 @@ const Race = () => {
       <div>
         <output>{total_vote}</output>
       </div>
-      <div>
-        <li>Finished Pollings</li>
-        <li>Ongoing Pollings</li>
-      </div>
-      <li>{current_polls}</li>
-    </>
+
+    </section>
   )
 }
 export default Race;
