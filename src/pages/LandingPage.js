@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Arcmap from '../components/map/Arcmap';
 import Population from '../components/Population';
+import Race from '../components/Race';
 import "../styles/app.scss";
 import axios from 'axios';
 
@@ -31,6 +32,8 @@ const Landingpage = () => {
         zoom={5}
         getPolygonPoints={getPolygonPoints}
       />
+      <Race />
+      <Population />
     </>
   );
 };

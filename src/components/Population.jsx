@@ -22,16 +22,16 @@ const Population = (props) => {
   // const { email, ethnicity, vote_number } = props;
 
   return (
-    <section class="container">
-      <ul>
-        <li class="ethnicity">{ethnicity[0]}</li><br />
-        <li class="number_vote">{vote_number[0] + voteNumber(email)}</li><br />
-        <li class="ethnicity">{ethnicity[1]}</li><br />
-        <li class="number_vote">{vote_number[1]+ voteNumber(email)}</li><br />
-        <li class="ethnicity">{ethnicity[2]}</li><br />
-        <li class="number_vote">{vote_number[2] + voteNumber(email)}</li><br />
-        <li class="ethnicity">{ethnicity[3]}</li><br />
-        <li class="number_vote">{vote_number[3] + voteNumber(email)}</li><br />
+    <section className="container">
+      <ul className="ethnicity_total">
+        <li className="ethnicity">{ethnicity[0]}</li><br />
+        <li className="number_vote">{vote_number[0] + voteNumber(email)}</li><br />
+        <li className="ethnicity">{ethnicity[1]}</li><br />
+        <li className="number_vote">{vote_number[1]+ voteNumber(email)}</li><br />
+        <li className="ethnicity">{ethnicity[2]}</li><br />
+        <li className="number_vote">{vote_number[2] + voteNumber(email)}</li><br />
+        <li className="ethnicity">{ethnicity[3]}</li><br />
+        <li className="number_vote">{vote_number[3] + voteNumber(email)}</li><br />
       </ul>
     </section>
   );
