@@ -4,6 +4,8 @@ import Graphic from "@arcgis/core/Graphic";
 import Circle from "@arcgis/core/geometry/Circle";
 
 
+
+
 // get the
 export const getMap = (zoom, center, divId) => {
   // start map with coordinates and zoom level
@@ -113,4 +115,11 @@ export const setCircle=(center,radius,graphicLayer)=>{
     symbol: simpleFillSymbol 
   }));
 
+}
+
+export const pointResizer=()=>{
+
+   
+ 
+  
 }

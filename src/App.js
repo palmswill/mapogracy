@@ -9,7 +9,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import NavBar from "./components/NavBar";
-import { Container, CssBaseline } from "@mui/material";
+import { CssBaseline } from "@mui/material";
 
 function App() {
   const { isAuthenticated } = useAuth0();
@@ -26,12 +26,11 @@ function App() {
       common: {
         black: "#18181B",
       },
-
-      background: {
-        default: "#181818",
-        paper: "#181818",
-      },
+      background:{
+        paper:"#18181B"
+      }
     },
+    
     typography: {
       button: {
         textTransform: "none",
@@ -43,7 +42,8 @@ function App() {
     <div className="App">
       <ThemeProvider theme={appTheme}>
         <NavBar />
-        <CssBaseline/>
+        <CssBaseline />
+        <main>
           <Routes>
             {/* landing page link:"/"*/}
             <Route absolute path="/" element={<LandingPage />} />
@@ -55,6 +55,7 @@ function App() {
             {/* page showing individual poll link eg. "/polls/1"*/}
             <Route path="/polls/:pollid" element={<PollDisplay />} />
           </Routes>
+        </main>
       </ThemeProvider>
     </div>
   );
