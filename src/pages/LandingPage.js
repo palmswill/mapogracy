@@ -9,6 +9,9 @@ import { Paper } from "@mui/material";
 import TopPoll from "../components/LandingPageComponents/TopPoll";
 import PollBrowser from "../components/LandingPageComponents/PollBrowser";
 
+import Population from "../components/Population";
+import "../styles/app.scss";
+
 const Landingpage = () => {
   const [poll, setPoll] = useState({});
 
@@ -42,7 +45,7 @@ const Landingpage = () => {
             />
           </Paper>
         </TopPoll>
-        <PollBrowser/>
+        <PollBrowser />
       </LandingPageLayout>
       {/* <h1>Landing</h1>
       <Drawablemap
@@ -62,3 +65,4 @@ const Landingpage = () => {
 };
 
 export default Landingpage;
+// dele the height from here and create a layout inside of panel

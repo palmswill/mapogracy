@@ -6,8 +6,6 @@ const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
 
   return (
-    <section>
-      <div>
         <Button
           onClick={() => loginWithRedirect({ returnTo: window.location.origin })}
           variant="contained"
@@ -15,9 +13,6 @@ const LoginButton = () => {
         >
           Log in
         </Button>
-      </div>
-
-    </section>
 
   );
 };
