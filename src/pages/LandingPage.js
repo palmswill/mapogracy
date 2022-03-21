@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 // import Drawablemap from "../components/map/DrawableMap";
 import Arcmap from "../components/map/Arcmap";
@@ -14,7 +13,24 @@ import Race from '../components/Race';
 import TotalVote from '../components/Total_vote';
 import "../styles/app.scss";
 
-const Landingpage = () => {
+const ethnicity = ["Whit(non-hispanic)", "Hispanic", "Black and Afrrican American", "Asia"];
+const email = ["a@aol.com", "b@aol.com"];
+const vote_number = [300, 200, 350, 130];
+
+const voteNumber = function(emails, vote_number, ethnicity) {
+  let number = 0;
+
+  const voteExist = true;
+  // const voteExist = emails.include("a@aol.com")
+  if (!voteExist) {
+    number++
+  }
+  return 57;
+
+}
+
+
+const Landingpage = (props) => {
   const [poll, setPoll] = useState({});
 
   useEffect(() => {
@@ -33,6 +49,9 @@ const Landingpage = () => {
   return (
     <>
       <LandingPageLayout>
+        <div className="showMap">
+      <section className="container">
+      <div>
         <TopPoll>
           <Paper
             sx={{
@@ -44,9 +63,24 @@ const Landingpage = () => {
               voteList={voteList}
               zoom={5}
               getPolygonPoints={getPolygonPoints}
-            />
+            />     
           </Paper>
         </TopPoll>
+      </div>
+      </section>
+        <section className="container">
+              <ul className="ethnicity_total">
+                <li className="ethnicity">{ethnicity[0]}</li><br />
+                <li className="number_vote">{voteNumber[0] + voteNumber(email)}</li><br />
+                <li className="ethnicity">{ethnicity[1]}</li><br />
+                <li className="number_vote">{voteNumber[1]+ voteNumber(email)}</li><br />
+                <li className="ethnicity">{ethnicity[2]}</li><br />
+                <li className="number_vote">{voteNumber[2] + voteNumber(email)}</li><br />
+                <li className="ethnicity">{ethnicity[3]}</li><br />
+                <li className="number_vote">{voteNumber[3] + voteNumber(email)}</li><br />
+              </ul>
+        </section> 
+        </div>
         <PollBrowser />
       </LandingPageLayout>
 

@@ -10,6 +10,11 @@ main{
       }
 }
 
+.showMap {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
 .container {
   background-color: black;
   color: white;
@@ -20,8 +25,8 @@ main{
 }
 
 .mapView {
-  width: 80%;
-  // margin: 284, 80, 10, 80;
+  // width: 80%;
+  margin: 284, 80, 10, 80;
   
 }
 

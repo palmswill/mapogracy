@@ -7,8 +7,8 @@ import esriConfig from "@arcgis/core/config";
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
 
 const Arcmap = ({
-  width = "95%",
-  height = "100%",
+  width = "700px",
+  height = "350px",
   center =[43.65 ,79.34],
   zoom = 5,
   voteList = [],
@@ -18,7 +18,7 @@ const Arcmap = ({
     width,
   };
 
-  //esriconfig that takes the api key
+  // esri config that takes the api key
   esriConfig.apiKey = process.env.REACT_APP_ARCGIS_KEY;
 
   // initialize map

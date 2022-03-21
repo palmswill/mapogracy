@@ -15,16 +15,15 @@ const voteNumber = function() {
   return 57;
 
 }
-
 const ethnicity = ["Whit(non-hispanic)", "Hispanic", "Black and Afrrican American", "Asia"];
 const email = ["a@aol.com", "b@aol.com"];
 const vote_number = [300, 200, 350, 130];
-
 const Population = (props) => {
   // const { email, ethnicity, vote_number } = props;
 
   return (
     <section className="container">
+      <img src="Arcmap" alt="Map View" />
       <ul className="ethnicity_total">
         <li className="ethnicity">{ethnicity[0]}</li><br />
         <li className="number_vote">{vote_number[0] + voteNumber(email)}</li><br />
