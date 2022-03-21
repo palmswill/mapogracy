@@ -1,11 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 
-import {
-  getClickedCoordinates,
-  getMap,
-  setPoint,
-  setPolygon,
-} from "../../helpers/mapHelpers";
+import { getMap, setPoint } from "../../helpers/mapHelpers";
 
 import esriConfig from "@arcgis/core/config";
 
@@ -14,13 +9,10 @@ import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
 const Arcmap = ({
   width = "100%",
   height = "100%",
-  center = [-118.244, 34.052],
-  zoom = 12,
+  center =[43.65 ,79.34],
+  zoom = 5,
   voteList = [],
-  getPolygonPoints,
 }) => {
-  const areaPoints = useRef([]);
-
   const mapStyle = {
     height,
     width,
@@ -32,7 +24,7 @@ const Arcmap = ({
   // initialize map
 
   useEffect(() => {
-    const [map, view] = getMap(zoom, center, "viewDiv");
+    const [map] = getMap(zoom, center, "viewDiv");
 
     // create points layer
     const pointGraphicsLayer = new GraphicsLayer();
@@ -44,24 +36,11 @@ const Arcmap = ({
     });
 
     // create polygon layer (area);
-    const polygonPointsLayer= new GraphicsLayer();
+    const polygonPointsLayer = new GraphicsLayer();
     map.add(polygonPointsLayer);
     const polygonGraphicsLayer = new GraphicsLayer();
     map.add(polygonGraphicsLayer);
-
-  
-    if (getPolygonPoints) {
-      view.on("click", (e) => {
-        polygonGraphicsLayer.removeAll()
-        const coords = getClickedCoordinates(e);
-        areaPoints.current = [...areaPoints.current, coords];
-        getPolygonPoints(areaPoints.current);
-        setPoint(coords, polygonPointsLayer);
-
-        setPolygon(areaPoints.current, polygonGraphicsLayer);
-      });
-    }
-  }, [zoom, voteList, center, areaPoints, getPolygonPoints]);
+  }, [zoom, voteList, center]);
 
   return <div id="viewDiv" style={mapStyle}></div>;
 };
