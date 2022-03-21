@@ -11,7 +11,11 @@ import PollBrowser from "../components/LandingPageComponents/PollBrowser";
 
 import Population from "../components/Population";
 import Race from '../components/Race';
+<<<<<<< HEAD
 
+=======
+import TotalVote from '../components/Total_vote';
+>>>>>>> feature/races
 import "../styles/app.scss";
 
 const Landingpage = () => {
