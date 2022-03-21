@@ -1,13 +1,20 @@
-import "./styles/default.scss";
-import "./styles/app.scss";
+import React from "react";
+
+// import RNRestart from 'react-native-restart';
 import { Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import UserInterface from "./pages/UserInterface";
 import PollDisplay from "./pages/PollDisplay";
 import { useAuth0 } from "@auth0/auth0-react";
 
+
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import NavBar from "./components/NavBar";
+
+import "./styles/default.scss";
+import "./styles/app.scss";
+
+// RNRestart.Restart();
 
 function App() {
   const { isAuthenticated } = useAuth0();

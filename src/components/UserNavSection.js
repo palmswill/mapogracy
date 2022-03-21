@@ -13,7 +13,6 @@ const UserNavSection = () => {
         <h5>
           {user.email}
           <LogoutButton />
-          <Button />
         </h5>
       )}
       {!isAuthenticated && <LoginButton />}
