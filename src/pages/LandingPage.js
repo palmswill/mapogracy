@@ -79,7 +79,7 @@ const Landingpage = (props) => {
                 {vote_number[0] + voteNumber(email)}
               </li>
               <br />
-              <li className="ethnicity">{ethnicity[1]}</li>
+              <li className="ethnicity">  {ethnicity[1]}</li>
               <br />
               <li className="number_vote">
                 {vote_number[1] + voteNumber(email)}

@@ -1,6 +1,8 @@
 main{
-  margin-top:10vh;
-  background-color: black;
+  padding-top: 15vh;
+  min-height: 100vh;
+  margin-inline: 5vw;
+  margin-bottom: 200px;
 
   #viewDiv {
         padding: 0;
@@ -54,3 +56,51 @@ main{
 .result-view {
   background-color: rgba(241, 10, 10, 0.034);
 }
+
+.map-result {
+  color:rgb(208, 72, 241);
+}
+
+.map-result :hover {
+  background-color:  rgb(208, 72, 241);
+  cursor: pointer;
+}
+
+.poll-titre {
+  display: flex;
+  justify-content: center;
+  font-size: large;
+  font-weight: 700;
+}
+
+.host-by {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 30px;
+  margin-right: 10px;
+}
+
+.host-name {
+  color:rgb(208, 72, 241);
+  font-weight: bold;
+}
+
+.poll-total-vote {
+  display: flex;
+  gap: 10px;
+}
+.poll-positive  {
+  display: flex;
+  margin-left: 30px;
+  margin-right: 30px;
+  gap: 20px;
+}
+
+.poll-negative {
+  display: flex;
+  // justify-content: space-around;
+  margin-left: 30px;
+  margin-right: 30px;
+  gap: 20px;
+}
+
