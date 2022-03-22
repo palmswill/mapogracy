@@ -11,6 +11,7 @@ const UserNavSection = () => {
     <>
       {isAuthenticated && (
         <h5>
+          <Button >Create Poll</Button>
           <UserDropDown/>
         </h5>
       )}
