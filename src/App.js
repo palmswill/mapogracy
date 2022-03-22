@@ -57,10 +57,12 @@ function App() {
             {/* page showing the user interface linke eg. "/user" */}
             <Route
               path="/user"
-              element={isAuthenticated ? <UserInterface /> : <></>}
+              element={isAuthenticated ? <UserInterface /> : <>Opps, Looked Like You Are Not Logged In?</>}
             />
             {/* page showing individual poll link eg. "/polls/1"*/}
             <Route path="/polls/:pollid" element={<PollDisplay />} />
+            {/* route wheen nothing exist */}
+            <Route path="*" element={<>Route Not Found</>} />
           </Routes>
         </main>
       </ThemeProvider>
