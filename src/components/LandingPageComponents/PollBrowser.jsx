@@ -5,7 +5,7 @@ import Pollresultshow from "./PollResultShow";
 import RegionSelect from "./RegionSelect";
 import SpacedButtonGroup from "./SpacedButtonGroup";
 
-const Pollbrowser = () => {
+const PollBrowser = () => {
   const [pageIndex, setPageIndex] = useState(0);
   const [liveIndex, setLiveIndex] = useState(0);
   const [regionIndex, setRegionIndex] = useState(0);
@@ -59,4 +59,4 @@ const Pollbrowser = () => {
   );
 };
 
-export default Pollbrowser;
+export default PollBrowser;

@@ -1,4 +1,4 @@
-main {
+main{
   padding-top: 15vh;
   min-height: 100vh;
   margin-inline: 5vw;
@@ -20,18 +20,21 @@ main {
 
 .showMap {
   display: flex;
-  justify-content: space-around;
   flex-direction: row;
 }
+
 .container {
   background-color: black;
   color: white;
-  width: 300px;
-  height: 570px;
-  // display: flex;
-  // justify-content: center;
-}
 
+}
+.container-with-map {
+  flex-grow: 1;
+  background-color: black;
+  color: white;
+  margin-left: 150px;
+
+}
 .mapView {
   // width: 80%;
   margin: 284, 80, 10, 80;
@@ -55,3 +58,51 @@ main {
 .result-view {
   background-color: rgba(241, 10, 10, 0.034);
 }
+
+.map-result {
+  color:rgb(208, 72, 241);
+}
+
+.map-result :hover {
+  background-color:  rgb(208, 72, 241);
+  cursor: pointer;
+}
+
+.poll-titre {
+  display: flex;
+  justify-content: center;
+  font-size: large;
+  font-weight: 700;
+}
+
+.host-by {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 30px;
+  margin-right: 10px;
+}
+
+.host-name {
+  color:rgb(208, 72, 241);
+  font-weight: bold;
+}
+
+.poll-total-vote {
+  display: flex;
+  gap: 10px;
+}
+.poll-positive  {
+  display: flex;
+  margin-left: 30px;
+  margin-right: 30px;
+  gap: 20px;
+}
+
+.poll-negative {
+  display: flex;
+  // justify-content: space-around;
+  margin-left: 30px;
+  margin-right: 30px;
+  gap: 20px;
+}
+
