@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-
 import { getMap, setPoint } from "../../helpers/mapHelpers";
 
 import esriConfig from "@arcgis/core/config";
@@ -7,7 +6,7 @@ import esriConfig from "@arcgis/core/config";
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
 
 const Arcmap = ({
-  width = "700px",
+  width = "100%",
   height = "350px",
   center =[43.65 ,79.34],
   zoom = 5,

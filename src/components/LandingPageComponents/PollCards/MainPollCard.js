@@ -32,7 +32,7 @@ const Mainpollcard = ({ poll }) => {
         </Box>
       </Box>
 
-      <Grid sx={{ height: "90%", margin: "5px" }} container spacing={2}>
+      <Grid sx={{ height: "90%", margin: "5px" }} wrap="wrap" container spacing={2}>
         <Grid item xs={9}>
           <Arcmap
             style={{ minHeight: "300px" }}
@@ -41,8 +41,8 @@ const Mainpollcard = ({ poll }) => {
             zoom={5}
           />
         </Grid>
-        <Grid item xs={3}>
-          <List sx={{ width: "100%", bgcolor: "inherit" }}>
+        <Grid sx={{minWidth:"100px"}} item xs={3}>
+          <List sx={{  width: "100%", bgcolor: "inherit" }}>
             {results.map((result, index) => {
               return (
                 <ListItem
