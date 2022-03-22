@@ -45,7 +45,7 @@ function App() {
       },
     },
   });
-  const [modalOpen, setModelOpen] = useState(true);
+  const [modalOpen, setModelOpen] = useState(false);
 
   return (
     <div className="App">
