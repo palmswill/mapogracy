@@ -4,7 +4,7 @@ import { Button,Box } from "@mui/material";
 import LoginButton from "./UserAuth/LoginButton";
 import UserDropDown from "./UserAuth/UserDropDown";
 
-const UserNavSection = () => {
+const UserNavSection = ({toggleModal}) => {
   const {isAuthenticated } = useAuth0();
 
   return (
@@ -13,7 +13,7 @@ const UserNavSection = () => {
         <h5>
           <Box sx={{ display: "flex",gap:"10px" }}>
             {" "}
-            <Button variant="contained">Create Poll</Button>
+            <Button variant="contained" onClick={toggleModal}>Create Poll</Button>
             <UserDropDown />
           </Box>
         </h5>

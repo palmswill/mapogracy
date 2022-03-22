@@ -45,25 +45,9 @@ const Landingpage = (props) => {
         <TopPoll poll={poll} />
         <PollBrowser />
       </LandingPageLayout>
-      {/* <h1>Landing</h1>
-      <Drawablemap
-        height="500px"
-        zoom={5}
-        getPolygonPoints={getPolygonPoints}
-      /> */}
-      {/* <Arcmap
-        height="500px"
-        center={[-118.244, 34.052]}
-        voteList={voteList}
-        zoom={5}
-        getPolygonPoints={getPolygonPoints}
-      />
-      <Race />
-      <Population />
-       */}
+
     </>
   );
 };
 
 export default Landingpage;
-// dele the height from here and create a layout inside of panel

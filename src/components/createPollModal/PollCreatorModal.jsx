@@ -3,7 +3,7 @@ import PollCreatorContainer from "./PollCreatorContainer";
 
 import { Modal, Paper } from "@mui/material";
 
-export default function PollCreatorModal({ modalOpen, setModalOpen }) {
+export default function PollCreatorModal({ modalOpen, toggleModal }) {
   const style = {
     position: "absolute",
     top: "50%",
@@ -24,7 +24,7 @@ export default function PollCreatorModal({ modalOpen, setModalOpen }) {
       aria-describedby="modal-modal-description"
     >
       <Paper style={style}>
-        <PollCreatorContainer {...{ setModalOpen }} />
+        <PollCreatorContainer {...{ toggleModal }} />
       </Paper>
     </Modal>
   );

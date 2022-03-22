@@ -47,11 +47,15 @@ function App() {
   });
   const [modalOpen, setModelOpen] = useState(false);
 
+  const toggleModal=()=>{
+    setModelOpen((prevState)=>!prevState);
+  }
+
   return (
     <div className="App">
       <ThemeProvider theme={appTheme}>
-        <NavBar {...{ setModelOpen }} />
-        <PollCreatorModal {...{ modalOpen, setModelOpen }} />
+        <NavBar {...{ toggleModal }} />
+        <PollCreatorModal {...{ modalOpen, toggleModal }} />
 
         <CssBaseline />
         <main>
