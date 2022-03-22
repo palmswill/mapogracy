@@ -1,11 +1,12 @@
 {
-  "pollId": "1",
-  "name": "which name for my new born child?",
+  "id": "1",
+  "name": "Which Name for My new Born Child?",
+  "user":"William Liu",
   "description": "I am gettting a new boy in 8 month! I have a list of baby names I would like to choose, pls help.",
   "answers": [
-    { "id": 1, "name": "Adamn" },
-    { "id": 2, "name": "John" },
-    { "id": 3, "name": "William " }
+    { "id": "1", "name": "Adamn" },
+    { "id": "2", "name": "John" },
+    { "id": "3", "name": "William" }
   ],
   "votes": [
     { "answer_id": "1", "cords": [-118.244, 34.052] },

@@ -11,11 +11,13 @@ const Arcmap = ({
   height = "100%",
   center =[43.65 ,79.34],
   zoom = 5,
+  style,
   voteList = [],
 }) => {
   const mapStyle = {
     height,
     width,
+    ...style
   };
 
   //esriconfig that takes the api key
@@ -45,4 +47,4 @@ const Arcmap = ({
   return <div id="viewDiv" style={mapStyle}></div>;
 };
 
-export default Arcmap;
+export default React.memo(Arcmap);

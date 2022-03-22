@@ -7,7 +7,7 @@ const Race = () => {
 
   return (
     <>
-      <div className="whats-hot">
+      {/* <div className="whats-hot">
         <p>Whats hot?</p>
       </div>
       <div className="nav-race">
@@ -39,7 +39,7 @@ const Race = () => {
         <li>Finished Pollings</li>
         <li>Ongoing Pollings</li>
       </div>
-      <li>{current_polls}</li>
+      <li>{current_polls}</li> */}
     </>
   )
 }

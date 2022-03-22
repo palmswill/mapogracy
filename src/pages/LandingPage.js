@@ -1,16 +1,12 @@
-
 import React, { useEffect, useState } from "react";
 // import Drawablemap from "../components/map/DrawableMap";
-import Arcmap from "../components/map/Arcmap";
 import axios from "axios";
 import LandingPageLayout from "../layouts/LandingPageLayout";
-import { Paper } from "@mui/material";
 import TopPoll from "../components/LandingPageComponents/TopPoll";
 import PollBrowser from "../components/LandingPageComponents/PollBrowser";
 
-
-import Population from "../components/Population";
-import Race from '../components/Race';
+// import Population from "../components/Population";
+// import Race from '../components/Race';
 
 import "../styles/app.scss";
 
@@ -24,29 +20,12 @@ const Landingpage = () => {
       .then((result) => setPoll(result));
   }, []);
 
-  const voteList = poll.votes ? poll.votes : [];
-
-  const getPolygonPoints = (points) => {
-    console.log(points);
-  };
+ 
 
   return (
     <>
       <LandingPageLayout>
-        <TopPoll>
-          <Paper
-            sx={{
-              height: "400px",
-            }}
-          >
-            <Arcmap
-              center={[-118.244, 34.052]}
-              voteList={voteList}
-              zoom={5}
-              getPolygonPoints={getPolygonPoints}
-            />
-          </Paper>
-        </TopPoll>
+        <TopPoll poll={poll} />
         <PollBrowser />
       </LandingPageLayout>
       {/* <h1>Landing</h1>
@@ -65,7 +44,6 @@ const Landingpage = () => {
       <Race />
       <Population />
        */}
-
     </>
   );
 };

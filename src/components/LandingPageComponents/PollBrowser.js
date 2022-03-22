@@ -1,7 +1,7 @@
 import { Tab, Tabs } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState, useEffect } from "react";
-import Pollresultshow from "./pollResultShow";
+import Pollresultshow from "./PollResultShow";
 import RegionSelect from "./RegionSelect";
 import SpacedButtonGroup from "./SpacedButtonGroup";
 
