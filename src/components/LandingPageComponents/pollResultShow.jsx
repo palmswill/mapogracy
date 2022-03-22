@@ -10,7 +10,13 @@ const Pollresultshow = ({result=Array.from(Array(6))}) => {
     >
       {result.map((_, index) => (
         <Grid item xs={4} sm={4} md={4} key={index}>
-          <Paper sx={{ height: "200px" }}></Paper>
+          <Paper sx={{ height: "200px" }}>
+            <div>
+              <h1>hi</h1>
+              <p>this is test</p>
+            </div>
+
+          </Paper>
         </Grid>
       ))}
     </Grid>
