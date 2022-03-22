@@ -1,9 +1,9 @@
 import React from "react";
 import { Grid, Paper } from "@mui/material";
-const pollTitle = "Title for example";
-const positiveVote = 5789;
-const negativeVote = 389;
-const hostBy = "Erene Thim Horton";
+// const pollTitle = "Title for example";
+// const positiveVote = 5789;
+// const negativeVote = 389;
+// const hostBy = "Erene Thim Horton";
 
 const Pollresultshow = ({ result = Array.from(Array(6)) }) => {
   return (
