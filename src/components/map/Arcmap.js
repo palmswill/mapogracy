@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-
 import { getMap, setPoint } from "../../helpers/mapHelpers";
 
 import esriConfig from "@arcgis/core/config";
@@ -7,15 +6,17 @@ import esriConfig from "@arcgis/core/config";
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
 
 const Arcmap = ({
-  // width = "700px",
+  width = "100%",
   height = "350px",
   center =[43.65 ,79.34],
   zoom = 5,
+  style,
   voteList = [],
 }) => {
   const mapStyle = {
     height,
-    // width,
+    width,
+    ...style
   };
 
   // esri config that takes the api key
@@ -45,4 +46,4 @@ const Arcmap = ({
   return <div id="viewDiv" style={mapStyle}></div>;
 };
 
-export default Arcmap;
+export default React.memo(Arcmap);

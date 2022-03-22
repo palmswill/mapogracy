@@ -60,7 +60,6 @@ const array = [
   }
 ]
 
-let i = -1;
 const Pollresultshow = ({ result = Array.from(array) }) => {
   let navigate = useNavigate();
 

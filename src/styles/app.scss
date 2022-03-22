@@ -4,12 +4,18 @@ main{
   margin-inline: 5vw;
   margin-bottom: 200px;
 
+  #landing-page {
+    section {
+      margin-block: 20px;
+    }
+  }
+
   #viewDiv {
-        padding: 0;
-        margin: 0;
-        height: 100%;
-        width: 100%;
-      }
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+  }
 }
 
 .showMap {
@@ -17,10 +23,6 @@ main{
   flex-direction: row;
 }
 
-.arcmap {
-  weight: 2em;
-  height: 2em;
-}
 .container {
   background-color: black;
   color: white;
