@@ -1,7 +1,6 @@
 import React from "react";
 
 import "components/styles.scss";
-import Header from "components/PollsVotes/Header";
 import MapView from "components/PollsVotes/MapView";
 import VoteButton from "../../../../../reserve/components/VoteButton";
 
