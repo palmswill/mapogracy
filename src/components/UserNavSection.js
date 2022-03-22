@@ -1,19 +1,21 @@
 import React from "react";
-import { Button } from "@mui/material";
 import { useAuth0 } from "@auth0/auth0-react";
-import LogoutButton from "./UserAuth/LogOutButton"
-import LoginButton from "./UserAuth/LoginButton"
+import { Button,Box } from "@mui/material";
+import LoginButton from "./UserAuth/LoginButton";
 import UserDropDown from "./UserAuth/UserDropDown";
 
 const UserNavSection = () => {
-  const { user, isAuthenticated } = useAuth0();
+  const {isAuthenticated } = useAuth0();
 
   return (
     <>
       {isAuthenticated && (
         <h5>
-          <Button >Create Poll</Button>
-          <UserDropDown/>
+          <Box sx={{ display: "flex",gap:"10px" }}>
+            {" "}
+            <Button variant="contained">Create Poll</Button>
+            <UserDropDown />
+          </Box>
         </h5>
       )}
       {!isAuthenticated && <LoginButton />}
