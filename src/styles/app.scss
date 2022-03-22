@@ -1,21 +1,6 @@
 main{
-  padding-top:15vh;
-  min-height:100vh;
-  margin-inline:5vw;
-  margin-bottom:200px;
-
-  #landing-page{
-
-    section{
-      margin-block:20px;
-    }
-
-    
-
-  }
-
-
-
+  margin-top:10vh;
+  background-color: black;
 
   #viewDiv {
         padding: 0;
@@ -25,6 +10,11 @@ main{
       }
 }
 
+.showMap {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
 .container {
   background-color: black;
   color: white;
@@ -35,8 +25,25 @@ main{
 }
 
 .mapView {
-  width: 500px;
-  height: 350px;
+  // width: 80%;
   margin: 284, 80, 10, 80;
   
+}
+
+.result-view {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  height: inherit;
+  background-color: black;
+  color: rgb(208, 72, 241)
+}
+.whats-hot {
+  font-weight: bold;
+  font-size: x-large;
+  margin: 1rem;
+}
+
+.result-view {
+  background-color: rgba(241, 10, 10, 0.034);
 }
