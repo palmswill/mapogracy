@@ -23,6 +23,7 @@ const Population = (props) => {
 
   return (
     <section className="container">
+      <img src="Arcmap" alt="Map View" />
       <ul className="ethnicity_total">
         <li className="ethnicity">{ethnicity[0]}</li><br />
         <li className="number_vote">{vote_number[0] + voteNumber(email)}</li><br />

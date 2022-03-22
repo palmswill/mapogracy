@@ -10,7 +10,24 @@ import PollBrowser from "../components/LandingPageComponents/PollBrowser";
 
 import "../styles/app.scss";
 
-const Landingpage = () => {
+// const ethnicity = ["Whit(non-hispanic)", "Hispanic", "Black and Afrrican American", "Asia"];
+// const email = ["a@aol.com", "b@aol.com"];
+// const vote_number = [300, 200, 350, 130];
+
+// const voteNumber = function(emails, vote_number, ethnicity) {
+//   let number = 0;
+
+//   const voteExist = true;
+//   // const voteExist = emails.include("a@aol.com")
+//   if (!voteExist) {
+//     number++
+//   }
+//   return 57;
+
+// }
+
+
+const Landingpage = (props) => {
   const [poll, setPoll] = useState({});
 
   useEffect(() => {

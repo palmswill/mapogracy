@@ -48,7 +48,6 @@ const Pollbrowser = () => {
         </Tabs>
         <RegionSelect {...{ regions, regionIndex, setRegionIndex }} />
       </Box>
-
       <SpacedButtonGroup
         groupItems={categories}
         currentIndex={categoryIndex}
