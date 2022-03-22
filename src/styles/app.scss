@@ -1,13 +1,21 @@
-main{
-  margin-top:10vh;
-  background-color: black;
+main {
+  padding-top: 15vh;
+  min-height: 100vh;
+  margin-inline: 5vw;
+  margin-bottom: 200px;
+
+  #landing-page {
+    section {
+      margin-block: 20px;
+    }
+  }
 
   #viewDiv {
-        padding: 0;
-        margin: 0;
-        height: 100%;
-        width: 100%;
-      }
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+  }
 }
 
 .showMap {
