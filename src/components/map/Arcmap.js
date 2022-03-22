@@ -7,7 +7,7 @@ import esriConfig from "@arcgis/core/config";
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
 
 const Arcmap = ({
-  width = "700px",
+  // width = "700px",
   height = "350px",
   center =[43.65 ,79.34],
   zoom = 5,
@@ -15,7 +15,7 @@ const Arcmap = ({
 }) => {
   const mapStyle = {
     height,
-    width,
+    // width,
   };
 
   // esri config that takes the api key

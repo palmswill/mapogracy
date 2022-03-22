@@ -1,24 +1,27 @@
 import React from 'react';
 import { AppBar,Box,Toolbar,Typography} from '@mui/material';
 import Usernavsection from './UserNavSection';
-import Arcmap from '../components/map/Arcmap';
+import Arcmap from './map/Arcmap';
 
 
-const voteNumber = function() {
-  let number = 0;
-
-  // const voteExist = email.include("a@aol.com")
+const voteNumber = function(props) {
   const voteExist = true;
-  if (!voteExist) {
-    number++
+ // props.email = object must come from db
+  for (const ele in props.email) {
+    if (email === ele) {
+      return 0;
+    }
+      return 1;
   }
-  return 57;
-
 }
+
+
 const ethnicity = ["Whit(non-hispanic)", "Hispanic", "Black and Afrrican American", "Asia"];
 const email = ["a@aol.com", "b@aol.com"];
 const vote_number = [300, 200, 350, 130];
-const Population = (props) => {
+
+
+const Polls = (props) => {
   // const { email, ethnicity, vote_number } = props;
 
   return (
@@ -38,4 +41,4 @@ const Population = (props) => {
   );
 };
 
-export default Population;
+export default Polls;

@@ -12,18 +12,25 @@ main{
 
 .showMap {
   display: flex;
-  justify-content: space-around;
   flex-direction: row;
+}
+
+.arcmap {
+  weight: 2em;
+  height: 2em;
 }
 .container {
   background-color: black;
   color: white;
-  width: 300px;
-  height: 570px;
-  // display: flex;
-  // justify-content: center;
-}
 
+}
+.container-with-map {
+  flex-grow: 1;
+  background-color: black;
+  color: white;
+  margin-left: 150px;
+
+}
 .mapView {
   // width: 80%;
   margin: 284, 80, 10, 80;

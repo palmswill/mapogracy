@@ -7,28 +7,30 @@ import { Paper } from "@mui/material";
 import TopPoll from "../components/LandingPageComponents/TopPoll";
 import PollBrowser from "../components/LandingPageComponents/PollBrowser";
 
-
-import Population from "../components/Population";
-import Race from '../components/Race';
-import TotalVote from '../components/Total_vote';
+import Population from "../components/Polls";
+import Race from "../components/Race";
+import TotalVote from "../components/Total_vote";
 import "../styles/app.scss";
 
-const ethnicity = ["Whit(non-hispanic)", "Hispanic", "Black and Afrrican American", "Asia"];
+const ethnicity = [
+  "Whit(non-hispanic)",
+  "Hispanic",
+  "Black and Afrrican American",
+  "Asia",
+];
 const email = ["a@aol.com", "b@aol.com"];
 const vote_number = [300, 200, 350, 130];
 
-const voteNumber = function(emails, vote_number, ethnicity) {
+const voteNumber = function (emails) {
   let number = 0;
 
   const voteExist = true;
   // const voteExist = emails.include("a@aol.com")
   if (!voteExist) {
-    number++
+    number++;
   }
   return 57;
-
-}
-
+};
 
 const Landingpage = (props) => {
   const [poll, setPoll] = useState({});
@@ -50,40 +52,56 @@ const Landingpage = (props) => {
     <>
       <LandingPageLayout>
         <div className="showMap">
-      <section className="container">
-      <div>
-        <TopPoll>
-          <Paper
-            sx={{
-              height: "400px",
-            }}
-          >
-            <Arcmap
-              center={[-118.244, 34.052]}
-              voteList={voteList}
-              zoom={5}
-              getPolygonPoints={getPolygonPoints}
-            />     
-          </Paper>
-        </TopPoll>
-      </div>
-      </section>
-        <section className="container">
-              <ul className="ethnicity_total">
-                <li className="ethnicity">{ethnicity[0]}</li><br />
-                <li className="number_vote">{voteNumber[0] + voteNumber(email)}</li><br />
-                <li className="ethnicity">{ethnicity[1]}</li><br />
-                <li className="number_vote">{voteNumber[1]+ voteNumber(email)}</li><br />
-                <li className="ethnicity">{ethnicity[2]}</li><br />
-                <li className="number_vote">{voteNumber[2] + voteNumber(email)}</li><br />
-                <li className="ethnicity">{ethnicity[3]}</li><br />
-                <li className="number_vote">{voteNumber[3] + voteNumber(email)}</li><br />
-              </ul>
-        </section> 
+          <section className="container-with-map">
+            <div>
+              <TopPoll>
+                <Paper
+                  sx={{
+                    height: "400px",
+                  }}
+                >
+                  <Arcmap
+                    className="arcmap"
+                    center={[-118.244, 34.052]}
+                    voteList={voteList}
+                    zoom={5}
+                    getPolygonPoints={getPolygonPoints}
+                  />
+                </Paper>
+              </TopPoll>
+            </div>
+          </section>
+          <section className="container">
+            <ul className="ethnicity_total">
+              <li className="ethnicity">{ethnicity[0]}</li>
+              <br />
+              <li className="number_vote">
+                {vote_number[0] + voteNumber(email)}
+              </li>
+              <br />
+              <li className="ethnicity">{ethnicity[1]}</li>
+              <br />
+              <li className="number_vote">
+                {vote_number[1] + voteNumber(email)}
+              </li>
+              <br />
+              <li className="ethnicity">{ethnicity[2]}</li>
+              <br />
+              <li className="number_vote">
+                {vote_number[2] + voteNumber(email)}
+              </li>
+              <br />
+              <li className="ethnicity">{ethnicity[3]}</li>
+              <br />
+              <li className="number_vote">
+                {vote_number[3] + voteNumber(email)}
+              </li>
+              <br />
+            </ul>
+          </section>
         </div>
         <PollBrowser />
       </LandingPageLayout>
-
     </>
   );
 };
