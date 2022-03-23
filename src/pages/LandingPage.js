@@ -29,6 +29,7 @@ import "../styles/app.scss";
 
 const Landingpage = (props) => {
   const [poll, setPoll] = useState({});
+  
 
   useEffect(() => {
     axios
