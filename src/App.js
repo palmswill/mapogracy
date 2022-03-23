@@ -34,6 +34,9 @@ function App() {
       common: {
         black: "#18181B",
       },
+      font: {
+        color: "#FFFFFF"
+      },
       background: {
         paper: "#18181B",
       },

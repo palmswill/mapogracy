@@ -4,7 +4,12 @@ import React, { useState, useEffect } from "react";
 import Pollresultshow from "./PollResultShows";
 import RegionSelect from "./RegionSelect";
 import SpacedButtonGroup from "./SpacedButtonGroup";
+import axios from "axios";
 
+
+
+
+const polls = [];
 const PollBrowser = () => {
   const [pageIndex, setPageIndex] = useState(0);
   const [liveIndex, setLiveIndex] = useState(0);
@@ -26,6 +31,20 @@ const PollBrowser = () => {
     "Media",
     "Others",
   ]);
+
+  const PollResult = () => {
+    const [polls, setPolls] = useState();
+    useEffect(() => {
+      axios
+        .get("http://mapocracy-api.azurewebsites.net/")
+        .then((res) => res.data)
+        .then((polls) => setPolls(polls));
+        // return polls;
+  }, []);
+  
+  }
+  
+  // PollResult();
 
   useEffect(() => {
     setPageIndex(0);
@@ -53,7 +72,7 @@ const PollBrowser = () => {
         currentIndex={categoryIndex}
         setCurrentIndex={setCategoryIndex}
       />
-      <Pollresultshow/>
+      <Pollresultshow currentPolls={polls}/>
       <Box sx={{height:"50px"}}></Box>
     </>
   );
