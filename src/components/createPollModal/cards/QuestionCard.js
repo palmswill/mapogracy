@@ -3,7 +3,6 @@ import useInput from "../../../hooks/useInput";
 import { TextField } from "@mui/material";
 
 const Quesioncard = ({ handleSetState,poll,propName }) => {
-  console.log (poll.current);
   const [value, onChange] = useInput(poll.current[propName]?poll.current[propName]:"");
 
   useEffect(() => {

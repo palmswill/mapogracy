@@ -6,10 +6,11 @@ import Multiinputcard from "./cards/MultiInputCard";
 import DrawableMap from "../map/DrawableMap";
 import EmailListCard from "./cards/EmailListCard";
 import VisibilityCard from "./cards/VisibilityCard";
+import DateCard from "./cards/DateCard";
 
 export default function PollCreatorContainer({ toggleModal }) {
   const poll = useRef({});
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(6);
 
   const handleSetState = (propName, newState) => {
     poll.current = { ...poll.current, [propName]: newState };
@@ -56,6 +57,8 @@ export default function PollCreatorContainer({ toggleModal }) {
           key="location"
           width="80%"
           height="20vw"
+          mapCenter={poll.current.center?poll.current.center:[-118.244, 34.052]}
+          poll={poll}
           area={{
             radius: poll.current.radius ? poll.current.radius : 500,
             points: poll.current.center
@@ -73,7 +76,7 @@ export default function PollCreatorContainer({ toggleModal }) {
       name: "DO YOU WANT OTHERS TO KNOW WHEN THEY VOTE?",
       card: <VisibilityCard key="visibility" handleSetState={handleSetState} poll={poll} />,
     },
-    { name: "", card: <></> },
+    { name: "", card: <DateCard key="dates" poll={poll} handleSetState={handleSetState}/> },
   ];
 
   const handleNext = () => {
