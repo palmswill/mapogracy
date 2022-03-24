@@ -55,7 +55,9 @@ function App() {
     <div className="App">
       <ThemeProvider theme={appTheme}>
         <NavBar {...{ toggleModal }} />
-        <PollCreatorModal {...{ modalOpen, toggleModal }} />
+        {isAuthenticated && (
+          <PollCreatorModal {...{ modalOpen, toggleModal }} />
+        )}
 
         <CssBaseline />
         <main>

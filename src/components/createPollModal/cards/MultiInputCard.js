@@ -20,7 +20,20 @@ const Multiinputcard = ({ handleSetState, poll, propName }) => {
   );
 
   useEffect(() => {
-    handleSetState(propName, [answer0, answer1, answer2, answer3]);
+    const answerList = [];
+    if (answer0) {
+      answerList.push(answer0);
+    }
+    if (answer1) {
+      answerList.push(answer1);
+    }
+    if (answer2) {
+      answerList.push(answer2);
+    }
+    if (answer3) {
+      answerList.push(answer3);
+    }
+    handleSetState(propName, answerList);
   }, [answer0, answer1, answer2, answer3, propName, handleSetState]);
 
   return (

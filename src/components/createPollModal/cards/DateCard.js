@@ -5,7 +5,7 @@ import { Box } from "@mui/system";
 import { TextField } from "@mui/material";
 
 export default function DateCard({ handleSetState, poll }) {
-  const [value, setValue] = useState([null, null]);
+  const [value, setValue] = useState([poll.current.start_date,poll.current.end_date]);
 
   useEffect(() => {
     handleSetState("start_date", dateConvert(value[0]));
@@ -13,7 +13,7 @@ export default function DateCard({ handleSetState, poll }) {
   }, [value, handleSetState]);
 
   const dateConvert = (dateString) => {
-    const data = new Date().toLocaleDateString();
+    const data = new Date(dateString).toLocaleDateString();
     const listString = data.split("/");
     const transString= [listString[2],listString[0],listString[1]].join("-");
     return transString;
