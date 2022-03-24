@@ -45,7 +45,7 @@ function App() {
       },
     },
   });
-  const [modalOpen, setModelOpen] = useState(true);
+  const [modalOpen, setModelOpen] = useState(false);
 
   const toggleModal = () => {
     setModelOpen((prevState) => !prevState);
