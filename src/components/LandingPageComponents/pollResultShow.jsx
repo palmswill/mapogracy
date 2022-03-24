@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Grid, Paper } from "@mui/material";
 import axios from 'axios';
@@ -69,6 +69,9 @@ const Pollresultshow = (props) => {
 
   function handleClick(e, id) {
     e.preventDefault();
+    
+    navigate(`/polls/${id}`);
+
     let config = {
       headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': '*'},
       }
@@ -76,12 +79,12 @@ const Pollresultshow = (props) => {
     axios.get(`https://mapocracy-api.azurewebsites.net/poll`, config)
     .then(res => {
        const posts = res.data;
-       console.log({ posts });
+       console.log('Posts: ', posts);
       })
       .catch(error => console.log('hello', error));
 
     // alert(`You push poll: ${link}`)
-    // navigate.push(`/${link}`);
+    // navigate.push(`/localhost:3000/polls/1`);
   };
 
   // at line 84 handleClick should receive a good link in content.id or something else to navigate to this link
@@ -98,7 +101,7 @@ const Pollresultshow = (props) => {
           <div className="map-result" onClick={(e) => handleClick(e, content.id)}>
             <Paper sx={{ height: "200px", color: "primary"}}>
               <div className="poll-titre">
-                <a className="poll-name">{content.pollName}</a>
+                <p className="poll-name">{content.pollName}</p>
               </div>
               <br></br>
               <section className="host-by">
@@ -110,7 +113,7 @@ const Pollresultshow = (props) => {
               </section>
               <br></br>
               <div className="poll-positive">
-                <a>{content.agree}</a>
+                <p>{content.agree}</p>
                 <i className="fa-solid fa-user"></i>
                 <a>{int.format(content.pollPositive)}</a>
               </div>

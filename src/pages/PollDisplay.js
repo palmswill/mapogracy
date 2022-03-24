@@ -1,5 +1,5 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -8,12 +8,16 @@ import Grid from '@mui/material/Grid';
 import { Button } from "@mui/material";
 import ButtonBase from '@mui/material/ButtonBase';
 import Arcmap from "../components/map/Arcmap";
+import { Typography } from "@mui/material";
+
+import axios from "axios";
 
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import { fontSize } from "@mui/system";
 
 
 
@@ -61,28 +65,44 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const Polldisplay = (props) => {
   const pollId = useParams().pollid;
+  let navigate = useNavigate();
+  const [poll, setPoll] = useState({});
+
   console.log('pollId: ', pollId);
 
   const { user, isAuthenticated, isLoading } = useAuth0();
-  const { pollName, poll} = props
+  const { pollName } = props
   console.log('pollName: ', pollName);
-  console.log('poll: ', poll);
+
+  useEffect(() => {
+    axios
+      .get("/dummy/testData2.json")
+      .then((result) => result.data)
+      .then((data) => setPoll(data));
+
+  }, []);
 
   if (!isAuthenticated) {
     return <div>You need to login before to vote!</div>;
   }
-
-
   
     const handleRadioChange = (event) => {
       event.preventDefault();
 
       const myFormData = new FormData(event.target);
       const values = Object.fromEntries(myFormData.entries());
-      console.log(`Event change: ${values.quiz}`);
+      
+      // console.log(`Event change: ${values.quiz}`);
 
+      // const result = [user_id, poll_id, answer_id,  ]
       // setHelperText(' ');
       // setError(false);
+
+    
+
+
+      navigate('/');
+
     };
   
 
@@ -93,6 +113,7 @@ const Polldisplay = (props) => {
       p: 2,
       margin: 'auto',
       maxWidth: 1424,
+      fontSize: 12,
       flexGrow: 1,
       backgroundColor: (theme) =>
         theme.palette.mode === 'dark' ? '#18181B' : '#fff',
@@ -102,9 +123,9 @@ const Polldisplay = (props) => {
       <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={1}>
      
           <Box gridColumn="span 12" spacing={{ xs: 1, md: 1 }} columns={{ xs: 2, sm: 10, md: 12 }}>
-            <Item>Which is your favorite in your opinion</Item>
-            <Item>{user.name}</Item>
-            <Item>The future of word depend of vote you are to make now!</Item>
+            <Typography>{poll.name}</Typography>
+            <Typography variant="h6" color="primary" >{user.name}</Typography>
+            <Typography>The future of word depend of vote you are to make now!</Typography>
           </Box>
           <Box gridColumn="span 4">
             <Item></Item>
@@ -122,26 +143,29 @@ const Polldisplay = (props) => {
         <Grid item xs={12} sm container>
           <Grid item xs container direction="column" spacing={2}>
             <Grid item xs>
-    <form onSubmit={handleRadioChange}>
-      <FormControl sx={{ m: 3 }} variant="standard" border={2}>
-        <FormLabel id="radios">What is your vote</FormLabel>
+    <Box sx={{border: 1}}>
+                <form onSubmit={handleRadioChange}>
+      <FormControl id="radios" sx={{ m: 3, fontSize: 12 }} variant="standard" border={2}>
+        {/* <FormLabel id="radios"></FormLabel> */}
         <RadioGroup
           aria-labelledby="radios"
           name="quiz"
           // onSubmit={handleRadioChange}
         >
-          <FormControlLabel value="agree" control={<Radio />} label="Agree" />
-          <FormControlLabel value="disagree" control={<Radio />} label="Desagree" />
-          <FormControlLabel value="other1" control={<Radio />} label="Other opinion" />
-          <FormControlLabel value="other2" control={<Radio />} label="Other opinion" />
-          <FormControlLabel value="other3" control={<Radio />} label="Other opinion" />
-          <FormControlLabel value="other4" control={<Radio />} label="Other opinion" />
+
+        {poll.id &&
+            poll.answers.map((answer) => {
+              return <FormControlLabel value={answer.content} control={<Radio />} label={answer.content} />;
+            })}
+
         </RadioGroup>
-        <Button sx={{ mt: 1, mr: 1 }} type="submit" variant="outlined">
+        <Button sx={{ mt: 1, mr: 1 }} type="submit" variant="contained">
           Submit your vote
         </Button>
       </FormControl>
     </form>
+   </Box>
+
             </Grid>
 
           </Grid>
@@ -154,3 +178,31 @@ const Polldisplay = (props) => {
 
 
 export default Polldisplay;
+
+// //////////
+
+// import { Paper } from "@mui/material";
+
+// import { Box } from "@mui/system";
+// import { Grid } from "@mui/material";
+
+// const Userinterface = () => {
+
+//   return (
+//     <div>
+//       <Grid>
+//         <Box sx={{ texAlign: "center", border: 1 }} textAlign="center">
+          // {poll.id &&
+          //   poll.answers.map((answer) => {
+          //     return <div>{answer.content}</div>;
+          //   })}
+//         </Box>
+//       </Grid>
+
+//       <h1>UserInterface</h1>
+//     </div>
+//   );
+// };
+
+// export default Userinterface;
+
