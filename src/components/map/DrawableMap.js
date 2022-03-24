@@ -27,7 +27,7 @@ const DrawableArcmap = ({
   const mapStyle = {
     height,
     width,
-    minHeight: "350px",
+    minHeight: "200px",
   };
 
   const [viewRef, GeometryGraphicsLayerRef, PointGraphicsLayerRef] = useMap(

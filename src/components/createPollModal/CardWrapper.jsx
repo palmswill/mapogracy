@@ -17,7 +17,7 @@ const Cardwrapper = ({
   return (
     <Box
       sx={{
-        paddingTop: "5%",
+        paddingTop: "2%",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-around",
@@ -25,7 +25,7 @@ const Cardwrapper = ({
         gap:"20px"
       }}
     >
-      <Typography textAlign={"center"} variant="h3">{name}</Typography>
+      <Typography textAlign={"center"} variant="h4">{name}</Typography>
       {children}
       <Box
         sx={{

@@ -9,7 +9,7 @@ import VisibilityCard from "./cards/VisibilityCard";
 
 export default function PollCreatorContainer({ toggleModal }) {
   const poll = useRef({});
-  const [index, setIndex] = useState(5);
+  const [index, setIndex] = useState(0);
 
   const handleSetState = (propName, newState) => {
     poll.current = { ...poll.current, [propName]: newState };
@@ -54,6 +54,8 @@ export default function PollCreatorContainer({ toggleModal }) {
         <DrawableMap
           handleSetState={handleSetState}
           key="location"
+          width="80%"
+          height="20vw"
           area={{
             radius: poll.current.radius ? poll.current.radius : 500,
             points: poll.current.center
