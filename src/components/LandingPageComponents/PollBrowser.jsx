@@ -53,7 +53,7 @@ const PollBrowser = () => {
         currentIndex={categoryIndex}
         setCurrentIndex={setCategoryIndex}
       />
-      <Pollresultshow/>
+      <Pollresultshow />
       <Box sx={{height:"50px"}}></Box>
     </>
   );

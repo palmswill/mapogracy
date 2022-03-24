@@ -7,7 +7,7 @@ import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
 
 const Arcmap = ({
   width = "100%",
-  height = "350px",
+  height = "100%",
   center =[43.65 ,79.34],
   zoom = 5,
   style,

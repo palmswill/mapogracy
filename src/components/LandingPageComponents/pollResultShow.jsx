@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Grid, Paper } from "@mui/material";
+import axios from 'axios';
 
 
 const array = [
@@ -60,19 +61,33 @@ const array = [
   }
 ]
 
-const Pollresultshow = ({ result = Array.from(array) }) => {
+const Pollresultshow = (props) => {
+  // const Pollresultshow = ({ result = Array.from(array) }) => {
   let navigate = useNavigate();
 
   const int = new Intl.NumberFormat('en-US')
 
-  function handleClick(e, link) {
+  function handleClick(e, id) {
     e.preventDefault();
-    alert(`You push poll: ${link}`)
-    navigate.push(`/${link}`);
+    let config = {
+      headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': '*'},
+      }
+
+    axios.get(`https://mapocracy-api.azurewebsites.net/poll`, config)
+    .then(res => {
+       const posts = res.data;
+       console.log({ posts });
+      })
+      .catch(error => console.log('hello', error));
+
+    // alert(`You push poll: ${link}`)
+    // navigate.push(`/${link}`);
   };
 
   // at line 84 handleClick should receive a good link in content.id or something else to navigate to this link
   return (
+    <>
+   
     <Grid
       container
       spacing={{ xs: 2, md: 3 }}
@@ -81,7 +96,7 @@ const Pollresultshow = ({ result = Array.from(array) }) => {
       {array.map((content, index) => (
         <Grid item xs={4} sm={4} md={4} key={index}>
           <div className="map-result" onClick={(e) => handleClick(e, content.id)}>
-            <Paper sx={{ height: "200px" }}>
+            <Paper sx={{ height: "200px", color: "primary"}}>
               <div className="poll-titre">
                 <a className="poll-name">{content.pollName}</a>
               </div>
@@ -110,6 +125,7 @@ const Pollresultshow = ({ result = Array.from(array) }) => {
         </Grid>
       ))}
     </Grid>
+    </>
   );
 };
 
