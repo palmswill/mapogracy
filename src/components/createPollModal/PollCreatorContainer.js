@@ -6,9 +6,12 @@ import Multiinputcard from "./cards/MultiInputCard";
 import DrawableMap from "../map/DrawableMap";
 import EmailListCard from "./cards/EmailListCard";
 import VisibilityCard from "./cards/VisibilityCard";
+import DateCard from "./cards/DateCard";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function PollCreatorContainer({ toggleModal }) {
-  const poll = useRef({});
+  const { user} = useAuth0();
+  const poll = useRef({ user_id:user.email});
   const [index, setIndex] = useState(0);
 
   const handleSetState = (propName, newState) => {
@@ -23,6 +26,7 @@ export default function PollCreatorContainer({ toggleModal }) {
           key="name"
           propName="name"
           poll={poll}
+          cat
           handleSetState={handleSetState}
         />
       ),
@@ -56,6 +60,10 @@ export default function PollCreatorContainer({ toggleModal }) {
           key="location"
           width="80%"
           height="20vw"
+          mapCenter={
+            poll.current.center ? poll.current.center : [-118.244, 34.052]
+          }
+          poll={poll}
           area={{
             radius: poll.current.radius ? poll.current.radius : 500,
             points: poll.current.center
@@ -67,13 +75,30 @@ export default function PollCreatorContainer({ toggleModal }) {
     },
     {
       name: "WHO DO YOU WANT TO ASK?",
-      card: <EmailListCard key="emailList" handleSetState={handleSetState} poll={poll} />,
+      card: (
+        <EmailListCard
+          key="emailList"
+          handleSetState={handleSetState}
+          poll={poll}
+        />
+      ),
     },
     {
       name: "DO YOU WANT OTHERS TO KNOW WHEN THEY VOTE?",
-      card: <VisibilityCard key="visibility" handleSetState={handleSetState} poll={poll} />,
+      card: (
+        <VisibilityCard
+          key="visibility"
+          handleSetState={handleSetState}
+          poll={poll}
+        />
+      ),
     },
-    { name: "", card: <></> },
+    {
+      name: "",
+      card: (
+        <DateCard key="dates" poll={poll} handleSetState={handleSetState} />
+      ),
+    },
   ];
 
   const handleNext = () => {
@@ -83,6 +108,7 @@ export default function PollCreatorContainer({ toggleModal }) {
     setIndex((prev) => prev - 1);
   };
   const handleSubmit = () => {
+    console.log(poll.current);
     setIndex(0);
   };
 

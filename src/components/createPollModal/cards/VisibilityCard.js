@@ -21,7 +21,7 @@ export default function VisibilityCard({ handleSetState, poll }) {
         onChange={onChange}
       >
         <MenuItem value={true}>YES</MenuItem>
-        <MenuItem value={false}>FALSE</MenuItem>
+        <MenuItem value={false}>NO</MenuItem>
       </Select>
     </FormControl>
   );

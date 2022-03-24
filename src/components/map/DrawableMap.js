@@ -1,14 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Button, TextField } from "@mui/material";
+import {
+  Select,
+  TextField,
+  FormControl,
+  InputLabel,
+  MenuItem,
+} from "@mui/material";
+import { Box } from "@mui/system";
 
 import {
   getClickedCoordinates,
   setCircle,
   setPoint,
-  setPolygon,
 } from "../../helpers/mapHelpers";
 
 import useMap from "../../hooks/useMap";
+import useInput from "../../hooks/useInput";
 
 const DrawableArcmap = ({
   width = "100%", //width of map
@@ -16,8 +23,8 @@ const DrawableArcmap = ({
   mapCenter = [-118.244, 34.052], //center of map
   zoom = 5, //zoom level
   area = { radius: "500", points: [[-118.244, 34.052]] },
-  getPolygonPoints, //function that get polygon points
   handleSetState,
+  poll,
 }) => {
   const isCircle = area.radius;
   const areaPoints = useRef(area.points ? area.points : []);
@@ -30,6 +37,18 @@ const DrawableArcmap = ({
     minHeight: "200px",
   };
 
+  const regions = [
+    "Asia",
+    "Europe",
+    "North America",
+    "South America",
+    "Oceania",
+  ];
+
+  const [region, onRegionChange] = useInput(
+    poll.current.region ? poll.current.region : "North America"
+  );
+
   const [viewRef, GeometryGraphicsLayerRef, PointGraphicsLayerRef] = useMap(
     zoom,
     mapCenter,
@@ -37,17 +56,22 @@ const DrawableArcmap = ({
   );
 
   useEffect(() => {
-    if (isCircle) {
-      setPoint(area.points[0], PointGraphicsLayerRef.current);
-      setCircle(area.points[0], radius, GeometryGraphicsLayerRef.current);
-    }
-  }, [isCircle, area, GeometryGraphicsLayerRef, PointGraphicsLayerRef, radius]);
+    PointGraphicsLayerRef.current.removeAll();
+    GeometryGraphicsLayerRef.current.removeAll();
+    setPoint(areaPoints.current[0], PointGraphicsLayerRef.current);
+    setCircle(areaPoints.current[0], radius, GeometryGraphicsLayerRef.current);
+  }, [
+    isCircle,
+    areaPoints.current,
+    GeometryGraphicsLayerRef,
+    PointGraphicsLayerRef,
+    radius,
+  ]);
 
   useEffect(() => {
-
-    handleSetState("radius", area.radius);
-    handleSetState("restriction", area.points[0]);
-  }, [area]);
+    handleSetState("radius", radius);
+    handleSetState("restriction", areaPoints.current[0]);
+  }, [radius]);
 
   const handleRadiusChange = (e) => {
     setRadius(e.target.value);
@@ -74,36 +98,46 @@ const DrawableArcmap = ({
           GeometryGraphicsLayerRef.current
         );
       }
-      if (!isCircle) {
-        const coords = getClickedCoordinates(e);
-        areaPoints.current = [...areaPoints.current, coords];
-        getPolygonPoints(areaPoints.current);
-        setPoint(coords, PointGraphicsLayerRef.current);
-        setPolygon(areaPoints.current, GeometryGraphicsLayerRef.current);
-      }
     });
   }, [
     radius,
-    getPolygonPoints,
     GeometryGraphicsLayerRef,
     PointGraphicsLayerRef,
     viewRef,
     area,
     isCircle,
+    region,
   ]);
 
   return (
     <>
       <div id="viewDivCreate" style={mapStyle}></div>
-      <Button />
-      <TextField
-        type="number"
-        label="radius"
-        color="primary"
-        focused
-        value={radius}
-        onChange={handleRadiusChange}
-      />
+      <Box sx={{ display: "flex", gap: "10px" }}>
+        <FormControl>
+          <InputLabel id="demo-simple-select-label">region</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={region}
+            label="Region"
+            onChange={onRegionChange}
+          >
+            {regions.map((region) => (
+              <MenuItem key={region} value={region}>
+                {region}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        <TextField
+          type="number"
+          label="radius"
+          color="primary"
+          focused
+          value={radius}
+          onChange={handleRadiusChange}
+        />
+      </Box>
     </>
   );
 };
