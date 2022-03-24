@@ -47,9 +47,9 @@ function App() {
   });
   const [modalOpen, setModelOpen] = useState(true);
 
-  const toggleModal=()=>{
-    setModelOpen((prevState)=>!prevState);
-  }
+  const toggleModal = () => {
+    setModelOpen((prevState) => !prevState);
+  };
 
   return (
     <div className="App">
@@ -65,7 +65,13 @@ function App() {
             {/* page showing the user interface linke eg. "/user" */}
             <Route
               path="/user"
-              element={isAuthenticated ? <UserInterface /> : <>Opps, Looked Like You Are Not Logged In?</>}
+              element={
+                isAuthenticated ? (
+                  <UserInterface />
+                ) : (
+                  <>Opps, Looked Like You Are Not Logged In?</>
+                )
+              }
             />
             {/* page showing individual poll link eg. "/polls/1"*/}
             <Route path="/polls/:pollid" element={<PollDisplay />} />

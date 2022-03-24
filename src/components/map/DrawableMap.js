@@ -15,8 +15,9 @@ const DrawableArcmap = ({
   height = "100%", //height of map
   mapCenter = [-118.244, 34.052], //center of map
   zoom = 5, //zoom level
-  area = { radius: 500, points: [[-118.244, 34.052]] },
+  area = { radius: "500", points: [[-118.244, 34.052]] },
   getPolygonPoints, //function that get polygon points
+  handleSetState,
 }) => {
   const isCircle = area.radius;
   const areaPoints = useRef(area.points ? area.points : []);
@@ -26,12 +27,13 @@ const DrawableArcmap = ({
   const mapStyle = {
     height,
     width,
+    minHeight: "350px",
   };
 
   const [viewRef, GeometryGraphicsLayerRef, PointGraphicsLayerRef] = useMap(
     zoom,
     mapCenter,
-    "viewDiv"
+    "viewDivCreate"
   );
 
   useEffect(() => {
@@ -39,10 +41,17 @@ const DrawableArcmap = ({
       setPoint(area.points[0], PointGraphicsLayerRef.current);
       setCircle(area.points[0], radius, GeometryGraphicsLayerRef.current);
     }
-  }, [isCircle, area, GeometryGraphicsLayerRef, PointGraphicsLayerRef,radius]);
+  }, [isCircle, area, GeometryGraphicsLayerRef, PointGraphicsLayerRef, radius]);
+
+  useEffect(() => {
+
+    handleSetState("radius", area.radius);
+    handleSetState("restriction", area.points[0]);
+  }, [area]);
 
   const handleRadiusChange = (e) => {
     setRadius(e.target.value);
+    handleSetState("radius", e.target.value);
     PointGraphicsLayerRef.current.removeAll();
     GeometryGraphicsLayerRef.current.removeAll();
     setPoint(areaPoints.current[0], PointGraphicsLayerRef.current);
@@ -56,6 +65,7 @@ const DrawableArcmap = ({
       GeometryGraphicsLayerRef.current.removeAll();
       if (isCircle) {
         const coords = getClickedCoordinates(e);
+        handleSetState("center", coords);
         areaPoints.current[0] = coords;
         setPoint(areaPoints.current[0], PointGraphicsLayerRef.current);
         setCircle(
@@ -84,7 +94,7 @@ const DrawableArcmap = ({
 
   return (
     <>
-      <div id="viewDiv" style={mapStyle}></div>
+      <div id="viewDivCreate" style={mapStyle}></div>
       <Button />
       <TextField
         type="number"

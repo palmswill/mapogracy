@@ -20,12 +20,12 @@ const Cardwrapper = ({
         paddingTop: "5%",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
+        justifyContent: "space-around",
         alignItems: "center",
         gap:"20px"
       }}
     >
-      <Typography variant="h3">{name}</Typography>
+      <Typography textAlign={"center"} variant="h3">{name}</Typography>
       {children}
       <Box
         sx={{
@@ -47,7 +47,6 @@ const Cardwrapper = ({
         {!first && (
           <Button
             sx={buttonStyle}
-            n
             variant="contained"
             color="common"
             onClick={handlePrevious}

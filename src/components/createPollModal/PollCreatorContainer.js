@@ -1,26 +1,77 @@
-import React, { useState } from "react";
-import { Box } from "@mui/system";
+import React, { useState, useRef } from "react";
 import CardWrapper from "./CardWrapper";
 import { Button } from "@mui/material";
+import Quesioncard from "./cards/QuestionCard";
+import Multiinputcard from "./cards/MultiInputCard";
+import DrawableMap from "../map/DrawableMap";
+import EmailListCard from "./cards/EmailListCard";
+import VisibilityCard from "./cards/VisibilityCard";
 
-export default function PollCreatorContainer({toggleModal}) {
-  const [poll, setPoll] = useState({});
-  const [index, setIndex] = useState(0);
+export default function PollCreatorContainer({ toggleModal }) {
+  const poll = useRef({});
+  const [index, setIndex] = useState(5);
 
-  const handleSetState = (props, newState) => {
-    setPoll((prev) => {
-      return { ...prev, [props]: newState };
-    });
+  const handleSetState = (propName, newState) => {
+    poll.current = { ...poll.current, [propName]: newState };
   };
 
   const cardList = [
-    { name: "WHATS YOUR QUESTION?", card: <>TEST</> },
-    { name: "WHATS YOUR CONTEXT?", card: <></> },
-    { name: "LET US KNOW THE POSSIBILITIES", card: <></> },
-    { name: "WHERE DO YOU WANT IT TO BE ASKED?", card: <></> },
-    { name: "WHO DO YOU WANT TO ASK?", card: <></> },
-    { name: "DO YOU WANT OTHERS TO KNOW WHEN THEY VOTE?", card: <></> },
-    { name: "WHO DO YOU WANT TO ASK?", card: <></> },
+    {
+      name: "WHATS YOUR QUESTION?",
+      card: (
+        <Quesioncard
+          key="name"
+          propName="name"
+          poll={poll}
+          handleSetState={handleSetState}
+        />
+      ),
+    },
+    {
+      name: "WHATS YOUR CONTEXT?",
+      card: (
+        <Quesioncard
+          key="description"
+          propName="description"
+          poll={poll}
+          handleSetState={handleSetState}
+        />
+      ),
+    },
+    {
+      name: "LET US KNOW THE POSSIBILITIES",
+      card: (
+        <Multiinputcard
+          key="answer"
+          propName="answers"
+          {...{ poll, handleSetState }}
+        />
+      ),
+    },
+    {
+      name: "WHERE DO YOU WANT IT TO BE ASKED?",
+      card: (
+        <DrawableMap
+          handleSetState={handleSetState}
+          key="location"
+          area={{
+            radius: poll.current.radius ? poll.current.radius : 500,
+            points: poll.current.center
+              ? [poll.current.center]
+              : [[-118.244, 34.052]],
+          }}
+        />
+      ),
+    },
+    {
+      name: "WHO DO YOU WANT TO ASK?",
+      card: <EmailListCard key="emailList" handleSetState={handleSetState} poll={poll} />,
+    },
+    {
+      name: "DO YOU WANT OTHERS TO KNOW WHEN THEY VOTE?",
+      card: <VisibilityCard key="visibility" handleSetState={handleSetState} poll={poll} />,
+    },
+    { name: "", card: <></> },
   ];
 
   const handleNext = () => {
@@ -37,10 +88,14 @@ export default function PollCreatorContainer({toggleModal}) {
     <>
       <Button
         sx={{
-          marginLeft: "95%",
+          marginLeft: "94%",
           marginTop: "5px",
           fontSize: 25,
           color: "common.white",
+          bgcolor: "transparent",
+          "&.MuiButtonBase-root:hover": {
+            bgcolor: "transparent",
+          },
         }}
         onClick={toggleModal}
       >
