@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { getMap, setPoint } from "../../helpers/mapHelpers";
+import { dotColor, getMap, setPoint } from "../../helpers/mapHelpers";
 
 import esriConfig from "@arcgis/core/config";
 
@@ -24,7 +24,7 @@ const Arcmap = ({
 
   // initialize map
 
-  console.log(center)
+  const color=dotColor;
 
   useEffect(() => {
     const [map] = getMap(zoom, center, "viewDiv");
@@ -34,11 +34,13 @@ const Arcmap = ({
     map.add(pointGraphicsLayer);
 
     // add points according to voter list;
-    voteList.forEach((answer) => {
+    voteList.forEach((answer,index) => {
       const { coordinates } = answer;
+      
 
       coordinates.forEach((coord) => {
-        setPoint(coord, pointGraphicsLayer);
+        const arcCoord= [coord[1],coord[0]]  ///arcgis has is as [long,lat]; where normal its [lat,long]
+        setPoint(arcCoord, pointGraphicsLayer,color[index]);
       });
     });
 
