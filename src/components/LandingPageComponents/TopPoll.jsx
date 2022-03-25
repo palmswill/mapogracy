@@ -13,7 +13,7 @@ const TopPoll = () => {
       .then((res) => res.data)
       .then((result) => {
         console.log(result)
-        return setNewestPoll(result[0])});
+        return setNewestPoll(result[1])});
   }, []);
 
 
@@ -31,7 +31,7 @@ const TopPoll = () => {
           position: "relative",
         }}
       >
-        {newestPoll.length && <Mainpollcard poll={newestPoll} />}
+        {newestPoll.id && <Mainpollcard poll={newestPoll} />}
       </Paper>
     </>
   );

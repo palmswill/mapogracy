@@ -23,8 +23,11 @@ export const getMap = (zoom, center, divId) => {
   return [map, view];
 };
 
+export const dotColor=["#911eb4","#e6194B","#bfef45","#42d4f4","#f032e6"];
+
+
 // set point on a given layer
-export const setPoint = ([long, lat], graphicsLayer) => {
+export const setPoint = ([long, lat], graphicsLayer, color=[226, 119, 40]) => {
   const point = {
     //Create a point
     type: "point",
@@ -34,7 +37,7 @@ export const setPoint = ([long, lat], graphicsLayer) => {
 
   const simpleMarkerSymbol = {
     type: "simple-marker",
-    color: [226, 119, 40], // Orange
+    color: color, // Orange
     outline: {
       color: [255, 255, 255], // White
       width: 1,

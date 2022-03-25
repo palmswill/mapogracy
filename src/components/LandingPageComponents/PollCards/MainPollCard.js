@@ -6,15 +6,17 @@ import {
   Box,
   ListItemText,
   ListItem,
+  Avatar,
 } from "@mui/material";
 import Arcmap from "../../map/Arcmap";
-// import { calculteAnswers } from "../../../helpers/pollHelper";
+import { dotColor } from "../../../helpers/mapHelpers";
 
 const Mainpollcard = ({ poll }) => {
-  const { name, longitude, latitude } = poll[0];
-  const {user_id}=poll[1];
-  const { answers } = poll[2];
-  const voteList = poll.votes ? poll.votes : [];
+  // const { name, longitude, latitude } = poll[0];
+  // const {user_id}=poll[1];
+  // const { answers } = poll[2];
+
+  const { name, longitude, latitude, user_id, answers } = poll;
 
   let totalVotes = useMemo(() => {
     let count = 0;
@@ -26,7 +28,9 @@ const Mainpollcard = ({ poll }) => {
     .slice()
     .sort((a, b) => b.vote_count - a.vote_count);
 
-  const center = [ latitude,longitude];
+  const color = dotColor; /// imported color list from map helper
+
+  const center = [longitude, latitude];
 
   return (
     <>
@@ -63,7 +67,7 @@ const Mainpollcard = ({ poll }) => {
             style={{ minHeight: "300px" }}
             center={center}
             voteList={answers}
-            zoom={5}
+            zoom={10}
           />
         </Grid>
         <Grid sx={{ minWidth: "150px" }} item xs={3}>
@@ -91,6 +95,17 @@ const Mainpollcard = ({ poll }) => {
                           alignItems: "center",
                         }}
                       >
+                        {
+                          <Avatar
+                            sx={{
+                              bgcolor: color[index],
+                              width: 24,
+                              height: 24,
+                            }}
+                          >
+                            {" "}
+                          </Avatar>
+                        }
                         <i className="fa-solid fa-user"></i>
                         {<span>{answer.vote_count}</span>}
                         {!index && <i className="fa-solid fa-crown"></i>}
