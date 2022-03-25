@@ -11,7 +11,6 @@ import axios from "axios";
 
 const polls = [];
 const PollBrowser = () => {
-  const [pageIndex, setPageIndex] = useState(0);
   const [liveIndex, setLiveIndex] = useState(0);
   const [regionIndex, setRegionIndex] = useState(0);
   const [categoryIndex, setCategoryIndex] = useState(0);
@@ -47,7 +46,6 @@ const PollBrowser = () => {
   // PollResult();
 
   useEffect(() => {
-    setPageIndex(0);
   }, [regionIndex, categoryIndex, liveIndex]);
 
   return (
