@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Pollresultshow from "./PollResultShow";
 import RegionSelect from "./RegionSelect";
 import SpacedButtonGroup from "./SpacedButtonGroup";
+import axios from 'axios';
 
 const PollBrowser = () => {
   const [pageIndex, setPageIndex] = useState(0);
@@ -27,8 +28,23 @@ const PollBrowser = () => {
     "Others",
   ]);
 
+  const [polls, setPolls] = useState([]);
+
   useEffect(() => {
     setPageIndex(0);
+    
+      let config = {
+        headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': '*'},
+        }
+  
+      axios.get(`https://mapocracy-api.azurewebsites.net/poll`, config)
+      .then(res => {
+         const posts = res.data;
+         setPolls(posts);
+        //  console.log('Posts here: ', posts)
+      })
+      .catch(error => console.log('Error', error));
+
   }, [regionIndex, categoryIndex, liveIndex]);
 
   return (
@@ -53,7 +69,7 @@ const PollBrowser = () => {
         currentIndex={categoryIndex}
         setCurrentIndex={setCategoryIndex}
       />
-      <Pollresultshow />
+      <Pollresultshow poll={polls}/>
       <Box sx={{height:"50px"}}></Box>
     </>
   );

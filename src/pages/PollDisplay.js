@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -67,8 +67,9 @@ const Polldisplay = (props) => {
   const pollId = useParams().pollid;
   let navigate = useNavigate();
   const [poll, setPoll] = useState({});
+  const { state } = useLocation();
 
-  console.log('pollId: ', pollId);
+  console.log('State: ', state);
 
   const { user, isAuthenticated, isLoading } = useAuth0();
   const { pollName } = props
@@ -137,7 +138,13 @@ const Polldisplay = (props) => {
         <Grid item>
         
           <ButtonBase sx={{ width: 900, height: 350 }}>
-            <Arcmap />
+          <Arcmap
+            style={{ minHeight: "300px" }}
+            center={[-118.244, 34.052]}
+            // voteList={voteList}
+            zoom={5}
+          />
+            {/* <Arcmap /> */}
           </ButtonBase>
         </Grid>
         <Grid item xs={12} sm container>
@@ -146,7 +153,6 @@ const Polldisplay = (props) => {
     <Box sx={{border: 1}}>
                 <form onSubmit={handleRadioChange}>
       <FormControl id="radios" sx={{ m: 3, fontSize: 12 }} variant="standard" border={2}>
-        {/* <FormLabel id="radios"></FormLabel> */}
         <RadioGroup
           aria-labelledby="radios"
           name="quiz"
