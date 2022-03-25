@@ -39,7 +39,7 @@ const Quesioncard = ({ handleSetState, poll, propName, cat }) => {
         variant="standard"
       />
       {cat && (
-        <FormControl sx={{ m: 1, width: 300, mt: 8, mb: 8 }}>
+        <FormControl sx={{ m: 1, width: 300 }}>
           <InputLabel id="mutiple-select-label">Category</InputLabel>
 
           <Select

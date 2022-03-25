@@ -70,7 +70,6 @@ const DrawableArcmap = ({
 
   useEffect(() => {
     handleSetState("radius", radius);
-    handleSetState("restriction", areaPoints.current[0]);
   }, [radius]);
 
   const handleRadiusChange = (e) => {

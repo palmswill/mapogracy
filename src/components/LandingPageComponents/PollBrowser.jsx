@@ -6,7 +6,6 @@ import RegionSelect from "./RegionSelect";
 import SpacedButtonGroup from "./SpacedButtonGroup";
 
 const PollBrowser = () => {
-  const [pageIndex, setPageIndex] = useState(0);
   const [liveIndex, setLiveIndex] = useState(0);
   const [regionIndex, setRegionIndex] = useState(0);
   const [categoryIndex, setCategoryIndex] = useState(0);
@@ -28,7 +27,6 @@ const PollBrowser = () => {
   ]);
 
   useEffect(() => {
-    setPageIndex(0);
   }, [regionIndex, categoryIndex, liveIndex]);
 
   return (
