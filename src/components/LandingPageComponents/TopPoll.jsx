@@ -1,12 +1,28 @@
-import { Typography, Paper } from "@mui/material";
-import React from "react";
+import { Typography, Paper} from "@mui/material";
+import React,{useState,useEffect } from "react";
+import axios from "axios"
 import Mainpollcard from "./PollCards/MainPollCard";
 
-const TopPoll = ({ poll }) => {
+const TopPoll = () => {
+
+  const [newestPoll, setNewestPoll] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://mapocracy-api.azurewebsites.net/poll?order=new")
+      .then((res) => res.data)
+      .then((result) => {
+        console.log(result)
+        return setNewestPoll(result[0])});
+  }, []);
+
+
+
+
   return (
     <>
       <Typography sx={{ mb: 2 }} variant="h5">
-        What's Hot?
+        What's New?
       </Typography>
       <Paper
         sx={{
@@ -15,7 +31,7 @@ const TopPoll = ({ poll }) => {
           position: "relative",
         }}
       >
-        {poll.id && <Mainpollcard poll={poll} />}
+        {newestPoll.length && <Mainpollcard poll={newestPoll} />}
       </Paper>
     </>
   );

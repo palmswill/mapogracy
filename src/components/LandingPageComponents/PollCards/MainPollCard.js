@@ -8,15 +8,25 @@ import {
   ListItem,
 } from "@mui/material";
 import Arcmap from "../../map/Arcmap";
-import { calculteAnswers } from "../../../helpers/pollHelper";
+// import { calculteAnswers } from "../../../helpers/pollHelper";
 
 const Mainpollcard = ({ poll }) => {
-  const { votes, answers, name, user } = poll;
+  const { name, longitude, latitude } = poll[0];
+  const {user_id}=poll[1];
+  const { answers } = poll[2];
   const voteList = poll.votes ? poll.votes : [];
 
-  const results = useMemo(() => {
-    return calculteAnswers(answers, votes);
-  }, [answers, votes]);
+  let totalVotes = useMemo(() => {
+    let count = 0;
+    answers.forEach((answer) => (count += answer.vote_count));
+    return count;
+  }, [answers]);
+
+  const sortedAnswers = answers
+    .slice()
+    .sort((a, b) => b.vote_count - a.vote_count);
+
+  const center = [ latitude,longitude];
 
   return (
     <>
@@ -24,31 +34,41 @@ const Mainpollcard = ({ poll }) => {
         <Typography variant="h6" marginLeft="2%">
           {`${name} - hosted by `}
           <Box component="span" sx={{ color: "primary.main" }}>
-            {user}
+            {user_id}
           </Box>
         </Typography>
-        <Box component="span" sx={{ marginLeft: "auto", marginRight: "1%" }}>
-          {votes.length}
+        <Box
+          component="span"
+          sx={{
+            marginLeft: "auto",
+            marginRight: "1%",
+            display: "flex",
+            gap: "10px",
+            alignItems: "center",
+          }}
+        >
+          <i className="fa-solid fa-user"></i>
+          {<span>{totalVotes}</span>}
         </Box>
       </Box>
 
       <Grid
         sx={{ height: "90%", margin: "5px" }}
-        wrap="wrap"
+        wrap="wrap-reverse"
         container
-        spacing={2}
+        spacing={1}
       >
         <Grid item xs={9}>
           <Arcmap
             style={{ minHeight: "300px" }}
-            center={[-118.244, 34.052]}
-            voteList={voteList}
+            center={center}
+            voteList={answers}
             zoom={5}
           />
         </Grid>
-        <Grid sx={{ minWidth: "100px" }} item xs={3}>
+        <Grid sx={{ minWidth: "150px" }} item xs={3}>
           <List sx={{ width: "100%", bgcolor: "inherit", marginTop: "10%" }}>
-            {results.map((result, index) => {
+            {sortedAnswers.map((answer, index) => {
               return (
                 <ListItem
                   key={index}
@@ -59,8 +79,23 @@ const Mainpollcard = ({ poll }) => {
                   }}
                 >
                   <ListItemText>
-                    <Typography variant="h6">{result.name}</Typography>
-                    <Typography variant="body2">{result.vote}</Typography>
+                    <Typography variant="h6">{answer.content}</Typography>
+                    <Typography variant="body2">
+                      <Box
+                        component="span"
+                        sx={{
+                          marginLeft: "auto",
+                          marginRight: "1%",
+                          display: "flex",
+                          gap: "10px",
+                          alignItems: "center",
+                        }}
+                      >
+                        <i className="fa-solid fa-user"></i>
+                        {<span>{answer.vote_count}</span>}
+                        {!index && <i className="fa-solid fa-crown"></i>}
+                      </Box>
+                    </Typography>
                   </ListItemText>
                 </ListItem>
               );
