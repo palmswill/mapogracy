@@ -84,33 +84,39 @@ const Mainpollcard = ({ poll }) => {
                 >
                   <ListItemText>
                     <Typography variant="h6">{answer.content}</Typography>
-                    <Typography variant="body2">
-                      <Box
-                        component="span"
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "10px",
+                      }}
+                    >
+                      <Avatar
                         sx={{
-                          marginLeft: "auto",
-                          marginRight: "1%",
-                          display: "flex",
-                          gap: "10px",
-                          alignItems: "center",
+                          width: "25px",
+                          height: "25px",
+                          bgcolor: color[index],
                         }}
                       >
-                        {
-                          <Avatar
-                            sx={{
-                              bgcolor: color[index],
-                              width: 24,
-                              height: 24,
-                            }}
-                          >
-                            {" "}
-                          </Avatar>
-                        }
-                        <i className="fa-solid fa-user"></i>
-                        {<span>{answer.vote_count}</span>}
-                        {!index && <i className="fa-solid fa-crown"></i>}
-                      </Box>
-                    </Typography>
+                        {" "}
+                      </Avatar>
+                      <Typography variant="body2">
+                        <Box
+                          component="span"
+                          sx={{
+                            marginLeft: "auto",
+                            marginRight: "1%",
+                            display: "flex",
+                            gap: "10px",
+                            alignItems: "center",
+                          }}
+                        >
+                          <i className="fa-solid fa-user"></i>
+                          {<span>{answer.vote_count}</span>}
+                          {!index && <i className="fa-solid fa-crown"></i>}
+                        </Box>
+                      </Typography>
+                    </Box>
                   </ListItemText>
                 </ListItem>
               );
