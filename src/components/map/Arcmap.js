@@ -8,21 +8,23 @@ import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
 const Arcmap = ({
   width = "100%",
   height = "350px",
-  center =[43.65 ,79.34],
+  center = [43.65, 79.34],
   zoom = 5,
   style,
-  voteList = [],
+  voteList,
 }) => {
   const mapStyle = {
     height,
     width,
-    ...style
+    ...style,
   };
 
   // esri config that takes the api key
   esriConfig.apiKey = process.env.REACT_APP_ARCGIS_KEY;
 
   // initialize map
+
+  console.log(center)
 
   useEffect(() => {
     const [map] = getMap(zoom, center, "viewDiv");
@@ -32,8 +34,12 @@ const Arcmap = ({
     map.add(pointGraphicsLayer);
 
     // add points according to voter list;
-    voteList.forEach((vote) => {
-      setPoint(vote.cords, pointGraphicsLayer);
+    voteList.forEach((answer) => {
+      const { coordinates } = answer;
+
+      coordinates.forEach((coord) => {
+        setPoint(coord, pointGraphicsLayer);
+      });
     });
 
     // create polygon layer (area);
