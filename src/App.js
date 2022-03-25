@@ -6,7 +6,7 @@ import LandingPage from "./pages/LandingPage";
 import UserInterface from "./pages/UserInterface";
 import PollDisplay from "./pages/PollDisplay";
 import { useAuth0 } from "@auth0/auth0-react";
-
+import PollCreatorModal from "./components/createPollModal/PollCreatorModal";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import NavBar from "./components/NavBar";
@@ -14,10 +14,6 @@ import { CssBaseline } from "@mui/material";
 
 import "./styles/default.scss";
 import "./styles/app.scss";
-
-import PollCreatorModal from "./components/createPollModal/PollCreatorModal";
-
-// RNRestart.Restart();
 
 function App() {
   const { isAuthenticated } = useAuth0();
@@ -33,6 +29,9 @@ function App() {
       },
       common: {
         black: "#18181B",
+      },
+      font: {
+        color: "#FFFFFF"
       },
       background: {
         paper: "#18181B",

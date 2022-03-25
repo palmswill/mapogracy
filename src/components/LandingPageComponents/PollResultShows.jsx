@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Grid, Paper } from "@mui/material";
-
 
 const array = [
   {
@@ -60,49 +59,53 @@ const array = [
   }
 ]
 
-const Pollresultshow = ({ result = Array.from(array) }) => {
+const Pollresultshow = (props) => {
+  console.log('Porps:  ', props);
+
+  const polls = props.poll;
+  console.log('pollContent: ', polls);
+
   let navigate = useNavigate();
 
-  const int = new Intl.NumberFormat('en-US')
-
-  function handleClick(e, link) {
+  function handleClick(e, id) {
     e.preventDefault();
-    alert(`You push poll: ${link}`)
-    navigate.push(`/${link}`);
-  };
+    navigate(`/polls/${id}`, { state: {id, polls}});
 
-  // at line 84 handleClick should receive a good link in content.id or something else to navigate to this link
+  };
+  
   return (
+    <>
+   
     <Grid
       container
       spacing={{ xs: 2, md: 3 }}
       columns={{ xs: 4, sm: 8, md: 12 }}
     >
-      {array.map((content, index) => (
+      {polls.map((content, index) => (
         <Grid item xs={4} sm={4} md={4} key={index}>
-          <div className="map-result" onClick={(e) => handleClick(e, content.id)}>
-            <Paper sx={{ height: "200px" }}>
+          <div className="map-result" onClick={(e) => handleClick(e, content.answers[0].poll_id)}>
+            <Paper sx={{ height: "200px", color: "primary"}}>
               <div className="poll-titre">
-                <a className="poll-name">{content.pollName}</a>
+                <p className="poll-name">{content.name}</p>
               </div>
               <br></br>
               <section className="host-by">
-                <p className="host-name">{content.hostName}</p>
+                <p className="host-name">{content.first_name + ' ' + content.last_name}</p>
                 <div className="poll-total-vote">
                   <i className="fa-solid fa-user chateau"></i>
-                  <a>{int.format(content.pollPositive + content.pollNegative)}</a>
+                  <p>{(content.answers[0].vote_count) + (content.answers[1].vote_count)}</p>
                 </div>
               </section>
               <br></br>
               <div className="poll-positive">
-                <a>{content.agree}</a>
+                <p>{content.agree}</p>
                 <i className="fa-solid fa-user"></i>
-                <a>{int.format(content.pollPositive)}</a>
+                <a>{content.answers[0].vote_count}</a>
               </div>
               <div className="poll-negative">
                 <a>{content.disagree}</a>
                 <i className="fa-solid fa-user"></i>
-                <a>{int.format(content.pollNegative)}</a>
+                <a>{content.answers[1].vote_count}</a>
               </div>
             </Paper>
           </div>
@@ -110,6 +113,7 @@ const Pollresultshow = ({ result = Array.from(array) }) => {
         </Grid>
       ))}
     </Grid>
+    </>
   );
 };
 

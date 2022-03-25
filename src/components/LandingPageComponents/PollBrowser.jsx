@@ -4,7 +4,12 @@ import React, { useState, useEffect } from "react";
 import Pollresultshow from "./PollResultShows";
 import RegionSelect from "./RegionSelect";
 import SpacedButtonGroup from "./SpacedButtonGroup";
+import axios from 'axios';
 
+
+
+
+const polls = [];
 const PollBrowser = () => {
   const [liveIndex, setLiveIndex] = useState(0);
   const [regionIndex, setRegionIndex] = useState(0);
@@ -26,7 +31,23 @@ const PollBrowser = () => {
     "Others",
   ]);
 
+  const [polls, setPolls] = useState([]);
+
   useEffect(() => {
+
+      const int = new Intl.NumberFormat('en-US')
+      let config = {
+        headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': '*'},
+        }
+  
+      axios.get(`https://mapocracy-api.azurewebsites.net/poll`, config)
+      .then(res => {
+         const posts = res.data;
+         setPolls(posts);
+        //  console.log('Posts here: ', posts)
+      })
+      .catch(error => console.log('Error', error));
+
   }, [regionIndex, categoryIndex, liveIndex]);
 
   return (
@@ -51,7 +72,7 @@ const PollBrowser = () => {
         currentIndex={categoryIndex}
         setCurrentIndex={setCategoryIndex}
       />
-      <Pollresultshow/>
+      <Pollresultshow poll={polls} region={regions[regionIndex]} category={categories[categoryIndex]} status={live[liveIndex]} />
       <Box sx={{height:"50px"}}></Box>
     </>
   );

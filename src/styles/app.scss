@@ -59,18 +59,20 @@ main{
   background-color: rgba(241, 10, 10, 0.034);
 }
 
-.map-result {
-  color:rgb(208, 72, 241);
-}
+// .map-result {
+//   color:rgb(208, 72, 241);
+// }
 
 .map-result :hover {
   background-color:  rgb(208, 72, 241);
+  // border: thick double #32a1ce;
   cursor: pointer;
 }
 
 .poll-titre {
   display: flex;
-  justify-content: center;
+  // justify-content: center;
+  margin-left: 30px;
   font-size: large;
   font-weight: 700;
 }
