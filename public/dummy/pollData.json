@@ -1,0 +1,31 @@
+{
+
+  "category": "Music",
+  "center": "[-79.697, 43.471]",
+  "created_at": "Thu, 24 Mar 2022 12:16:29 GMT",
+  "description": null,
+  "end_at": "Fri, 22 Apr 2022 00:00:00 GMT",
+  "id": 103,
+  "latitude": -79.697,
+  "longitude": 43.471,
+  "name": "What is your favorite music festival?",
+  "radius": 500,
+  "region": "North America",
+  "restriction": true,
+  "start_at": "Tue, 22 Mar 2022 00:00:00 GMT",
+  "user_id": "test1@email.com",
+  "visibility": true,
+  "answers":[{
+      "content": "EDC",
+      "id": 205,
+      "poll_id": 103,
+      "votes":504
+  },
+  {
+      "content": "Tomorrowland",
+      "id": 206,
+      "poll_id": 103,
+      "votes":341
+  }]
+
+}

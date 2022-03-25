@@ -1,25 +1,42 @@
-{
-  "id": "1",
-  "name": "Which Name for My new Born Child?",
-  "user":"William Liu",
-  "description": "I am gettting a new boy in 8 month! I have a list of baby names I would like to choose, pls help.",
-  "answers": [
-    { "id": "1", "name": "Adamn" },
-    { "id": "2", "name": "John" },
-    { "id": "3", "name": "William" }
-  ],
-  "votes": [
-    { "answer_id": "1", "cords": [-118.244, 34.052] },
-    { "answer_id": "3", "cords": [-118.245, 34.057] },
-    { "answer_id": "1", "cords": [-119.245, 33.057] }
-  ],
-  "restriction":[[],[],[],[]],
-  "category":{"id":"1","name":"Music"},
-  "center":[-118.244, 34.052],
-  "created_at":"2021-03-01",
-  "start_at":"2021-03-01",
-  "end_at":"2021-05-01",
-  
-  "visibility":true
-
-}
+[
+  {
+      "category": "Music",
+      "center": "[40.741895, -73.989308]",
+      "created_at": "Fri, 25 Mar 2022 09:22:59 GMT",
+      "description": null,
+      "end_at": "Fri, 22 Apr 2022 00:00:00 GMT",
+      "id": 105,
+      "latitude": 40.741895,
+      "longitude": -73.989308,
+      "name": "What is your favorite music festival?",
+      "radius": 5,
+      "region": "North America",
+      "restriction": false,
+      "start_at": "Tue, 22 Mar 2022 00:00:00 GMT",
+      "user_id": "test0@email.com",
+      "visibility": true
+  },
+  {
+      "first_name": null,
+      "last_name": null,
+      "user_id": "test0@email.com"
+  },
+  {
+      "answers": [
+          {
+              "content": "EDC",
+              "coordinates": [],
+              "id": 207,
+              "poll_id": 105,
+              "vote_count": 0
+          },
+          {
+              "content": "Tomorrowland",
+              "coordinates": [],
+              "id": 208,
+              "poll_id": 105,
+              "vote_count": 0
+          }
+      ]
+  }
+]

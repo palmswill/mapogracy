@@ -6,7 +6,7 @@ import LandingPage from "./pages/LandingPage";
 import UserInterface from "./pages/UserInterface";
 import PollDisplay from "./pages/PollDisplay";
 import { useAuth0 } from "@auth0/auth0-react";
-
+import PollCreatorModal from "./components/createPollModal/PollCreatorModal";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import NavBar from "./components/NavBar";
@@ -46,12 +46,17 @@ function App() {
   });
   const [modalOpen, setModelOpen] = useState(false);
 
+  const toggleModal = () => {
+    setModelOpen((prevState) => !prevState);
+  };
+
   return (
     <div className="App">
       <ThemeProvider theme={appTheme}>
-        <NavBar {...{ setModelOpen }} />
-
-        {/* <PollCreatorModal {...{ modalOpen, setModelOpen }} /> */}
+        <NavBar {...{ toggleModal }} />
+        {isAuthenticated && (
+          <PollCreatorModal {...{ modalOpen, toggleModal }} />
+        )}
 
         <CssBaseline />
         <main>
@@ -61,7 +66,13 @@ function App() {
             {/* page showing the user interface linke eg. "/user" */}
             <Route
               path="/user"
-              element={isAuthenticated ? <UserInterface /> : <>Opps, Looked Like You Are Not Logged In?</>}
+              element={
+                isAuthenticated ? (
+                  <UserInterface />
+                ) : (
+                  <>Opps, Looked Like You Are Not Logged In?</>
+                )
+              }
             />
             {/* page showing individual poll link eg. "/polls/1"*/}
             <Route path="/polls/:pollid" element={<PollDisplay />} />
