@@ -65,17 +65,11 @@ const Pollresultshow = (props) => {
   const polls = props.poll;
   console.log('pollContent: ', polls);
 
-  const pollAnswer = props[1];
-
   let navigate = useNavigate();
-
-  const int = new Intl.NumberFormat('en-US')
-
-
 
   function handleClick(e, id) {
     e.preventDefault();
-    navigate(`/polls/${id}`, { state: 1});
+    navigate(`/polls/${id}`, { state: {id, polls}});
 
   };
   
@@ -89,29 +83,29 @@ const Pollresultshow = (props) => {
     >
       {polls.map((content, index) => (
         <Grid item xs={4} sm={4} md={4} key={index}>
-          <div className="map-result" onClick={(e) => handleClick(e, content[1].answers[0].poll_id)}>
+          <div className="map-result" onClick={(e) => handleClick(e, content.answers[0].poll_id)}>
             <Paper sx={{ height: "200px", color: "primary"}}>
               <div className="poll-titre">
-                <p className="poll-name">{content[0].name}</p>
+                <p className="poll-name">{content.name}</p>
               </div>
               <br></br>
               <section className="host-by">
-                <p className="host-name">{content[0].user_id}</p>
+                <p className="host-name">{content.first_name + ' ' + content.last_name}</p>
                 <div className="poll-total-vote">
                   <i className="fa-solid fa-user chateau"></i>
-                  <p>{(content[1].answers[0].vote_count) + (content[1].answers[1].vote_count)}</p>
+                  <p>{(content.answers[0].vote_count) + (content.answers[1].vote_count)}</p>
                 </div>
               </section>
               <br></br>
               <div className="poll-positive">
-                <p>{content[0].agree}</p>
+                <p>{content.agree}</p>
                 <i className="fa-solid fa-user"></i>
-                <a>{content[1].answers[0].vote_count}</a>
+                <a>{content.answers[0].vote_count}</a>
               </div>
               <div className="poll-negative">
-                <a>{content[0].disagree}</a>
+                <a>{content.disagree}</a>
                 <i className="fa-solid fa-user"></i>
-                <a>{content[1].answers[1].vote_count}</a>
+                <a>{content.answers[1].vote_count}</a>
               </div>
             </Paper>
           </div>

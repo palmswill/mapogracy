@@ -32,7 +32,8 @@ const PollBrowser = () => {
 
   useEffect(() => {
     setPageIndex(0);
-    
+
+      const int = new Intl.NumberFormat('en-US')
       let config = {
         headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': '*'},
         }
@@ -69,7 +70,7 @@ const PollBrowser = () => {
         currentIndex={categoryIndex}
         setCurrentIndex={setCategoryIndex}
       />
-      <Pollresultshow poll={polls}/>
+      <Pollresultshow poll={polls} region={regions[regionIndex]} category={categories[categoryIndex]} status={live[liveIndex]} />
       <Box sx={{height:"50px"}}></Box>
     </>
   );
