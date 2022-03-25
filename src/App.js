@@ -15,9 +15,6 @@ import { CssBaseline } from "@mui/material";
 import "./styles/default.scss";
 import "./styles/app.scss";
 
-
-// RNRestart.Restart();
-
 function App() {
   const { isAuthenticated } = useAuth0();
 

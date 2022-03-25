@@ -1,11 +1,15 @@
 import { Tab, Tabs } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState, useEffect } from "react";
-import Pollresultshow from "./PollResultShow";
+import Pollresultshow from "./PollResultShows";
 import RegionSelect from "./RegionSelect";
 import SpacedButtonGroup from "./SpacedButtonGroup";
 import axios from 'axios';
 
+
+
+
+const polls = [];
 const PollBrowser = () => {
   const [pageIndex, setPageIndex] = useState(0);
   const [liveIndex, setLiveIndex] = useState(0);
