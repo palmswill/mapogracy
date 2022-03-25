@@ -47,9 +47,7 @@ const Mainpollcard = ({ poll }) => {
           />
         </Grid>
         <Grid sx={{ minWidth: "100px" }} item xs={3}>
-          <List
-            sx={{ width: "100%",  bgcolor: "inherit", marginTop:"10%" }}
-          >
+          <List sx={{ width: "100%", bgcolor: "inherit", marginTop: "10%" }}>
             {results.map((result, index) => {
               return (
                 <ListItem
@@ -74,4 +72,4 @@ const Mainpollcard = ({ poll }) => {
   );
 };
 
-export default Mainpollcard;
+export default React.memo(Mainpollcard);
