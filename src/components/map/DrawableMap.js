@@ -62,7 +62,6 @@ const DrawableArcmap = ({
     setCircle(areaPoints.current[0], radius, GeometryGraphicsLayerRef.current);
   }, [
     isCircle,
-    areaPoints.current,
     GeometryGraphicsLayerRef,
     PointGraphicsLayerRef,
     radius,
@@ -70,7 +69,7 @@ const DrawableArcmap = ({
 
   useEffect(() => {
     handleSetState("radius", radius);
-  }, [radius]);
+  }, [radius,handleSetState]);
 
   const handleRadiusChange = (e) => {
     setRadius(e.target.value);
@@ -103,6 +102,7 @@ const DrawableArcmap = ({
     GeometryGraphicsLayerRef,
     PointGraphicsLayerRef,
     viewRef,
+    handleSetState,
     area,
     isCircle,
     region,

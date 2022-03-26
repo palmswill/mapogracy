@@ -31,7 +31,7 @@ function App() {
         black: "#18181B",
       },
       font: {
-        color: "#FFFFFF"
+        color: "#FFFFFF",
       },
       background: {
         paper: "#18181B",
@@ -64,16 +64,7 @@ function App() {
             {/* landing page link:"/"*/}
             <Route absolute path="/" element={<LandingPage />} />
             {/* page showing the user interface linke eg. "/user" */}
-            <Route
-              path="/user"
-              element={
-                isAuthenticated ? (
-                  <UserInterface />
-                ) : (
-                  <>Opps, Looked Like You Are Not Logged In?</>
-                )
-              }
-            />
+            <Route path="/user" element={<UserInterface />} />
             {/* page showing individual poll link eg. "/polls/1"*/}
             <Route path="/polls/:pollid" element={<PollDisplay />} />
             {/* route wheen nothing exist */}
