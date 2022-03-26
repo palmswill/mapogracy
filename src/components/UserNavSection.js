@@ -5,7 +5,11 @@ import LoginButton from "./UserAuth/LoginButton";
 import UserDropDown from "./UserAuth/UserDropDown";
 
 const UserNavSection = ({toggleModal}) => {
-  const {isAuthenticated } = useAuth0();
+  const {isAuthenticated,isLoading } = useAuth0();
+
+  if (isLoading){
+    return <></>;
+  }  
 
   return (
     <>
