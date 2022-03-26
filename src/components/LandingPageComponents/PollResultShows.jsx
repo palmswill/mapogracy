@@ -60,10 +60,8 @@ const array = [
 ];
 
 const Pollresultshow = (props) => {
-  console.log("Porps:  ", props);
 
   const polls = props.poll;
-  console.log("pollContent: ", polls);
 
   let navigate = useNavigate();
 
