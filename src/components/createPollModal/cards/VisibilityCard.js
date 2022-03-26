@@ -1,6 +1,6 @@
 import React from "react";
 import useInput from "../../../hooks/useInput";
-import { FormControl, Select, OutlinedInput, MenuItem } from "@mui/material";
+import { FormControl, Select, MenuItem } from "@mui/material";
 
 export default function VisibilityCard({ handleSetState, poll }) {
   const [input, onChange] = useInput(

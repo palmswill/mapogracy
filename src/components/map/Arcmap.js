@@ -49,7 +49,7 @@ const Arcmap = ({
     map.add(polygonPointsLayer);
     const polygonGraphicsLayer = new GraphicsLayer();
     map.add(polygonGraphicsLayer);
-  }, [zoom, voteList, center]);
+  }, [zoom, voteList, center,color]);
 
   return <div id="viewDiv" style={mapStyle}></div>;
 };

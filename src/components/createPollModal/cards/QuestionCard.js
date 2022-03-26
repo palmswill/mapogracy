@@ -25,7 +25,7 @@ const Quesioncard = ({ handleSetState, poll, propName, cat }) => {
     if (cat) {
       handleSetState("category", catVal);
     }
-  }, [value, propName, handleSetState]);
+  }, [value, propName, handleSetState,cat,catVal]);
 
   return (
     <>

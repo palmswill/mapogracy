@@ -9,7 +9,7 @@ import axios from 'axios';
 
 
 
-const polls = [];
+// const polls = [];
 const PollBrowser = () => {
   const [liveIndex, setLiveIndex] = useState(0);
   const [regionIndex, setRegionIndex] = useState(0);
@@ -35,7 +35,7 @@ const PollBrowser = () => {
 
   useEffect(() => {
 
-      const int = new Intl.NumberFormat('en-US')
+      // const int = new Intl.NumberFormat('en-US')
       let config = {
         headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': '*'},
         }

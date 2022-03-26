@@ -12,7 +12,6 @@ const TopPoll = () => {
       .get("http://mapocracy-api.azurewebsites.net/poll?order=new")
       .then((res) => res.data)
       .then((result) => {
-        console.log(result)
         return setNewestPoll(result[1])});
   }, []);
 
@@ -26,7 +25,7 @@ const TopPoll = () => {
       </Typography>
       <Paper
         sx={{
-          // height: "400px",
+          minHeight: "400px",
           padding: "2%",
           position: "relative",
         }}
