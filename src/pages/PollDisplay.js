@@ -18,6 +18,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import { fontSize } from "@mui/system";
+import { id } from "date-fns/locale";
 
 const Img = styled("img")({
   margin: "auto",
@@ -66,37 +67,50 @@ const Polldisplay = (props) => {
   const [poll, setPoll] = useState({});
   const { state } = useLocation();
 
-  console.log("State: ", state);
+  console.log("State values: ", state);
 
   const { user, isAuthenticated, isLoading } = useAuth0();
   const { pollName } = props;
   console.log("pollName: ", pollName);
 
+  let { pollid } = useParams();
+
+  // function Invoice() {
+  //   let params = useParams();
+  //   return <h1>Invoice {params.poll.answers}</h1>;
+  // }
+
   useEffect(() => {
     axios
-      .get("http://mapocracy-api.azurewebsites.net/poll/2")
+      .get(`http://mapocracy-api.azurewebsites.net/poll/${pollid}`)
       .then((result) => result.data)
       .then((data) => setPoll(data));
   }, []);
 
-  if (!isAuthenticated) {
-    return <div>You need to login before to vote!</div>;
-  }
+  let values = '';
 
   const handleRadioChange = (event) => {
     event.preventDefault();
-
+    if (!isAuthenticated) {
+      alert("You need to login before to vote!");
+    }
     const myFormData = new FormData(event.target);
-    const values = Object.fromEntries(myFormData.entries());
+    values = Object.fromEntries(myFormData.entries());
 
-    // console.log(`Event change: ${values.quiz}`);
+    console.log("values === ", values);
 
-    // const result = [user_id, poll_id, answer_id,  ]
-    // setHelperText(' ');
-    // setError(false);
 
-    navigate("/");
   };
+
+  useEffect(() => {
+    const article = { user_id: id, poll_id: pollid, answer_id: values };
+    axios
+      .post(`http://mapocracy-api.azurewebsites.net/vote`, article)
+      .catch((error) => {
+        console.error("There was an error in vote adding process!", error);
+      });
+    navigate("/");
+  }, [values]);
 
   return (
     <Paper
@@ -117,7 +131,7 @@ const Polldisplay = (props) => {
             spacing={{ xs: 1, md: 1 }}
             columns={{ xs: 2, sm: 10, md: 12 }}
           >
-            <Typography>{poll.name}</Typography>
+            <Typography>{state.pollName}</Typography>
             <Typography variant="h6" color="primary">
               {user.name}
             </Typography>
@@ -130,11 +144,10 @@ const Polldisplay = (props) => {
           </Box>
         </Box>
       </div>
-
+      {console.log("  POLL: ", poll)}
       <Grid container spacing={2}>
         <Grid item>
           <ButtonBase sx={{ width: 900, height: 350 }}>
-            {console.log(poll.answers)}
             {poll.answers && (
               <Arcmap
                 style={{ minHeight: "300px" }}
@@ -143,7 +156,6 @@ const Polldisplay = (props) => {
                 zoom={10}
               />
             )}
-            {/* <Arcmap /> */}
           </ButtonBase>
         </Grid>
         <Grid item xs={12} sm container>
