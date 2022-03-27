@@ -20,38 +20,38 @@ import FormLabel from "@mui/material/FormLabel";
 import { fontSize } from "@mui/system";
 import { id } from "date-fns/locale";
 
-const Img = styled("img")({
-  margin: "auto",
-  display: "block",
-  maxWidth: "100%",
-  maxHeight: "100%",
-});
+// const Img = styled("img")({
+//   margin: "auto",
+//   display: "block",
+//   maxWidth: "100%",
+//   maxHeight: "100%",
+// });
 
-const mockObj = {
-  id: "1",
-  name: "Which Name for My new Born Child?",
-  user: "William Liu",
-  description:
-    "I am gettting a new boy in 8 month! I have a list of baby names I would like to choose, pls help.",
-  answers: [
-    { id: "1", name: "Adamn" },
-    { id: "2", name: "John" },
-    { id: "3", name: "William" },
-  ],
-  votes: [
-    { answer_id: "1", cords: [-118.244, 34.052] },
-    { answer_id: "3", cords: [-118.245, 34.057] },
-    { answer_id: "1", cords: [-119.245, 33.057] },
-  ],
-  restriction: [[], [], [], []],
-  category: { id: "1", name: "animal" },
-  center: [-118.244, 34.052],
-  created_at: "2021-03-01",
-  start_at: "2021-03-01",
-  end_at: "2021-05-01",
+// const mockObj = {
+//   id: "1",
+//   name: "Which Name for My new Born Child?",
+//   user: "William Liu",
+//   description:
+//     "I am gettting a new boy in 8 month! I have a list of baby names I would like to choose, pls help.",
+//   answers: [
+//     { id: "1", name: "Adamn" },
+//     { id: "2", name: "John" },
+//     { id: "3", name: "William" },
+//   ],
+//   votes: [
+//     { answer_id: "1", cords: [-118.244, 34.052] },
+//     { answer_id: "3", cords: [-118.245, 34.057] },
+//     { answer_id: "1", cords: [-119.245, 33.057] },
+//   ],
+//   restriction: [[], [], [], []],
+//   category: { id: "1", name: "animal" },
+//   center: [-118.244, 34.052],
+//   created_at: "2021-03-01",
+//   start_at: "2021-03-01",
+//   end_at: "2021-05-01",
 
-  visibility: true,
-};
+//   visibility: true,
+// };
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#18181B" : "#fff",
@@ -152,7 +152,7 @@ const Polldisplay = (props) => {
           >
             <Typography>{poll.answers && poll.answers[0] && poll.answers[0].content}</Typography>
             <Typography variant="h6" color="primary">
-              {user.name}
+              {isAuthenticated && user.name}
             </Typography>
             <Typography>
               The future of word depend of vote you are to make now!
