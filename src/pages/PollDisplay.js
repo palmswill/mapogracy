@@ -18,6 +18,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import { fontSize } from "@mui/system";
+import { id } from "date-fns/locale";
 
 const Img = styled("img")({
   margin: "auto",
@@ -66,34 +67,66 @@ const Polldisplay = (props) => {
   const [poll, setPoll] = useState({});
   const { state } = useLocation();
 
-  console.log("State: ", state);
-
   const { user, isAuthenticated, isLoading } = useAuth0();
   const { pollName } = props;
-  console.log("pollName: ", pollName);
+
+  let { pollid } = useParams();
 
   useEffect(() => {
     axios
-      .get("http://mapocracy-api.azurewebsites.net/poll/2")
+      .get(`http://mapocracy-api.azurewebsites.net/poll/${pollid}`)
       .then((result) => result.data)
       .then((data) => setPoll(data));
   }, []);
 
-  if (!isAuthenticated) {
-    return <div>You need to login before to vote!</div>;
-  }
+  // if (state === null) {
+  //   console.log('data for state = ', poll)
+  // }
 
+  
   const handleRadioChange = (event) => {
     event.preventDefault();
+    if (!isAuthenticated) {
+      alert("You need to login before to vote!");
+    }
 
     const myFormData = new FormData(event.target);
     const values = Object.fromEntries(myFormData.entries());
 
-    // console.log(`Event change: ${values.quiz}`);
+    // console.log("poll_id == ", state.polls[state.id].answers[0].content);
+    // console.log( "VALUES ", values);
 
-    // const result = [user_id, poll_id, answer_id,  ]
-    // setHelperText(' ');
-    // setError(false);
+    // this is the varible for post data.
+    const array = poll.answers;
+    let post_poll_id = 0;
+    let post_answer_id = 0;
+    const post_answers = poll.answers;
+
+    console.log("Array === ", array);
+    console.log("Poll Answers  === ", post_answers);
+
+    // I loop here for find the data to post regarding of the vote madded
+    post_answers.forEach((element) => {
+      console.log("Element === ", element.content, element.poll_id, values);
+      if (element.content === values.quiz) {
+        post_poll_id = element.poll_id;
+        post_answer_id = element.id;
+      }
+    });
+    const vote_added = {
+      user_id: user.email,
+      poll_id: post_poll_id,
+      answer_id: post_answer_id,
+    };
+
+    console.log("Vote_Added = ", vote_added);
+    console.log('poll.answers = ', post_answers);
+    axios
+    .post(`http://mapocracy-api.azurewebsites.net/vote`, vote_added)
+    // .then(() => navigate("/"))
+    .catch((error) => {
+      console.error("There was an error in vote adding process!", error);
+    });
 
     navigate("/");
   };
@@ -117,7 +150,7 @@ const Polldisplay = (props) => {
             spacing={{ xs: 1, md: 1 }}
             columns={{ xs: 2, sm: 10, md: 12 }}
           >
-            <Typography>{poll.name}</Typography>
+            <Typography>{poll.answers && poll.answers[0] && poll.answers[0].content}</Typography>
             <Typography variant="h6" color="primary">
               {user.name}
             </Typography>
@@ -130,11 +163,9 @@ const Polldisplay = (props) => {
           </Box>
         </Box>
       </div>
-
       <Grid container spacing={2}>
         <Grid item>
           <ButtonBase sx={{ width: 900, height: 350 }}>
-            {console.log(poll.answers)}
             {poll.answers && (
               <Arcmap
                 style={{ minHeight: "300px" }}
@@ -143,7 +174,6 @@ const Polldisplay = (props) => {
                 zoom={10}
               />
             )}
-            {/* <Arcmap /> */}
           </ButtonBase>
         </Grid>
         <Grid item xs={12} sm container>
@@ -157,11 +187,7 @@ const Polldisplay = (props) => {
                     variant="standard"
                     border={2}
                   >
-                    <RadioGroup
-                      aria-labelledby="radios"
-                      name="quiz"
-                      // onSubmit={handleRadioChange}
-                    >
+                    <RadioGroup aria-labelledby="radios" name="quiz">
                       {poll.id &&
                         poll.answers.map((answer) => {
                           return (
@@ -193,30 +219,3 @@ const Polldisplay = (props) => {
 };
 
 export default Polldisplay;
-
-// //////////
-
-// import { Paper } from "@mui/material";
-
-// import { Box } from "@mui/system";
-// import { Grid } from "@mui/material";
-
-// const Userinterface = () => {
-
-//   return (
-//     <div>
-//       <Grid>
-//         <Box sx={{ texAlign: "center", border: 1 }} textAlign="center">
-// {poll.id &&
-//   poll.answers.map((answer) => {
-//     return <div>{answer.content}</div>;
-//   })}
-//         </Box>
-//       </Grid>
-
-//       <h1>UserInterface</h1>
-//     </div>
-//   );
-// };
-
-// export default Userinterface;
