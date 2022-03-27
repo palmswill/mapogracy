@@ -1,7 +1,7 @@
 import React  from "react";
 import { useNavigate } from "react-router-dom";
 import { Grid, Paper } from "@mui/material";
-
+import { Box } from "@mui/system";
 const array = [
   {
     id: 1,
@@ -71,7 +71,7 @@ const Pollresultshow = (props) => {
   }
 
   return (
-    <>
+    <Box sx={{minHeight:"40vh"}}>
       <Grid
         container
         spacing={{ xs: 2, md: 3 }}
@@ -123,7 +123,7 @@ const Pollresultshow = (props) => {
           </Grid>
         ))}
       </Grid>
-    </>
+    </Box>
   );
 };
 
