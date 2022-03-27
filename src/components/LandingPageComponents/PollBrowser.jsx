@@ -4,10 +4,7 @@ import React, { useState, useEffect } from "react";
 import Pollresultshow from "./PollResultShows";
 import RegionSelect from "./RegionSelect";
 import SpacedButtonGroup from "./SpacedButtonGroup";
-import axios from 'axios';
-
-
-
+import axios from "axios";
 
 // const polls = [];
 const PollBrowser = () => {
@@ -16,9 +13,9 @@ const PollBrowser = () => {
   const [categoryIndex, setCategoryIndex] = useState(0);
   const live = ["Ongoing Pollings", "Finished Polls"];
   const [regions] = useState([
+    "North America",
     "Asia",
     "Europe",
-    "North America",
     "South America",
     "Oceania",
   ]);
@@ -34,25 +31,35 @@ const PollBrowser = () => {
   const [polls, setPolls] = useState([]);
 
   useEffect(() => {
-
-      // const int = new Intl.NumberFormat('en-US')
-      let config = {
-        headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': '*'},
-        }
-  
-      axios.get(`https://mapocracy-api.azurewebsites.net/poll`, config)
-      .then(res => {
-         const posts = res.data;
-         setPolls(posts);
+    // const int = new Intl.NumberFormat('en-US')
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "*",
+      },
+    };
+  //  receive 
+    axios
+      .get(
+        `https://mapocracy-api.azurewebsites.net/poll?category=${
+          categories[categoryIndex]
+        }&&region=${regions[regionIndex]}&&time=${
+          liveIndex ? "past" : "current"
+        }`,
+        config
+      )
+      .then((res) => {
+        const posts = res.data;
+        setPolls(posts);
         //  console.log('Posts here: ', posts)
       })
-      .catch(error => console.log('Error', error));
-
+      .catch((error) => console.log("Error", error));
   }, [regionIndex, categoryIndex, liveIndex]);
 
   return (
     <>
-      <Box sx={{ display: "flex",flexWrap:"wrap" }}>
+      <Box sx={{ display: "flex", flexWrap: "wrap" }}>
         <Tabs
           value={liveIndex}
           onChange={(e, newValue) => {
@@ -62,7 +69,7 @@ const PollBrowser = () => {
           indicatorColor="primary"
         >
           {live.map((text, index) => {
-            return <Tab key={index}value={index} label={text} />;
+            return <Tab key={index} value={index} label={text} />;
           })}
         </Tabs>
         <RegionSelect {...{ regions, regionIndex, setRegionIndex }} />
@@ -72,8 +79,13 @@ const PollBrowser = () => {
         currentIndex={categoryIndex}
         setCurrentIndex={setCategoryIndex}
       />
-      <Pollresultshow poll={polls} region={regions[regionIndex]} category={categories[categoryIndex]} status={live[liveIndex]} />
-      <Box sx={{height:"50px"}}></Box>
+      <Pollresultshow
+        poll={polls}
+        region={regions[regionIndex]}
+        category={categories[categoryIndex]}
+        status={live[liveIndex]}
+      />
+      <Box sx={{ height: "50px" }}></Box>
     </>
   );
 };
