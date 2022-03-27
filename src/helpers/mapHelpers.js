@@ -10,7 +10,7 @@ import Circle from "@arcgis/core/geometry/Circle";
 export const getMap = (zoom, center, divId) => {
   // start map with coordinates and zoom level
   const map = new Map({
-    basemap: "arcgis-topographic", // Basemap layer service
+    basemap: "streets-night-vector", // Basemap layer service
   });
 
   const view = new MapView({
