@@ -72,7 +72,7 @@ const Pollresultshow = (props) => {
   }
 
   return (
-    <Box sx={{minHeight:"40vh"}}>
+    <>
       <Grid
         container
         spacing={{ xs: 2, md: 3 }}
@@ -126,7 +126,7 @@ const Pollresultshow = (props) => {
           </Grid>
         ))}
       </Grid>
-    </Box>
+    </>
   );
 };
 
