@@ -20,12 +20,12 @@ import FormLabel from "@mui/material/FormLabel";
 import { fontSize } from "@mui/system";
 import { id } from "date-fns/locale";
 
-// const Img = styled("img")({
-//   margin: "auto",
-//   display: "block",
-//   maxWidth: "100%",
-//   maxHeight: "100%",
-// });
+const Img = styled("img")({
+  margin: "auto",
+  display: "block",
+  maxWidth: "100%",
+  maxHeight: "100%",
+});
 
 // const mockObj = {
 //   id: "1",
