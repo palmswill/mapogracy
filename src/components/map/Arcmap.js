@@ -39,7 +39,8 @@ const Arcmap = ({
       
 
       coordinates.forEach((coord) => {
-        const arcCoord= [coord[1],coord[0]]  ///arcgis has is as [long,lat]; where normal its [lat,long]
+        const arcCoord= [Number(coord[1]),Number(coord[0])]  ///arcgis has is as [long,lat]; where normal its [lat,long]
+        console.log(arcCoord);
         setPoint(arcCoord, pointGraphicsLayer,color[index]);
       });
     });
