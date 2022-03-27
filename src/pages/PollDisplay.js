@@ -88,6 +88,7 @@ const Polldisplay = (props) => {
     event.preventDefault();
     if (!isAuthenticated) {
       alert("You need to login before to vote!");
+      navigate('/');
     }
 
     const myFormData = new FormData(event.target);
@@ -114,9 +115,13 @@ const Polldisplay = (props) => {
       }
     });
     const vote_added = {
-      user_id: user.email,
+      // user_id: user.email,
       poll_id: post_poll_id,
       answer_id: post_answer_id,
+    };
+
+    if (user) {
+      vote_added.user_id = user.email
     };
 
     console.log("Vote_Added = ", vote_added);
@@ -152,7 +157,7 @@ const Polldisplay = (props) => {
           >
             <Typography>{poll.answers && poll.answers[0] && poll.answers[0].content}</Typography>
             <Typography variant="h6" color="primary">
-              {isAuthenticated && user.name}
+              {state && state.host_name}
             </Typography>
             <Typography>
               The future of word depend of vote you are to make now!

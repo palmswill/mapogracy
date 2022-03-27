@@ -65,9 +65,10 @@ const Pollresultshow = (props) => {
 
   let navigate = useNavigate();
 
-  function handleClick(e, id, pollName) {
+  function handleClick(e, id, pollName, first, last) {
     e.preventDefault();
-    navigate(`/polls/${id}`, { state: id });
+    const host_name = `${first} ${last}`;
+    navigate(`/polls/${id}`, { state: {id, host_name}});
   }
 
   return (
@@ -85,7 +86,9 @@ const Pollresultshow = (props) => {
                 handleClick(
                   e,
                   contents.answers[0].poll_id,
-                  contents.answers[0].content
+                  contents.answers[0].content,
+                  contents.first_name,
+                  contents.last_name
                 )
               }
             >
