@@ -11,7 +11,7 @@ import InvitationTab from "../components/userInterfaceComponents/Tabs/Invitation
 import EmailListTab from "../components/userInterfaceComponents/Tabs/EmailListTab";
 import UserPollTab from "../components/userInterfaceComponents/Tabs/UserPollTab";
 
-export default function UserInterFaceLayout({}) {
+export default function UserInterFaceLayout() {
   const {isAuthenticated,isLoading} =useAuth0();
 
   const [tabIndex, setCurrentTab] = useState("0");
