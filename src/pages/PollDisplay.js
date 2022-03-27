@@ -72,19 +72,18 @@ const Polldisplay = (props) => {
 
   let { pollid } = useParams();
 
-  // console.log('POLLID ', pollid);
-  // if (!pollid) {
-  //   pollid = 1;
-  // }
-
   useEffect(() => {
-
     axios
       .get(`http://mapocracy-api.azurewebsites.net/poll/${pollid}`)
       .then((result) => result.data)
       .then((data) => setPoll(data));
   }, []);
 
+  // if (state === null) {
+  //   console.log('data for state = ', poll)
+  // }
+
+  
   const handleRadioChange = (event) => {
     event.preventDefault();
     if (!isAuthenticated) {
@@ -98,34 +97,38 @@ const Polldisplay = (props) => {
     // console.log( "VALUES ", values);
 
     // this is the varible for post data.
-    const array = state.polls[state.id].answers[0];
+    const array = poll.answers;
     let post_poll_id = 0;
     let post_answer_id = 0;
-    const post_answers = state.polls[state.id].answers;
+    const post_answers = poll.answers;
 
     console.log("Array === ", array);
     console.log("Poll Answers  === ", post_answers);
 
     // I loop here for find the data to post regarding of the vote madded
-    post_answers.forEach(element => {
-      console.log('Element === ', element.content, element.poll_id, values);
+    post_answers.forEach((element) => {
+      console.log("Element === ", element.content, element.poll_id, values);
       if (element.content === values.quiz) {
         post_poll_id = element.poll_id;
         post_answer_id = element.id;
       }
     });
-    const vote_added = { user_id: user.email , poll_id: post_poll_id, answer_id: post_answer_id };
+    const vote_added = {
+      user_id: user.email,
+      poll_id: post_poll_id,
+      answer_id: post_answer_id,
+    };
 
-    console.log('Vote_Added = ', vote_added);
-   
-      // axios
-      // .post(`http://mapocracy-api.azurewebsites.net/vote`, vote_added)
-      // // .then(() => navigate("/"))
-      // .catch((error) => {
-      //   console.error("There was an error in vote adding process!", error);
-      // });
+    console.log("Vote_Added = ", vote_added);
+    console.log('poll.answers = ', post_answers);
+    axios
+    .post(`http://mapocracy-api.azurewebsites.net/vote`, vote_added)
+    // .then(() => navigate("/"))
+    .catch((error) => {
+      console.error("There was an error in vote adding process!", error);
+    });
 
-      navigate("/");
+    navigate("/");
   };
 
   return (
@@ -147,7 +150,7 @@ const Polldisplay = (props) => {
             spacing={{ xs: 1, md: 1 }}
             columns={{ xs: 2, sm: 10, md: 12 }}
           >
-            <Typography>{state.pollName}</Typography>
+            <Typography>{poll.answers && poll.answers[0] && poll.answers[0].content}</Typography>
             <Typography variant="h6" color="primary">
               {user.name}
             </Typography>
@@ -184,10 +187,7 @@ const Polldisplay = (props) => {
                     variant="standard"
                     border={2}
                   >
-                    <RadioGroup
-                      aria-labelledby="radios"
-                      name="quiz"
-                    >
+                    <RadioGroup aria-labelledby="radios" name="quiz">
                       {poll.id &&
                         poll.answers.map((answer) => {
                           return (
@@ -219,5 +219,3 @@ const Polldisplay = (props) => {
 };
 
 export default Polldisplay;
-
-

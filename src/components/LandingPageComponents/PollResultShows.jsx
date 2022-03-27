@@ -67,7 +67,7 @@ const Pollresultshow = (props) => {
 
   function handleClick(e, id, pollName) {
     e.preventDefault();
-    navigate(`/polls/${id}`, { state: { id, pollName, polls } });
+    navigate(`/polls/${id}`, { state: id });
   }
 
   return (
