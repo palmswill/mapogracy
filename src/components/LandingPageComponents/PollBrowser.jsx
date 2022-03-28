@@ -17,14 +17,19 @@ const PollBrowser = () => {
     "Asia",
     "Europe",
     "South America",
+    "Africa",
     "Oceania",
   ]);
   const [categories] = useState([
     "Nature",
-    "Econ",
-    "Travel",
+    "Food",
+    "Business",
+    "Sports",
     "Politics",
-    "Media",
+    "Technology",
+    "Education",
+    "Music",
+    "Art",
     "Others",
   ]);
 
@@ -32,29 +37,28 @@ const PollBrowser = () => {
 
   useEffect(() => {
     // const int = new Intl.NumberFormat('en-US')
-    let config = {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "*",
-      },
-    };
-  //  receive 
+    // let config = {
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     "Access-Control-Allow-Origin": "*",
+    //     "Access-Control-Allow-Headers": "*",
+    //   },
+    // };
+    //  receive
     axios
       .get(
         `https://mapocracy-api.azurewebsites.net/poll?category=${
           categories[categoryIndex]
         }&&region=${regions[regionIndex]}&&time=${
           liveIndex ? "past" : "current"
-        }`,
-        config
+        }`
       )
       .then((res) => {
         const posts = res.data;
         setPolls(posts);
       })
       .catch((error) => console.log("Error", error));
-  }, [regionIndex, categoryIndex, liveIndex,categories,regions]);
+  }, [regionIndex, categoryIndex, liveIndex, categories, regions]);
 
   return (
     <>
