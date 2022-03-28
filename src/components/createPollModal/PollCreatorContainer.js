@@ -10,8 +10,8 @@ import DateCard from "./cards/DateCard";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function PollCreatorContainer({ toggleModal }) {
-  const { user} = useAuth0();
-  const poll = useRef({ user_id:user.email});
+  const { user } = useAuth0();
+  const poll = useRef({ user_id: user.email });
   const [index, setIndex] = useState(0);
 
   const handleSetState = (propName, newState) => {
@@ -108,8 +108,36 @@ export default function PollCreatorContainer({ toggleModal }) {
     setIndex((prev) => prev - 1);
   };
   const handleSubmit = () => {
-    console.log(poll.current);
-    setIndex(0);
+    const currentContext = poll.current;
+    console.log(currentContext);
+    const {
+      user_id,
+      category,
+      name,
+      region,
+      restriction,
+      description,
+      start_at,
+      end_at,
+      visibility,
+      answers,
+    } = currentContext;
+
+    if (
+      user_id &&
+      category &&
+      name &&
+      region &&
+      restriction &&
+      description &&
+      start_at &&
+      end_at &&
+      visibility &&
+      answers.length
+    ) {
+      console.log("pass")
+      toggleModal();
+    }
   };
 
   return (
