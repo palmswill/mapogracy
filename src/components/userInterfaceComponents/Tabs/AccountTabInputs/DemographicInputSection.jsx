@@ -7,12 +7,20 @@ export default function DemographicInputSection({
   userInfo,
   handleUserInfoChange,
 }) {
-  const { veteran, religion, income_range,industry,ethnicity } = userInfo;
+  const {
+    veteran,
+    religion,
+    income_range,
+    industry,
+    ethnicity,
+    education,
+    marital_status,
+  } = userInfo;
 
   const inputList = [
     {
       text: "Veteran",
-      value: veteran===true?"Yes":"No",
+      value: veteran === true ? "Yes" : "No",
       options: ["Yes", "No"],
       onInputChange: (e) =>
         handleUserInfoChange(
@@ -30,11 +38,17 @@ export default function DemographicInputSection({
         "Black or African American",
         "Native American",
         "Mixed Race",
-        "Others"
+        "Others",
       ],
-      onInputChange: (e) => handleUserInfoChange("religion", e.target.value),
+      onInputChange: (e) => handleUserInfoChange("ethnicity", e.target.value),
     },
-      
+    {
+      text: "Education",
+      value: education,
+      options: ["High School", "Diploma", "Bachelor", "Masters","Doctor","Others"],
+      onInputChange: (e) =>
+        handleUserInfoChange("education", e.target.value),
+    },
     {
       text: "Religion",
       value: religion,
@@ -73,13 +87,19 @@ export default function DemographicInputSection({
         "IT",
         "Finance",
         "Logistics",
-        "Others"
+        "Others",
       ],
-      onInputChange: (e) =>
-        handleUserInfoChange("industry", e.target.value),
+      onInputChange: (e) => handleUserInfoChange("industry", e.target.value),
     },
+    {
+      text: "Martial Status",
+      value: marital_status,
+      options: ["Married", "Single", "Open-Relationship", "Others"],
+      onInputChange: (e) =>
+        handleUserInfoChange("marital_status", e.target.value),
+    },
+    
   ];
-
 
   return (
     <section className="demographic-inputs">
@@ -99,7 +119,7 @@ export default function DemographicInputSection({
               key={text}
               sx={{ display: "flex", flexWrap: "wrap", gap: "10px" }}
             >
-              <Typography sx={{ marginRight: "22%" }} variant="h6">
+              <Typography sx={{ width: "20%" }} variant="h6">
                 {text}
               </Typography>
               <TextField
