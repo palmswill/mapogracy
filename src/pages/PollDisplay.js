@@ -157,10 +157,10 @@ const Polldisplay = (props) => {
           >
             <Typography>{poll.answers && poll.answers[0] && poll.answers[0].content}</Typography>
             <Typography variant="h6" color="primary">
-              {state && state.host_name}
+              {state && state.host_name || poll.user_id}
             </Typography>
             <Typography>
-              The future of word depend of vote you are to make now!
+              {poll.description}
             </Typography>
           </Box>
           <Box gridColumn="span 4">
