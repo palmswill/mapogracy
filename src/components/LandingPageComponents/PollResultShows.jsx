@@ -67,7 +67,12 @@ const Pollresultshow = (props) => {
 
   function handleClick(e, id, pollName, first, last) {
     e.preventDefault();
-    const host_name = `${first} ${last}`;
+    let host_name = '';
+    if (!first && !last) {
+      host_name = polls.user_id;
+    } else {
+      host_name = `${first} ${last}`;
+    };
     navigate(`/polls/${id}`, { state: {id, host_name}});
   }
 

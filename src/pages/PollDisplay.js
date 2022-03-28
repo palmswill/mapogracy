@@ -184,7 +184,7 @@ const Polldisplay = (props) => {
         <Grid item xs={12} sm container>
           <Grid item xs container direction="column" spacing={2}>
             <Grid item xs>
-              <Box sx={{ border: 1 }}>
+              <Box sx={{ border: "2px solid #000", borderRadius:"10px", boxShadow: 24, bgcolor: "background.paper", p: 9  }}>
                 <form onSubmit={handleRadioChange}>
                   <FormControl
                     id="radios"
