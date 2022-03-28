@@ -55,7 +55,7 @@ const PollBrowser = () => {
         //  console.log('Posts here: ', posts)
       })
       .catch((error) => console.log("Error", error));
-  }, [regionIndex, categoryIndex, liveIndex]);
+  }, [regionIndex, categoryIndex, liveIndex,categories,regions]);
 
   return (
     <>

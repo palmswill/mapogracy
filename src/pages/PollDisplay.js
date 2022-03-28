@@ -16,16 +16,16 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
-import { fontSize } from "@mui/system";
-import { id } from "date-fns/locale";
+// import FormLabel from "@mui/material/FormLabel";
+// import { fontSize } from "@mui/system";
+// import { id } from "date-fns/locale";
 
-const Img = styled("img")({
-  margin: "auto",
-  display: "block",
-  maxWidth: "100%",
-  maxHeight: "100%",
-});
+// const Img = styled("img")({
+//   margin: "auto",
+//   display: "block",
+//   maxWidth: "100%",
+//   maxHeight: "100%",
+// });
 
 // const mockObj = {
 //   id: "1",
@@ -62,13 +62,12 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Polldisplay = (props) => {
-  const pollId = useParams().pollid;
   let navigate = useNavigate();
   const [poll, setPoll] = useState({});
   const { state } = useLocation();
 
-  const { user, isAuthenticated, isLoading } = useAuth0();
-  const { pollName } = props;
+  const { user, isAuthenticated } = useAuth0();
+  // const { pollName } = props;
 
   let { pollid } = useParams();
 
@@ -77,7 +76,7 @@ const Polldisplay = (props) => {
       .get(`http://mapocracy-api.azurewebsites.net/poll/${pollid}`)
       .then((result) => result.data)
       .then((data) => setPoll(data));
-  }, []);
+  }, [pollid]);
 
   // if (state === null) {
   //   console.log('data for state = ', poll)

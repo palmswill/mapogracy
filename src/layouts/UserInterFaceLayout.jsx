@@ -17,10 +17,10 @@ export default function UserInterFaceLayout() {
   const [tabIndex, setCurrentTab] = useState("0");
 
   const tabs = [
-    { name: "tab1", component: <AccountTab/> },
-    { name: "tab2", component: <UserPollTab/> },
-    { name: "tab3", component: <InvitationTab/>},
-    { name: "tab4", component: <EmailListTab/> },
+    { name: "Account Setting", component: <AccountTab/> },
+    { name: "Your polls", component: <UserPollTab/> },
+    { name: "Invitations", component: <InvitationTab/>},
+    { name: "Email Lists", component: <EmailListTab/> },
   ];
 
   const handleChange = (event, newValue) => {
@@ -38,10 +38,10 @@ export default function UserInterFaceLayout() {
     <>
       <Typography variant="h4">User Panel</Typography>
       <TabContext value={tabIndex}>
-        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <TabList onChange={handleChange}>
+        <Box sx={{marginTop:"20px", borderBottom: 1, borderColor: "divider" }}>
+          <TabList  onChange={handleChange}>
             {tabs.map((tab,index) => (
-              <Tab key={tab.name} label={tab.name} value={`${index}`} />
+              <Tab sx={{fontSize:"20px",width:"15%"}} key={tab.name} label={tab.name} value={`${index}`} />
             ))}
           </TabList>
         </Box>
