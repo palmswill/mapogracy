@@ -66,7 +66,7 @@ const UserPollTab = (props) => {
     // navigate(`/polls/${id}`, { state: {id, host_name}});
   }
 
-  resultArray = polls.filter(poll => poll.user_id !== user.email);
+  resultArray = polls.filter(poll => poll.user_id === user.email);
 
   return (
     <>
