@@ -55,6 +55,10 @@ const DrawableArcmap = ({
     "viewDivCreate"
   );
 
+  useEffect(()=>{
+    handleSetState("region",region);
+  },[region,handleSetState])
+
   useEffect(() => {
     PointGraphicsLayerRef.current.removeAll();
     GeometryGraphicsLayerRef.current.removeAll();
@@ -68,12 +72,12 @@ const DrawableArcmap = ({
   ]);
 
   useEffect(() => {
-    handleSetState("radius", radius);
+    handleSetState("restriction", radius);
   }, [radius,handleSetState]);
 
   const handleRadiusChange = (e) => {
     setRadius(e.target.value);
-    handleSetState("radius", e.target.value);
+    handleSetState("restriction", e.target.value);
     PointGraphicsLayerRef.current.removeAll();
     GeometryGraphicsLayerRef.current.removeAll();
     setPoint(areaPoints.current[0], PointGraphicsLayerRef.current);
@@ -105,7 +109,6 @@ const DrawableArcmap = ({
     handleSetState,
     area,
     isCircle,
-    region,
   ]);
 
   return (

@@ -11,8 +11,8 @@ export default function DateCard({ handleSetState, poll }) {
   ]);
 
   useEffect(() => {
-    handleSetState("start_date", dateConvert(value[0]));
-    handleSetState("end_date", dateConvert(value[1]));
+    handleSetState("start_at", dateConvert(value[0]));
+    handleSetState("end_at", dateConvert(value[1]));
   }, [value, handleSetState]);
 
   const dateConvert = (dateString) => {
