@@ -44,6 +44,7 @@ const Arcmap = ({
       });
     });
 
+
     // create polygon layer (area);
     const polygonPointsLayer = new GraphicsLayer();
     map.add(polygonPointsLayer);
