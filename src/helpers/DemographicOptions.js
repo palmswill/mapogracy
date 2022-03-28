@@ -78,3 +78,26 @@ export const maritalOptions = ["Single",
   "Widowed",
   "Open-Relationship",
 ]
+
+
+export const regionOptions=[
+  "North America",
+  "Asia",
+  "Europe",
+  "South America",
+  "Africa",
+  "Oceania",
+];
+
+export const categoryOptions=[
+  "Nature",
+  "Food",
+  "Business",
+  "Sports",
+  "Politics",
+  "Technology",
+  "Education",
+  "Music",
+  "Art",
+  "Others",
+];
