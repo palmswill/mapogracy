@@ -11,7 +11,7 @@ const TopPoll = () => {
 
   useEffect(() => {
     axios
-      .get("http://mapocracy-api.azurewebsites.net/poll?order=new")
+      .get("http://mapocracy-api.azurewebsites.net/poll?order=popularity")
       .then((res) => res.data)
       .then((result) => {
         return setNewestPoll(result[1]);
@@ -21,7 +21,7 @@ const TopPoll = () => {
   return (
     <>
       <Typography sx={{ mb: 2 }} variant="h5">
-        What's New?
+        What's Hot?
       </Typography>
       <Paper
         className="main-card"
