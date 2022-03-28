@@ -37,7 +37,7 @@ export default function DemographicInputSection({
         "Hispanic",
         "Black or African American",
         "Native American",
-        "Mixed Race",
+        "Mixed-race",
         "Others",
       ],
       onInputChange: (e) => handleUserInfoChange("ethnicity", e.target.value),
@@ -45,7 +45,7 @@ export default function DemographicInputSection({
     {
       text: "Education",
       value: education,
-      options: ["High School", "Diploma", "Bachelor", "Masters","Doctor","Others"],
+      options: ["High School", "Diploma", "Bachelor's Degree", "Masters","Doctor","Others"],
       onInputChange: (e) =>
         handleUserInfoChange("education", e.target.value),
     },
@@ -81,7 +81,7 @@ export default function DemographicInputSection({
       value: industry,
       options: [
         "Engineering",
-        "Agricultural",
+        "Agriculture",
         "Education",
         "Art & Music",
         "IT",
