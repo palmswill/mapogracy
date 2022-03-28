@@ -62,13 +62,13 @@ export default function PollCreatorContainer({ toggleModal }) {
           width="80%"
           height="20vw"
           mapCenter={
-            poll.current.center ? poll.current.center : [-118.244, 34.052]
+            poll.current.center ? [poll.current.center[1],poll.current.center[0]] : [-118.244, 34.052]
           }
           poll={poll}
           area={{
             radius: poll.current.radius ? poll.current.radius : 500,
             points: poll.current.center
-              ? [poll.current.center]
+              ? [[poll.current.center[1],poll.current.center[0]]]
               : [[-118.244, 34.052]],
           }}
         />
@@ -115,7 +115,7 @@ export default function PollCreatorContainer({ toggleModal }) {
       category,
       name,
       region,
-      restriction,
+      radius,
       description,
       start_at,
       end_at,
@@ -131,8 +131,8 @@ export default function PollCreatorContainer({ toggleModal }) {
     if (!region) {
       console.log("region missing");
     }
-    if (!restriction) {
-      console.log("restriction missing");
+    if (!radius) {
+      console.log("radius missing");
     }
     if (!description) {
       console.log("description missing");
@@ -155,12 +155,13 @@ export default function PollCreatorContainer({ toggleModal }) {
       start_at &&
       end_at &&
       description &&
-      restriction &&
+      radius &&
       region &&
       name &&
       category
     ) {
       console.log("pass");
+      console.log(currentContext)
       axios
         .post(`http://mapocracy-api.azurewebsites.net/poll/new`, currentContext)
         .then((res) => console.log(res))
