@@ -16,7 +16,8 @@ const Mainpollcard = ({ poll }) => {
   // const {user_id}=poll[1];
   // const { answers } = poll[2];
 
-  const { name, longitude, latitude, user_id, answers } = poll;
+  const { name, longitude, latitude, user_id, answers, first_name, last_name } =
+    poll;
 
   let totalVotes = useMemo(() => {
     let count = 0;
@@ -38,7 +39,8 @@ const Mainpollcard = ({ poll }) => {
         <Typography variant="h6" marginLeft="2%">
           {`${name} - hosted by `}
           <Box component="span" sx={{ color: "primary.main" }}>
-            {user_id}
+            {!first_name && !last_name &&` ${user_id}`}
+            {(first_name || last_name) && `${first_name}  ${last_name}`}
           </Box>
         </Typography>
         <Box
