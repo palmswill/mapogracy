@@ -67,12 +67,19 @@ const Pollresultshow = (props) => {
 
   function handleClick(e, id, pollName, first, last) {
     e.preventDefault();
-    const host_name = `${first} ${last}`;
-    navigate(`/polls/${id}`, { state: { id, host_name } });
+
+    let host_name = '';
+    if (!first && !last) {
+      host_name = polls.user_id;
+    } else {
+      host_name = `${first} ${last}`;
+    };
+    navigate(`/polls/${id}`, { state: {id, host_name}});
   }
 
   return (
-    <Box sx={{ minHeight: "40vh" }}>
+    <>
+
       <Grid
         container
         spacing={{ xs: 2, md: 3 }}
@@ -134,7 +141,7 @@ const Pollresultshow = (props) => {
           );
         })}
       </Grid>
-    </Box>
+    </>
   );
 };
 
