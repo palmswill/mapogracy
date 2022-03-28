@@ -10,7 +10,7 @@ import DateCard from "./cards/DateCard";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 
-export default function PollCreatorContainer({ toggleModal }) {
+export default React.memo(function PollCreatorContainer({ toggleModal }) {
   const { user } = useAuth0();
   const [userInfo, setUserInfo] = useState({});
 
@@ -220,4 +220,4 @@ export default function PollCreatorContainer({ toggleModal }) {
       </CardWrapper>
     </>
   );
-}
+})
