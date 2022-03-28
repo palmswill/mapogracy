@@ -16,7 +16,7 @@ import "./styles/default.scss";
 import "./styles/app.scss";
 
 function App() {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, isLoading } = useAuth0();
 
   const appTheme = createTheme({
     palette: {
@@ -59,18 +59,22 @@ function App() {
         )}
 
         <CssBaseline />
-        <main>
-          <Routes>
-            {/* landing page link:"/"*/}
-            <Route absolute path="/" element={<LandingPage />} />
-            {/* page showing the user interface linke eg. "/user" */}
-            <Route path="/user" element={<UserInterface />} />
-            {/* page showing individual poll link eg. "/polls/1"*/}
-            <Route path="/polls/:pollid" element={<PollDisplay />} />
-            {/* route wheen nothing exist */}
-            <Route path="*" element={<>Route Not Found</>} />
-          </Routes>
-        </main>
+        {isLoading ? (
+          <>Now Loading</>
+        ) : (
+          <main>
+            <Routes>
+              {/* landing page link:"/"*/}
+              <Route absolute path="/" element={<LandingPage />} />
+              {/* page showing the user interface linke eg. "/user" */}
+              <Route path="/user" element={<UserInterface />} />
+              {/* page showing individual poll link eg. "/polls/1"*/}
+              <Route path="/polls/:pollid" element={<PollDisplay />} />
+              {/* route wheen nothing exist */}
+              <Route path="*" element={<>Route Not Found</>} />
+            </Routes>
+          </main>
+        )}
       </ThemeProvider>
     </div>
   );
