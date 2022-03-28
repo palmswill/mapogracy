@@ -8,10 +8,11 @@ import EmailListCard from "./cards/EmailListCard";
 import VisibilityCard from "./cards/VisibilityCard";
 import DateCard from "./cards/DateCard";
 import { useAuth0 } from "@auth0/auth0-react";
+import axios from "axios";
 
 export default function PollCreatorContainer({ toggleModal }) {
-  const { user} = useAuth0();
-  const poll = useRef({ user_id:user.email});
+  const { user } = useAuth0();
+  const poll = useRef({ user_id: user.email });
   const [index, setIndex] = useState(0);
 
   const handleSetState = (propName, newState) => {
@@ -108,8 +109,66 @@ export default function PollCreatorContainer({ toggleModal }) {
     setIndex((prev) => prev - 1);
   };
   const handleSubmit = () => {
-    console.log(poll.current);
-    setIndex(0);
+    const currentContext = poll.current;
+    console.log(currentContext);
+    const {
+      user_id,
+      category,
+      name,
+      region,
+      restriction,
+      description,
+      start_at,
+      end_at,
+      answers,
+    } = currentContext;
+
+    if (!category) {
+      console.log("cat missing");
+    }
+    if (!name) {
+      console.log("question missing");
+    }
+    if (!region) {
+      console.log("region missing");
+    }
+    if (!restriction) {
+      console.log("restriction missing");
+    }
+    if (!description) {
+      console.log("description missing");
+    }
+    if (!start_at || !end_at) {
+      console.log("time missing");
+    }
+
+    if (!answers.length) {
+      console.log("answers needed");
+    }
+
+    if (!user_id) {
+      console.log("id missing");
+    }
+
+    if (
+      user_id &&
+      answers.length &&
+      start_at &&
+      end_at &&
+      description &&
+      restriction &&
+      region &&
+      name &&
+      category
+    ) {
+      console.log("pass");
+      axios
+        .post(`http://mapocracy-api.azurewebsites.net/poll/new`, currentContext)
+        .then((res) => console.log(res))
+        .then(alert("Poll Created!"))
+        .catch((err) => console.log(err));
+      toggleModal();
+    }
   };
 
   return (

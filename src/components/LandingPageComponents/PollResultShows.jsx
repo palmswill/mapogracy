@@ -2,6 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Grid, Paper } from "@mui/material";
 
+// import { Box } from "@mui/system";
+
 // const array = [
 //   {
 //     id: 1,
@@ -83,6 +85,7 @@ const Pollresultshow = (props) => {
         container
         spacing={{ xs: 2, md: 3 }}
         columns={{ xs: 4, sm: 8, md: 12 }}
+        sx={{minHeight:"500px"}}
       >
         {polls.map((contents, index) => {
           let totalVotes = 0;
