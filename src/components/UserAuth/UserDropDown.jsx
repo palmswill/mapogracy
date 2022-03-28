@@ -17,7 +17,6 @@ export default function UserDropDown() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
   return (
     <div>
       <Button

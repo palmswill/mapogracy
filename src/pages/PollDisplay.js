@@ -70,6 +70,7 @@ const Polldisplay = (props) => {
   // const { pollName } = props;
 
   let { pollid } = useParams();
+  
 
   useEffect(() => {
     axios
@@ -77,11 +78,6 @@ const Polldisplay = (props) => {
       .then((result) => result.data)
       .then((data) => setPoll(data));
   }, [pollid]);
-
-  // if (state === null) {
-  //   console.log('data for state = ', poll)
-  // }
-
   
   const handleRadioChange = (event) => {
     event.preventDefault();
@@ -93,21 +89,14 @@ const Polldisplay = (props) => {
     const myFormData = new FormData(event.target);
     const values = Object.fromEntries(myFormData.entries());
 
-    // console.log("poll_id == ", state.polls[state.id].answers[0].content);
-    // console.log( "VALUES ", values);
-
     // this is the varible for post data.
     const array = poll.answers;
     let post_poll_id = 0;
     let post_answer_id = 0;
     const post_answers = poll.answers;
 
-    console.log("Array === ", array);
-    console.log("Poll Answers  === ", post_answers);
-
     // I loop here for find the data to post regarding of the vote madded
     post_answers.forEach((element) => {
-      console.log("Element === ", element.content, element.poll_id, values);
       if (element.content === values.quiz) {
         post_poll_id = element.poll_id;
         post_answer_id = element.id;
@@ -123,8 +112,6 @@ const Polldisplay = (props) => {
       vote_added.user_id = user.email
     };
 
-    console.log("Vote_Added = ", vote_added);
-    console.log('poll.answers = ', post_answers);
     axios
     .post(`http://mapocracy-api.azurewebsites.net/vote`, vote_added)
     // .then(() => navigate("/"))
@@ -154,9 +141,13 @@ const Polldisplay = (props) => {
             spacing={{ xs: 1, md: 1 }}
             columns={{ xs: 2, sm: 10, md: 12 }}
           >
-            <Typography variant="h4">{poll.name}</Typography>
+
+            {/* <Typography>{poll.answers && poll.answers[0] && poll.answers[0].content}</Typography> */}
+            <h4><Typography>{poll.name}</Typography></h4>
+            
             <Typography variant="h6" color="primary">
-              {state && (state.host_name || poll.user_id)}
+              {state ? state.host_name : poll.user_id}
+
             </Typography>
             <Typography>
               {poll.description}

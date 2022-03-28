@@ -110,7 +110,6 @@ export default function PollCreatorContainer({ toggleModal }) {
   };
   const handleSubmit = () => {
     const currentContext = poll.current;
-    console.log(currentContext);
     const {
       user_id,
       category,
