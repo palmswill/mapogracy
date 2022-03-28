@@ -6,16 +6,19 @@ import { Modal, Paper } from "@mui/material";
 export default function PollCreatorModal({ modalOpen, toggleModal }) {
   const style = {
     position: "absolute",
-    top: "50%",
+    top: "10%",
     left: "50%",
-    transform: "translate(-50%, -50%)",
-    width:"80%",
+    padding:"10px",
+    transform: "translate(-50%, 0%)",
+    width: "80%",
     height:"80%",
+    minHeight: "600px",
     bgcolor: "background.paper",
-    borderRadius:"10px",
+    borderRadius: "10px",
     border: "2px solid #000",
     boxShadow: 24,
     p: 4,
+    overflow: "auto"  
   };
   return (
     <Modal
