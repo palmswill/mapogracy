@@ -55,14 +55,12 @@ export default function AccountTab() {
       )
       .then((res) => res.data)
       .then(alert("Change Submitted!"))
-      .then((result) =>
-      {
+      .then((result) => {
         setUserInfo((prev) => {
           return { ...prev, ...result };
-        })
-        document. location. reload();
-      }
-      )
+        });
+        document.location.reload();
+      })
       .then(console.log("submitted"))
       .catch((err) => console.log(err));
   };
@@ -98,7 +96,7 @@ export default function AccountTab() {
       title: "Demographic Data",
       description:
         "Please let us know who you are so present you as a voice that respresents your group. ",
-        key:"demographic",
+      key: "demographic",
       Component: DemographicInputSection,
     },
   ];
@@ -110,7 +108,7 @@ export default function AccountTab() {
       />
       <Box sx={{ display: "flex" }}>
         <Button
-          sx={{ marginLeft: "auto",height:"50px" }}
+          sx={{ marginLeft: "auto", height: "50px" }}
           onClick={handleUserInfoSubmit}
           variant="contained"
         >

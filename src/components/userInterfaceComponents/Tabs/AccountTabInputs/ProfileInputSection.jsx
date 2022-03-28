@@ -12,12 +12,12 @@ export default function ProfileInputSection({
   const inputList = [
     {
       text: "First Name",
-      value: first_name,
+      value: first_name?first_name:"",
       onInputChange: (e) => handleUserInfoChange("first_name", e.target.value),
     },
     {
       text: "Last Name",
-      value: last_name,
+      value: last_name?last_name:"",
       onInputChange: (e) => handleUserInfoChange("last_name", e.target.value),
     },
   ];
@@ -64,7 +64,7 @@ export default function ProfileInputSection({
           <TextField
             select
 
-            value={gender}
+            value={gender?gender:""}
             onChange={(e) => handleUserInfoChange("gender", e.target.value)}
             sx={{ width: "5%", minWidth: "20ch" }}
           >
