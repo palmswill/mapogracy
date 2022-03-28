@@ -16,42 +16,7 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-// import FormLabel from "@mui/material/FormLabel";
-// import { fontSize } from "@mui/system";
-// import { id } from "date-fns/locale";
 
-// const Img = styled("img")({
-//   margin: "auto",
-//   display: "block",
-//   maxWidth: "100%",
-//   maxHeight: "100%",
-// });
-
-// const mockObj = {
-//   id: "1",
-//   name: "Which Name for My new Born Child?",
-//   user: "William Liu",
-//   description:
-//     "I am gettting a new boy in 8 month! I have a list of baby names I would like to choose, pls help.",
-//   answers: [
-//     { id: "1", name: "Adamn" },
-//     { id: "2", name: "John" },
-//     { id: "3", name: "William" },
-//   ],
-//   votes: [
-//     { answer_id: "1", cords: [-118.244, 34.052] },
-//     { answer_id: "3", cords: [-118.245, 34.057] },
-//     { answer_id: "1", cords: [-119.245, 33.057] },
-//   ],
-//   restriction: [[], [], [], []],
-//   category: { id: "1", name: "animal" },
-//   center: [-118.244, 34.052],
-//   created_at: "2021-03-01",
-//   start_at: "2021-03-01",
-//   end_at: "2021-05-01",
-
-//   visibility: true,
-// };
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#18181B" : "#fff",
@@ -90,7 +55,6 @@ const Polldisplay = (props) => {
     const values = Object.fromEntries(myFormData.entries());
 
     // this is the varible for post data.
-    const array = poll.answers;
     let post_poll_id = 0;
     let post_answer_id = 0;
     const post_answers = poll.answers;
@@ -115,10 +79,18 @@ const Polldisplay = (props) => {
     axios
     .post(`http://mapocracy-api.azurewebsites.net/vote`, vote_added)
     // .then(() => navigate("/"))
+    .then(alert("Vote succed!"))
     .catch((error) => {
       console.error("There was an error in vote adding process!", error);
     });
 
+    // axios
+    // .get(`http://mapocracy-api.azurewebsites.net/poll`)
+    // .then((result) => result.data)
+    // .then((data) => setPoll(data));
+    // const index = 1;
+    // console.log("Index & poll = ", index, poll);
+    // navigate("/", {state: {index, poll}});
     navigate("/");
   };
 

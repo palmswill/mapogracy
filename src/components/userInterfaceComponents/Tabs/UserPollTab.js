@@ -1,21 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import { Button } from "@mui/material";
-import ButtonBase from "@mui/material/ButtonBase";
-import Arcmap from "../../map/Arcmap";
-import { Typography } from "@mui/material";
-
 import axios from "axios";
 
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
 // export default function UserPollTab() {
 //   return (
 //     <div>UserPollTab are you there ???</div>
@@ -28,13 +17,13 @@ const UserPollTab = (props) => {
 
   let navigate = useNavigate();
   const { user, isAuthenticated } = useAuth0();
-
+  // console.log('user = ', user.email);
   let resultArray = [];
 
   useEffect(() => {
     if (!user) return;
     let one = `http://mapocracy-api.azurewebsites.net/poll`;
-    let two = `http://mapocracy-api.azurewebsites.net/user/test19@email.com/poll`;
+    let two = `http://mapocracy-api.azurewebsites.net/user/${user.email}/poll`;
     const requestOne = axios.get(one);
     const requestTwo = axios.get(two);
     axios
@@ -52,7 +41,7 @@ const UserPollTab = (props) => {
         console.error(errors);
       });
 
-  }, [user.email]);
+  }, []);
 
   function handleClick(e) {
     e.preventDefault();
@@ -66,7 +55,7 @@ const UserPollTab = (props) => {
     // navigate(`/polls/${id}`, { state: {id, host_name}});
   }
 
-  resultArray = polls.filter(poll => poll.user_id === user.email);
+  resultArray = polls.filter(poll => poll.user_id !== user.email);
 
   return (
     <>
@@ -84,9 +73,10 @@ const UserPollTab = (props) => {
           });
 
           return (
-            <Grid>
+
+            <Grid item xs={4} sm={4} md={4} key={index}>
               <div
-                className="map-result"
+                  className="map-result"
                 onClick={(e) =>
                   handleClick(
                     e
@@ -111,8 +101,8 @@ const UserPollTab = (props) => {
                       <br></br>
                       <i className="fa-solid fa-user chateau"></i>
                       <p>
-                        {contents.answers[0].vote_count +
-                          contents.answers[1].vote_count}
+                      {totalVotes}
+
                       </p>
                     </div>
                   </section>

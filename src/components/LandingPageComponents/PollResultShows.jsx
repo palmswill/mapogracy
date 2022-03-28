@@ -1,68 +1,17 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Grid, Paper } from "@mui/material";
 
-// import { Box } from "@mui/system";
-
-// const array = [
-//   {
-//     id: 1,
-//     hostName: "Ezechiel Iti",
-//     pollName: "Election 2018",
-//     agree: "Agree   ",
-//     disagree: "Disagree",
-//     pollPositive: 7457,
-//     pollNegative: 234,
-//   },
-//   {
-//     id: 2,
-//     hostName: "William P.",
-//     pollName: "Who like change in Compass",
-//     agree: "Agree   ",
-//     disagree: "Disagree",
-//     pollPositive: 757,
-//     pollNegative: 434,
-//   },
-//   {
-//     id: 3,
-//     hostName: "Allaina A",
-//     pollName: "Marijuana ",
-//     agree: "Agree   ",
-//     disagree: "Disagree",
-//     pollPositive: 17457,
-//     pollNegative: 17400,
-//   },
-//   {
-//     id: 4,
-//     hostName: "Thim Horton",
-//     pollName: "Coffee  Arabic",
-//     agree: "Agree   ",
-//     disagree: "Disagree",
-//     pollPositive: 757,
-//     pollNegative: 8234,
-//   },
-//   {
-//     id: 5,
-//     hostName: "Compass",
-//     pollName: "Cohort 10 jan 2021",
-//     agree: "Agree   ",
-//     disagree: "Disagree",
-//     pollPositive: 745,
-//     pollNegative: 24,
-//   },
-//   {
-//     id: 6,
-//     hostName: "Ezechiel Iti",
-//     pollName: "Election 2021",
-//     agree: "Jo Biden",
-//     disagree: "Donald T",
-//     pollPositive: 207457,
-//     pollNegative: 194234,
-//   },
-// ];
-
 const Pollresultshow = (props) => {
-  const polls = props.poll;
+  let { state } = useLocation();
+  
+  let polls = [];
+  // if (state.index === 1) {
+  //   polls = state.poll;
+  //   state.index = 0;
+  // } else {
+    polls = props.poll;
+  // }
 
   let navigate = useNavigate();
 
