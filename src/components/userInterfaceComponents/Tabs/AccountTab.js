@@ -56,9 +56,12 @@ export default function AccountTab() {
       .then((res) => res.data)
       .then(alert("Change Submitted!"))
       .then((result) =>
+      {
         setUserInfo((prev) => {
           return { ...prev, ...result };
         })
+        document. location. reload();
+      }
       )
       .then(console.log("submitted"))
       .catch((err) => console.log(err));
