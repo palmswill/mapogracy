@@ -40,9 +40,7 @@ const Arcmap = ({
 
       coordinates.forEach((coord) => {
         const arcCoord= [Number(coord[1]),Number(coord[0])]  ///arcgis has is as [long,lat]; where normal its [lat,long]
-        ///important . turn coord into number before adding points
-  
-        
+        // IMPORTANT !!!!!!!!!!!!!! REMEMBER TO CONVERT COORD TO NUMBER BEFORE ADDING POINT !!!!!!!!
         setPoint(arcCoord, pointGraphicsLayer,color[index]);
       });
     });

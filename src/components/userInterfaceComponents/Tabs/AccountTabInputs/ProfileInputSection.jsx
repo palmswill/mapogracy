@@ -42,7 +42,7 @@ export default function ProfileInputSection({
               key={text}
               sx={{ display: "flex", flexWrap: "wrap", gap: "10px" }}
             >
-              <Typography sx={{ marginRight: "20%" }} variant="h6">
+              <Typography sx={{ width: "20%" }} variant="h6">
                 {text}
               </Typography>
               <TextField
@@ -58,7 +58,7 @@ export default function ProfileInputSection({
           key={"gender"}
           sx={{ display: "flex", flexWrap: "wrap", gap: "10px" }}
         >
-          <Typography sx={{ marginRight: "22%" }} variant="h6">
+          <Typography sx={{ width: "20%" }} variant="h6">
             {"Gender"}
           </Typography>
           <TextField
