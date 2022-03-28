@@ -78,11 +78,6 @@ const Polldisplay = (props) => {
       .then((result) => result.data)
       .then((data) => setPoll(data));
   }, [pollid]);
-
-  // if (state === null) {
-  //   console.log('data for state = ', poll)
-  // }
-
   
   const handleRadioChange = (event) => {
     event.preventDefault();
@@ -94,21 +89,14 @@ const Polldisplay = (props) => {
     const myFormData = new FormData(event.target);
     const values = Object.fromEntries(myFormData.entries());
 
-    // console.log("poll_id == ", state.polls[state.id].answers[0].content);
-    // console.log( "VALUES ", values);
-
     // this is the varible for post data.
     const array = poll.answers;
     let post_poll_id = 0;
     let post_answer_id = 0;
     const post_answers = poll.answers;
 
-    console.log("Array === ", array);
-    console.log("Poll Answers  === ", post_answers);
-
     // I loop here for find the data to post regarding of the vote madded
     post_answers.forEach((element) => {
-      console.log("Element === ", element.content, element.poll_id, values);
       if (element.content === values.quiz) {
         post_poll_id = element.poll_id;
         post_answer_id = element.id;
@@ -124,8 +112,6 @@ const Polldisplay = (props) => {
       vote_added.user_id = user.email
     };
 
-    console.log("Vote_Added = ", vote_added);
-    console.log('poll.answers = ', post_answers);
     axios
     .post(`http://mapocracy-api.azurewebsites.net/vote`, vote_added)
     // .then(() => navigate("/"))

@@ -52,7 +52,6 @@ const PollBrowser = () => {
       .then((res) => {
         const posts = res.data;
         setPolls(posts);
-        //  console.log('Posts here: ', posts)
       })
       .catch((error) => console.log("Error", error));
   }, [regionIndex, categoryIndex, liveIndex,categories,regions]);

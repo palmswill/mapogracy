@@ -47,7 +47,6 @@ export default function AccountTab() {
 
   // when user submit their information change
   const handleUserInfoSubmit = () => {
-    console.log(userInfo);
     axios
       .put(
         "http://mapocracy-api.azurewebsites.net/user/update",
