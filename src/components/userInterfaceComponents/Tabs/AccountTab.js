@@ -54,6 +54,7 @@ export default function AccountTab() {
         config
       )
       .then((res) => res.data)
+      .then(alert("Change Submitted!"))
       .then((result) =>
         setUserInfo((prev) => {
           return { ...prev, ...result };
@@ -70,7 +71,6 @@ export default function AccountTab() {
       .then((res) => res.data)
 
       .then((result) => setUserInfo(result))
-      .then(console.log("what"))
       .catch((err) => console.log(err));
   }, [user]);
 
