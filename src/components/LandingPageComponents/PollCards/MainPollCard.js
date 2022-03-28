@@ -39,7 +39,7 @@ const Mainpollcard = ({ poll }) => {
         <Typography variant="h6" marginLeft="2%">
           {`${name} - hosted by `}
           <Box component="span" sx={{ color: "primary.main" }}>
-            {!first_name && !last_name &&` ${user_id}`}
+            {!first_name && !last_name && ` ${user_id}`}
             {(first_name || last_name) && `${first_name}  ${last_name}`}
           </Box>
         </Typography>
@@ -72,7 +72,7 @@ const Mainpollcard = ({ poll }) => {
             zoom={10}
           />
         </Grid>
-        <Grid sx={{ minWidth: "150px" }} item xs={3}>
+        <Grid sx={{ minWidth: "150px",position:"relative" }} item xs={3}>
           <List sx={{ width: "100%", bgcolor: "inherit", marginTop: "10%" }}>
             {sortedAnswers.map((answer, index) => {
               return (
