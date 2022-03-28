@@ -70,6 +70,7 @@ const Polldisplay = (props) => {
   // const { pollName } = props;
 
   let { pollid } = useParams();
+  
 
   useEffect(() => {
     axios
@@ -154,9 +155,11 @@ const Polldisplay = (props) => {
             spacing={{ xs: 1, md: 1 }}
             columns={{ xs: 2, sm: 10, md: 12 }}
           >
-            <Typography>{poll.answers && poll.answers[0] && poll.answers[0].content}</Typography>
+            {/* <Typography>{poll.answers && poll.answers[0] && poll.answers[0].content}</Typography> */}
+            <h4><Typography>{poll.name}</Typography></h4>
+            
             <Typography variant="h6" color="primary">
-              {state && state.host_name || poll.user_id}
+              {state ? state.host_name : poll.user_id}
             </Typography>
             <Typography>
               {poll.description}
