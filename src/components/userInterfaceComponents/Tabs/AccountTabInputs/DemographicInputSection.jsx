@@ -2,8 +2,9 @@ import React from "react";
 import { Box } from "@mui/system";
 import { TextField, Typography } from "@mui/material";
 import { MenuItem } from "@mui/material";
+import { educationOptions, ethnicityOptions, incomeOptions, industryOptions, maritalOptions, religionOptions } from "../../../../helpers/DemographicOptions";
 
-export default function DemographicInputSection({
+export default React.memo(function DemographicInputSection({
   userInfo,
   handleUserInfoChange,
 }) {
@@ -31,74 +32,41 @@ export default function DemographicInputSection({
     {
       text: "Ethnicity",
       value: ethnicity,
-      options: [
-        "Asian",
-        "White(Non-Hispanic)",
-        "Hispanic",
-        "Black or African American",
-        "Native American",
-        "Mixed-race",
-        "Others",
-      ],
+      options: ethnicityOptions,
       onInputChange: (e) => handleUserInfoChange("ethnicity", e.target.value),
     },
     {
       text: "Education",
       value: education,
-      options: ["High School", "Diploma", "Bachelor's Degree", "Masters","Doctor","Others"],
-      onInputChange: (e) =>
-        handleUserInfoChange("education", e.target.value),
+      options: educationOptions,
+      onInputChange: (e) => handleUserInfoChange("education", e.target.value),
     },
     {
       text: "Religion",
       value: religion,
-      options: [
-        "Buddhism",
-        "Christianity",
-        "Hinduism",
-        "Islam",
-        "Judaism",
-        "Agnostic",
-        "Atheism",
-      ],
+      options: religionOptions,
       onInputChange: (e) => handleUserInfoChange("religion", e.target.value),
     },
     {
       text: "Income",
       value: income_range,
-      options: [
-        "Below $30,000",
-        "$30,000 - $50,000",
-        "$50,000 - $80,000",
-        "$80,000 - $100,000",
-        "Above $100,000",
-      ],
+      options: incomeOptions,
       onInputChange: (e) =>
         handleUserInfoChange("income_range", e.target.value),
     },
     {
       text: "Industry",
       value: industry,
-      options: [
-        "Engineering",
-        "Agriculture",
-        "Education",
-        "Art & Music",
-        "IT",
-        "Finance",
-        "Logistics",
-        "Others",
-      ],
+      options: industryOptions,
       onInputChange: (e) => handleUserInfoChange("industry", e.target.value),
     },
     {
       text: "Martial Status",
       value: marital_status,
-      options: ["Married", "Single", "Open-Relationship", "Others"],
+      options: maritalOptions,
       onInputChange: (e) =>
         handleUserInfoChange("marital_status", e.target.value),
     },
-    
   ];
 
   return (
@@ -140,4 +108,4 @@ export default function DemographicInputSection({
       </Box>
     </section>
   );
-}
+})
