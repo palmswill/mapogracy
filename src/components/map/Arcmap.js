@@ -39,10 +39,12 @@ const Arcmap = ({
       
 
       coordinates.forEach((coord) => {
-        const arcCoord= [coord[1],coord[0]]  ///arcgis has is as [long,lat]; where normal its [lat,long]
+        const arcCoord= [Number(coord[1]),Number(coord[0])]  ///arcgis has is as [long,lat]; where normal its [lat,long]
+        // IMPORTANT !!!!!!!!!!!!!! REMEMBER TO CONVERT COORD TO NUMBER BEFORE ADDING POINT !!!!!!!!
         setPoint(arcCoord, pointGraphicsLayer,color[index]);
       });
     });
+
 
     // create polygon layer (area);
     const polygonPointsLayer = new GraphicsLayer();
