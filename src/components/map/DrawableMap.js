@@ -72,12 +72,13 @@ const DrawableArcmap = ({
   ]);
 
   useEffect(() => {
-    handleSetState("restriction", radius);
+    handleSetState("radius", Number(radius));
+    
   }, [radius,handleSetState]);
 
   const handleRadiusChange = (e) => {
     setRadius(e.target.value);
-    handleSetState("restriction", e.target.value);
+    handleSetState("radius", Number(e.target.value));
     PointGraphicsLayerRef.current.removeAll();
     GeometryGraphicsLayerRef.current.removeAll();
     setPoint(areaPoints.current[0], PointGraphicsLayerRef.current);
@@ -91,7 +92,7 @@ const DrawableArcmap = ({
       GeometryGraphicsLayerRef.current.removeAll();
       if (isCircle) {
         const coords = getClickedCoordinates(e);
-        handleSetState("center", coords);
+        handleSetState("center", [coords[1],coords[0]]);
         areaPoints.current[0] = coords;
         setPoint(areaPoints.current[0], PointGraphicsLayerRef.current);
         setCircle(

@@ -4,6 +4,8 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
+import { Box } from "@mui/material";
+import axios from "axios";
 
 export default function UserDropDown() {
   const { user, logout } = useAuth0();
@@ -14,6 +16,16 @@ export default function UserDropDown() {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
+  const [userName, setUserName] = React.useState("");
+
+  React.useEffect(() => {
+    axios
+      .get(`http://mapocracy-api.azurewebsites.net/user/${user.email}`)
+      .then((res) => res.data)
+      .then((result) => setUserName(result.first_name));
+  }, [user.email]);
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -28,7 +40,10 @@ export default function UserDropDown() {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        {user.email}
+        <Box sx={{ fontSize: "24px", marginRight: "10px" }}>
+          <i className="fa-solid fa-circle-user"></i>
+        </Box>
+        {userName?userName:user.email}
       </Button>
       <Menu
         id="demo-positioned-menu"
