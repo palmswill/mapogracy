@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import { Avatar, Button } from "@mui/material";
-// import ButtonBase from "@mui/material/ButtonBase";
 import Arcmap from "../components/map/Arcmap";
 import { Typography } from "@mui/material";
 
@@ -28,9 +27,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Polldisplay = (props) => {
-  let navigate = useNavigate();
   const [poll, setPoll] = useState({});
-  const { state } = useLocation();
 
   const { user, isAuthenticated } = useAuth0();
   // const { pollName } = props;
@@ -50,13 +47,16 @@ const Polldisplay = (props) => {
     event.preventDefault();
     if (!isAuthenticated) {
       alert("You need to login before to vote!");
-      // navigate("/");
       return;
     }
 
     const myFormData = new FormData(event.target);
     const values = Object.fromEntries(myFormData.entries());
-
+    // check blank vote
+    if (values.quiz === undefined) {
+      alert("Vote is blank");
+      return;
+    }
     // this is the varible for post data.
     let post_poll_id = 0;
     let post_answer_id = 0;
