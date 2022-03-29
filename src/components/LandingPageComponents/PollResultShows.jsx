@@ -1,10 +1,10 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Grid, Paper } from "@mui/material";
 
-
-
 const Pollresultshow = (props) => {
+  let { state } = useLocation();
+
   const polls = props.poll;
 
   let navigate = useNavigate();

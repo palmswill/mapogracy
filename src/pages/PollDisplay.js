@@ -17,42 +17,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import { dotColor } from "../helpers/mapHelpers";
-// import FormLabel from "@mui/material/FormLabel";
-// import { fontSize } from "@mui/system";
-// import { id } from "date-fns/locale";
 
-// const Img = styled("img")({
-//   margin: "auto",
-//   display: "block",
-//   maxWidth: "100%",
-//   maxHeight: "100%",
-// });
-
-// const mockObj = {
-//   id: "1",
-//   name: "Which Name for My new Born Child?",
-//   user: "William Liu",
-//   description:
-//     "I am gettting a new boy in 8 month! I have a list of baby names I would like to choose, pls help.",
-//   answers: [
-//     { id: "1", name: "Adamn" },
-//     { id: "2", name: "John" },
-//     { id: "3", name: "William" },
-//   ],
-//   votes: [
-//     { answer_id: "1", cords: [-118.244, 34.052] },
-//     { answer_id: "3", cords: [-118.245, 34.057] },
-//     { answer_id: "1", cords: [-119.245, 33.057] },
-//   ],
-//   restriction: [[], [], [], []],
-//   category: { id: "1", name: "animal" },
-//   center: [-118.244, 34.052],
-//   created_at: "2021-03-01",
-//   start_at: "2021-03-01",
-//   end_at: "2021-05-01",
-
-//   visibility: true,
-// };
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#18181B" : "#fff",
@@ -85,14 +50,14 @@ const Polldisplay = (props) => {
     event.preventDefault();
     if (!isAuthenticated) {
       alert("You need to login before to vote!");
-      navigate("/");
+      // navigate("/");
+      return;
     }
 
     const myFormData = new FormData(event.target);
     const values = Object.fromEntries(myFormData.entries());
 
     // this is the varible for post data.
-    // const array = poll.answers;
     let post_poll_id = 0;
     let post_answer_id = 0;
     const post_answers = poll.answers;
@@ -115,13 +80,18 @@ const Polldisplay = (props) => {
     }
 
     axios
-      .post(`http://mapocracy-api.azurewebsites.net/vote`, vote_added)
-      // .then(() => navigate("/"))
-      .catch((error) => {
-        console.error("There was an error in vote adding process!", error);
-      });
+    .post(`http://mapocracy-api.azurewebsites.net/vote`, vote_added)
+    .then(alert("Vote sending to registration!"))
+    .catch((error) => {
+      if (error.response) {
+        alert(`Opps! You ${error.response.data} in the same poll`);
+      }});
 
-    // navigate("/");
+    axios
+    .get(`http://mapocracy-api.azurewebsites.net/poll/${pollid}`)
+    .then((result) => result.data)
+    .then((data) => setPoll(data));
+
   };
 
   return (
@@ -143,7 +113,6 @@ const Polldisplay = (props) => {
             spacing={{ xs: 1, md: 1 }}
             columns={{ xs: 2, sm: 10, md: 12 }}
           >
-            {/* <Typography>{poll.answers && poll.answers[0] && poll.answers[0].content}</Typography> */}
             <Typography variant="h4">{poll.name}</Typography>
 
             <Typography variant="h6" color="primary">
