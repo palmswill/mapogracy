@@ -1,9 +1,10 @@
 import React from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Grid, Paper } from "@mui/material";
+// import { calculteAnswers } from "../../helpers/pollHelper";
 
 const Pollresultshow = (props) => {
-  let { state } = useLocation();
+  // let { state } = useLocation();
 
   const polls = props.poll;
 
@@ -35,6 +36,9 @@ const Pollresultshow = (props) => {
           contents.answers.forEach((answer) => {
             totalVotes += answer.vote_count;
           });
+          const sortedAnswers = contents.answers
+            .slice()
+            .sort((a, b) => b.vote_count - a.vote_count);
 
           return (
             <Grid item xs={4} sm={4} md={4} key={index}>
@@ -51,7 +55,8 @@ const Pollresultshow = (props) => {
                 }
               >
                 <Paper
-                  sx={{ minHeight: "200px", color: "primary", padding: "20px" }}
+                  className="base"
+                  sx={{ minHeight: "250px", color: "primary", padding: "20px" }}
                 >
                   <div className="poll-titre">
                     <h3 className="poll-name">{contents.name}</h3>
@@ -65,22 +70,21 @@ const Pollresultshow = (props) => {
                       <p>{totalVotes}</p>
                     </div>
                   </section>
-                  <div className="poll-positive">
-                    <p>{contents.agree}</p>
-                    <p>{contents.answers[0].content}</p>
-                    <i className="fa-solid fa-user"></i>
-
-                    <p>{contents.answers[0].vote_count}</p>
-                  </div>
-                  <div className="poll-negative">
-                    <p>{contents.disagree}</p>
-                    <p>{contents.answers[1].content}</p>
-                    <i className="fa-solid fa-user"></i>
-                    <p>{contents.answers[1].vote_count}</p>
-                  </div>
+                  {sortedAnswers.map((answer, index) => {
+                    if (index !== 0 && index !== 1) return <></>; ///we only want the first two (if there is two)
+                    return (
+                      <div
+                        key={`${answer.content + index}`}
+                        className="poll-positive"
+                      >
+                        <p>{answer.content}</p>
+                        <i className="fa-solid fa-user"></i>
+                        <p>{answer.vote_count}</p>
+                      </div>
+                    );
+                  })}
                 </Paper>
               </div>
-              <br></br>
             </Grid>
           );
         })}

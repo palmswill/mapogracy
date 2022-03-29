@@ -17,9 +17,9 @@ export default function EmailListCard({ handleSetState, poll }) {
 
 
   const names = [
-    { id: 1, name: "EmailList1" },
-    { id: 2, name: "EmailList2" },
-    { id: 3, name: "EmailList3" },
+    // { id: 1, name: "EmailList1" },
+    // { id: 2, name: "EmailList2" },
+    // { id: 3, name: "EmailList3" },
   ];
 
   return (

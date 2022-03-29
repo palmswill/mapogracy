@@ -63,19 +63,23 @@ main{
 //   color:rgb(208, 72, 241);
 // }
 
-.map-result :hover {
-  background-color:  rgb(208, 72, 241,0.3);
+.map-result:hover {
+
+  .base{
+    background-color:  rgb(208, 72, 241,0.3);
   // border: thick double #32a1ce;
   cursor: pointer;
-  p.host-name{
-    color:"white"!important
+
   }
+
+  
+ 
 }
 
 .poll-titre {
   display: flex;
   // justify-content: center;
-  margin-left: 30px;
+  margin-left: 14px;
   font-size: large;
   font-weight: 700;
 }
@@ -83,7 +87,7 @@ main{
 .host-by {
   display: flex;
   justify-content: space-between;
-  margin-left: 30px;
+  margin-left: 14px;
   margin-right: 10px;
 }
 
