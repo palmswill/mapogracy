@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import CardWrapper from "./CardWrapper";
 import { Button } from "@mui/material";
 import Quesioncard from "./cards/QuestionCard";
@@ -10,10 +10,29 @@ import DateCard from "./cards/DateCard";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 
-export default function PollCreatorContainer({ toggleModal }) {
+export default React.memo(function PollCreatorContainer({ toggleModal }) {
   const { user } = useAuth0();
-  const poll = useRef({ user_id: user.email });
+  const [userInfo, setUserInfo] = useState({});
+
+  const poll = useRef({
+    user_id: user.email,
+  });
+
+  if (userInfo.longitude) {
+    poll.current.center = [userInfo.latitude, userInfo.longitude];
+  }
+
   const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    axios
+      .get(
+        `http://mapocracy-api.azurewebsites.net/user/${user.email}
+    `
+      )
+      .then((res) => res.data)
+      .then((result) => setUserInfo(result));
+  }, [user]);
 
   const handleSetState = (propName, newState) => {
     poll.current = { ...poll.current, [propName]: newState };
@@ -62,13 +81,15 @@ export default function PollCreatorContainer({ toggleModal }) {
           width="80%"
           height="20vw"
           mapCenter={
-            poll.current.center ? [poll.current.center[1],poll.current.center[0]] : [-118.244, 34.052]
+            poll.current.center
+              ? [poll.current.center[1], poll.current.center[0]]
+              : [-118.244, 34.052]
           }
           poll={poll}
           area={{
             radius: poll.current.radius ? poll.current.radius : 500,
             points: poll.current.center
-              ? [[poll.current.center[1],poll.current.center[0]]]
+              ? [[poll.current.center[1], poll.current.center[0]]]
               : [[-118.244, 34.052]],
           }}
         />
@@ -161,7 +182,7 @@ export default function PollCreatorContainer({ toggleModal }) {
       category
     ) {
       console.log("pass");
-      console.log(currentContext)
+      console.log(currentContext);
       axios
         .post(`http://mapocracy-api.azurewebsites.net/poll/new`, currentContext)
         .then((res) => console.log(res))
@@ -170,7 +191,7 @@ export default function PollCreatorContainer({ toggleModal }) {
       toggleModal();
     }
   };
-
+  if (!userInfo) return <>Now Loading</>;
   return (
     <>
       <Button
@@ -199,4 +220,4 @@ export default function PollCreatorContainer({ toggleModal }) {
       </CardWrapper>
     </>
   );
-}
+})

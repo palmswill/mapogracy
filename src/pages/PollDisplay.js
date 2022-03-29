@@ -117,7 +117,13 @@ const Polldisplay = (props) => {
             <Typography variant="h4">{poll.name}</Typography>
 
             <Typography variant="h6" color="primary">
-              {state ? state.host_name : poll.user_id}
+              {poll.first_name && poll.last_name
+                ? `${poll.first_name} ${poll.last_name}`
+                : poll.first_name
+                ? poll.first_name
+                : poll.last_name
+                ? poll.last_name
+                : poll.user_id}
             </Typography>
             <Typography>{poll.description}</Typography>
           </Box>
@@ -167,7 +173,7 @@ const Polldisplay = (props) => {
                       {poll.id &&
                         poll.answers.map((answer, index) => {
                           return (
-                            <Box key={answer+index}>
+                            <Box key={answer + index}>
                               <FormControlLabel
                                 key={answer.id}
                                 sx={{ fontSize: "24px" }}

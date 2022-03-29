@@ -1,10 +1,17 @@
-import { Tab, Tabs } from "@mui/material";
+import { Tab, Tabs, Grid, Paper } from "@mui/material";
+
 import { Box } from "@mui/system";
 import React, { useState, useEffect } from "react";
+import { Skeleton } from "@mui/material";
 import Pollresultshow from "./PollResultShows";
 import RegionSelect from "./RegionSelect";
 import SpacedButtonGroup from "./SpacedButtonGroup";
 import axios from "axios";
+import {
+  categoryOptions,
+  regionOptions,
+} from "../../helpers/DemographicOptions";
+import PollDisplayerLoadingSection from "./PollDisplayerLoadingSection";
 
 // const polls = [];
 const PollBrowser = () => {
@@ -12,53 +19,40 @@ const PollBrowser = () => {
   const [regionIndex, setRegionIndex] = useState(0);
   const [categoryIndex, setCategoryIndex] = useState(0);
   const live = ["Ongoing Pollings", "Finished Polls"];
-  const [regions] = useState([
-    "North America",
-    "Asia",
-    "Europe",
-    "South America",
-    "Oceania",
-  ]);
-  const [categories] = useState([
-    "Nature",
-    "Econ",
-    "Travel",
-    "Politics",
-    "Media",
-    "Others",
-  ]);
+
+  const categories = categoryOptions;
+  const regions = regionOptions;
 
   const [polls, setPolls] = useState([]);
 
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
-    // const int = new Intl.NumberFormat('en-US')
-    let config = {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "*",
-      },
-    };
-  //  receive 
+    setIsLoading(true);
     axios
       .get(
         `https://mapocracy-api.azurewebsites.net/poll?category=${
           categories[categoryIndex]
         }&&region=${regions[regionIndex]}&&time=${
           liveIndex ? "past" : "current"
-        }`,
-        config
+        }`
       )
       .then((res) => {
         const posts = res.data;
+        setIsLoading(false);
         setPolls(posts);
       })
       .catch((error) => console.log("Error", error));
-  }, [regionIndex, categoryIndex, liveIndex,categories,regions]);
+  }, [regionIndex, categoryIndex, liveIndex, categories, regions]);
 
   return (
     <>
-      <Box sx={{ display: "flex", flexWrap: "wrap" }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+        }}
+      >
         <Tabs
           value={liveIndex}
           onChange={(e, newValue) => {
@@ -69,22 +63,39 @@ const PollBrowser = () => {
         >
           {live.map((text, index) => {
             return <Tab key={index} value={index} label={text} />;
-          })}
-        </Tabs>
-        <RegionSelect {...{ regions, regionIndex, setRegionIndex }} />
-      </Box>
+          })}{" "}
+        </Tabs>{" "}
+        <RegionSelect
+          {...{
+            regions,
+            regionIndex,
+            setRegionIndex,
+          }}
+        />{" "}
+      </Box>{" "}
       <SpacedButtonGroup
         groupItems={categories}
         currentIndex={categoryIndex}
         setCurrentIndex={setCategoryIndex}
       />
-      <Pollresultshow
-        poll={polls}
-        region={regions[regionIndex]}
-        category={categories[categoryIndex]}
-        status={live[liveIndex]}
-      />
-      <Box sx={{ height: "50px" }}></Box>
+      {isLoading && (
+       <PollDisplayerLoadingSection />
+      )}
+      {!isLoading && (
+        <Pollresultshow
+          poll={polls}
+          region={regions[regionIndex]}
+          category={categories[categoryIndex]}
+          status={live[liveIndex]}
+        />
+      )}{" "}
+      <Box
+        sx={{
+          height: "50px",
+        }}
+      >
+        {" "}
+      </Box>{" "}
     </>
   );
 };

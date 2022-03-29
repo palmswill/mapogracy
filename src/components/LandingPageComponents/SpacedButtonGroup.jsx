@@ -17,7 +17,7 @@ const SpacedButtonGroup = ({ groupItems, currentIndex, setCurrentIndex }) => {
           const isActive = currentIndex === index;
           return isActive ? (
             <Button
-              size="small"
+              size="medium"
               key={index + itemText}
               sx={{ bgcolor: "primary.main", margin: "1%" }}
               variant="contained"
@@ -28,7 +28,7 @@ const SpacedButtonGroup = ({ groupItems, currentIndex, setCurrentIndex }) => {
             </Button>
           ) : (
             <Button
-              size="small"
+              size="medium"
               key={index + itemText}
               sx={{ bgcolor: "secondary.main", margin: "1%" }}
               variant="contained"

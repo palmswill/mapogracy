@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Mainpollcard from "./PollCards/MainPollCard";
 import { useNavigate } from "react-router-dom";
+import MainpollcardLoader from "./PollCards/MainPollCardLoader";
 
 const TopPoll = () => {
   const navigate = useNavigate();
@@ -44,6 +45,7 @@ const TopPoll = () => {
           },
         }}
       >
+        {!newestPoll.id && <MainpollcardLoader/>}
         {newestPoll.id && <Mainpollcard poll={newestPoll} />}
       </Paper>
     </>

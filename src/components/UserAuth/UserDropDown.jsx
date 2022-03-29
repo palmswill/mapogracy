@@ -40,7 +40,7 @@ export default function UserDropDown() {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        <Box sx={{ fontSize: "24px", marginRight: "10px" }}>
+        <Box sx={{ marginRight: "10px" }}>
           <i className="fa-solid fa-circle-user"></i>
         </Box>
         {userName?userName:user.email}

@@ -4,37 +4,30 @@ import { Grid, Paper } from "@mui/material";
 
 const Pollresultshow = (props) => {
   let { state } = useLocation();
-  
-  let polls = [];
-  // if (state.index === 1) {
-  //   polls = state.poll;
-  //   state.index = 0;
-  // } else {
-    polls = props.poll;
-  // }
+
+  const polls = props.poll;
 
   let navigate = useNavigate();
 
   function handleClick(e, id, pollName, first, last) {
     e.preventDefault();
 
-    let host_name = '';
+    let host_name = "";
     if (!first && !last) {
       host_name = polls.user_id;
     } else {
       host_name = `${first} ${last}`;
-    };
-    navigate(`/polls/${id}`, { state: {id, host_name}});
+    }
+    navigate(`/polls/${id}`, { state: { id, host_name } });
   }
 
   return (
     <>
-
       <Grid
         container
         spacing={{ xs: 2, md: 3 }}
         columns={{ xs: 4, sm: 8, md: 12 }}
-        sx={{minHeight:"500px"}}
+        sx={{ minHeight: "500px" }}
       >
         {polls.map((contents, index) => {
           let totalVotes = 0;
@@ -57,11 +50,12 @@ const Pollresultshow = (props) => {
                   )
                 }
               >
-                <Paper sx={{ height: "200px", color: "primary" }}>
+                <Paper
+                  sx={{ minHeight: "200px", color: "primary", padding: "20px" }}
+                >
                   <div className="poll-titre">
-                    <p className="poll-name">{contents.name}</p>
+                    <h3 className="poll-name">{contents.name}</h3>
                   </div>
-                  <br></br>
                   <section className="host-by">
                     <p className="host-name">
                       {contents.first_name + " " + contents.last_name}
@@ -71,18 +65,17 @@ const Pollresultshow = (props) => {
                       <p>{totalVotes}</p>
                     </div>
                   </section>
-                  <br></br>
                   <div className="poll-positive">
                     <p>{contents.agree}</p>
-                    <i className="fa-solid fa-user"></i>
                     <p>{contents.answers[0].content}</p>
+                    <i className="fa-solid fa-user"></i>
 
                     <p>{contents.answers[0].vote_count}</p>
                   </div>
                   <div className="poll-negative">
                     <p>{contents.disagree}</p>
-                    <i className="fa-solid fa-user"></i>
                     <p>{contents.answers[1].content}</p>
+                    <i className="fa-solid fa-user"></i>
                     <p>{contents.answers[1].vote_count}</p>
                   </div>
                 </Paper>
@@ -96,4 +89,4 @@ const Pollresultshow = (props) => {
   );
 };
 
-export default Pollresultshow;
+export default React.memo(Pollresultshow);
