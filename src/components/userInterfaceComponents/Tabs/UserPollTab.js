@@ -5,38 +5,42 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import axios from "axios";
 
-
-const UserPollTab = (props) => {
+const UserPollTab = () => {
   const [polls, setPolls] = useState([]);
-  const [owners, setOwners] = useState([]);
+  // const [owners, setOwners] = useState([]);
 
-  // let navigate = useNavigate();
-  const { user, isAuthenticated } = useAuth0();
+  let navigate = useNavigate();
+  const { user } = useAuth0();
   // console.log('user = ', user.email);
-  let resultArray = [];
+  // let resultArray = [];
 
   useEffect(() => {
     if (!user) return;
-    let one = `http://mapocracy-api.azurewebsites.net/poll?time=current`;
-    let two = `http://mapocracy-api.azurewebsites.net/user/${user.email}/poll?time=current`;
-    const requestOne = axios.get(one);
-    const requestTwo = axios.get(two);
+
     axios
-      .all([requestOne, requestTwo])
-      .then(
-        axios.spread((...responses) => {
-          const responseOne = responses[0];
-          const responseTwo = responses[1];
+      .get(`https://mapocracy-api.azurewebsites.net/user/${user.email}/poll`)
+      .then((res) => res.data)
+      .then((result) => setPolls(result));
 
-          setPolls(responseOne.data);
-          setOwners(responseTwo.data);
-        })
-      )
-      .catch((errors) => {
-        console.error(errors);
-      });
+    // let one = `http://mapocracy-api.azurewebsites.net/poll?time=current`;
+    // let two = `http://mapocracy-api.azurewebsites.net/user/${user.email}/poll?time=current`;
+    // const requestOne = axios.get(one);
+    // const requestTwo = axios.get(two);
+    // axios
+    //   .all([requestOne, requestTwo])
+    //   .then(
+    //     axios.spread((...responses) => {
+    //       const responseOne = responses[0];
+    //       const responseTwo = responses[1];
 
-  }, []);
+    //       setPolls(responseOne.data);
+    //       setOwners(responseTwo.data);
+    //     })
+    //   )
+    //   .catch((errors) => {
+    //     console.error(errors);
+    //   });
+  }, [user]);
 
   function handleClick(e) {
     e.preventDefault();
@@ -51,7 +55,7 @@ const UserPollTab = (props) => {
   }
 
   // resultArray = polls.filter(poll => poll.user_id === 'test4@email.com');
-  resultArray = polls.filter(poll => poll.user_id === user.email);
+  // resultArray = polls.filter((poll) => poll.user_id === user.email);
 
   return (
     <>
@@ -61,18 +65,22 @@ const UserPollTab = (props) => {
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
         {}
-        {resultArray.map((contents, index) => {
+        {polls.map((contents, index) => {
           let totalVotes = 0;
+          console.log(contents)
 
           contents.answers.forEach((answer) => {
             totalVotes += answer.vote_count;
           });
 
-          return (
+          const sortedAnswers = contents.answers
+            .slice()
+            .sort((a, b) => b.vote_count - a.vote_count);
 
+          return (
             <Grid item xs={4} sm={4} md={4} key={index}>
               <div
-                  className="map-result"
+                className="map-result"
                 onClick={(e) =>
                   handleClick(
                     e
@@ -84,35 +92,34 @@ const UserPollTab = (props) => {
                 }
               >
                 <Paper
-                  sx={{ height: "200px", color: "primary" }}
-                  key={contents.name}
+                  sx={{ minHeight: "200px", color: "primary", padding: "20px" }}
+                  onClick={()=>navigate(`/polls/${contents.id}`)}
                 >
                   <div className="poll-titre">
-                    <p className="poll-name">{contents.name}</p>
+                    <h3 className="poll-name">{contents.name}</h3>
                   </div>
-                  <br></br>
-                  <section className="host-by" key={contents.user_id}>
-                    <p className="host-name">{contents.user_id}</p>
+                  <section className="host-by">
+                    <p className="host-name">
+                      {contents.first_name + " " + contents.last_name}
+                    </p>
                     <div className="poll-total-vote">
-                      <br></br>
                       <i className="fa-solid fa-user chateau"></i>
-                      <p>
-                      {totalVotes}
-
-                      </p>
+                      <p>{totalVotes}</p>
                     </div>
                   </section>
-                  <br></br>
-                  <div className="poll-positive">
-                    <p>{contents.answers[0].content}</p>
-                    <i className="fa-solid fa-user"></i>
-                    <p>{contents.answers[0].vote_count}</p>
-                  </div>
-                  <div className="poll-negative">
-                    <p>{contents.answers[1].content}</p>
-                    <i className="fa-solid fa-user"></i>
-                    <p>{contents.answers[1].vote_count}</p>
-                  </div>
+                  {sortedAnswers.map((answer, index) => {
+                    if (index !== 0 && index !== 1) return <></>; ///we only want the first two (if there is two)
+                    return (
+                      <div
+                        key={`${answer.content + index}`}
+                        className="poll-positive"
+                      >
+                        <p>{answer.content}</p>
+                        <i className="fa-solid fa-user"></i>
+                        <p>{answer.vote_count}</p>
+                      </div>
+                    );
+                  })}
                 </Paper>
               </div>
               <br></br>

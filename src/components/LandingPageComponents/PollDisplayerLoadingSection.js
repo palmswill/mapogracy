@@ -14,7 +14,7 @@ export default function PollDisplayerLoadingSection({ cardNumber = 9 }) {
           <Paper
             key={index}
             // variant="rectangular"
-            sx={{ width: "100%", minHeight: "200px", padding: "20px" }}
+            sx={{ width: "100%", minHeight: "250px", padding: "20px" }}
           >
             <Box sx={{ display: "flex", flexDirection: "column", gap: "5px" }}>
               <Skeleton animation="wave" variant="text" width="80%" height="30px" />

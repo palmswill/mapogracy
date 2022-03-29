@@ -1,8 +1,7 @@
-import { Tab, Tabs, Grid, Paper } from "@mui/material";
+import { Tab, Tabs } from "@mui/material";
 
 import { Box } from "@mui/system";
 import React, { useState, useEffect } from "react";
-import { Skeleton } from "@mui/material";
 import Pollresultshow from "./PollResultShows";
 import RegionSelect from "./RegionSelect";
 import SpacedButtonGroup from "./SpacedButtonGroup";
@@ -78,9 +77,7 @@ const PollBrowser = () => {
         currentIndex={categoryIndex}
         setCurrentIndex={setCategoryIndex}
       />
-      {isLoading && (
-       <PollDisplayerLoadingSection />
-      )}
+      {isLoading && <PollDisplayerLoadingSection />}
       {!isLoading && (
         <Pollresultshow
           poll={polls}

@@ -1,20 +1,14 @@
 import React, { useEffect } from "react";
 import useInput from "../../../hooks/useInput";
 import { TextField, Select, FormControl, MenuItem,InputLabel } from "@mui/material";
+import { categoryOptions } from "../../../helpers/DemographicOptions";
 
 const Quesioncard = ({ handleSetState, poll, propName, cat }) => {
   const [value, onChange] = useInput(
     poll.current[propName] ? poll.current[propName] : ""
   );
 
-  const categories = [
-    "Nature",
-    "Econ",
-    "Travel",
-    "Politics",
-    "Media",
-    "Others",
-  ];
+  const categories = categoryOptions;
 
   const [catVal, onCatChange] = useInput(
     poll.current["category"] ? poll.current["category"] : "Others"

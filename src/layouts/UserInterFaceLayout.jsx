@@ -7,8 +7,8 @@ import { TabPanel, TabContext, TabList } from "@mui/lab";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import AccountTab from "../components/userInterfaceComponents/Tabs/AccountTab";
-import InvitationTab from "../components/userInterfaceComponents/Tabs/InvitationTab";
-import EmailListTab from "../components/userInterfaceComponents/Tabs/EmailListTab";
+// import InvitationTab from "../components/userInterfaceComponents/Tabs/InvitationTab";
+// import EmailListTab from "../components/userInterfaceComponents/Tabs/EmailListTab";
 import UserPollTab from "../components/userInterfaceComponents/Tabs/UserPollTab";
 
 export default function UserInterFaceLayout() {
@@ -19,8 +19,8 @@ export default function UserInterFaceLayout() {
   const tabs = [
     { name: "Account Setting", component: <AccountTab/> },
     { name: "Your polls", component: <UserPollTab/> },
-    { name: "Invitations", component: <InvitationTab/>},
-    { name: "Email Lists", component: <EmailListTab/> },
+    // { name: "Invitations", component: <InvitationTab/>},
+    // { name: "Email Lists", component: <EmailListTab/> },
   ];
 
   const handleChange = (event, newValue) => {
