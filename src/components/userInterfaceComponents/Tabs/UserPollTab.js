@@ -5,25 +5,20 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import axios from "axios";
 
-// export default function UserPollTab() {
-//   return (
-//     <div>UserPollTab are you there ???</div>
-//   )
-// }
 
 const UserPollTab = (props) => {
   const [polls, setPolls] = useState([]);
   const [owners, setOwners] = useState([]);
 
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
   const { user, isAuthenticated } = useAuth0();
   // console.log('user = ', user.email);
   let resultArray = [];
 
   useEffect(() => {
     if (!user) return;
-    let one = `http://mapocracy-api.azurewebsites.net/poll`;
-    let two = `http://mapocracy-api.azurewebsites.net/user/${user.email}/poll`;
+    let one = `http://mapocracy-api.azurewebsites.net/poll?time=current`;
+    let two = `http://mapocracy-api.azurewebsites.net/user/${user.email}/poll?time=current`;
     const requestOne = axios.get(one);
     const requestTwo = axios.get(two);
     axios
@@ -55,7 +50,8 @@ const UserPollTab = (props) => {
     // navigate(`/polls/${id}`, { state: {id, host_name}});
   }
 
-  resultArray = polls.filter(poll => poll.user_id !== user.email);
+  // resultArray = polls.filter(poll => poll.user_id === 'test4@email.com');
+  resultArray = polls.filter(poll => poll.user_id === user.email);
 
   return (
     <>

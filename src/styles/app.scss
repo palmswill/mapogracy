@@ -64,9 +64,12 @@ main{
 // }
 
 .map-result :hover {
-  background-color:  rgb(208, 72, 241);
+  background-color:  rgb(208, 72, 241,0.3);
   // border: thick double #32a1ce;
   cursor: pointer;
+  p.host-name{
+    color:"white"!important
+  }
 }
 
 .poll-titre {

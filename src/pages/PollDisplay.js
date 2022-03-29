@@ -5,8 +5,8 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import { Button } from "@mui/material";
-import ButtonBase from "@mui/material/ButtonBase";
+import { Avatar, Button } from "@mui/material";
+// import ButtonBase from "@mui/material/ButtonBase";
 import Arcmap from "../components/map/Arcmap";
 import { Typography } from "@mui/material";
 
@@ -16,6 +16,7 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
+import { dotColor } from "../helpers/mapHelpers";
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -35,7 +36,8 @@ const Polldisplay = (props) => {
   // const { pollName } = props;
 
   let { pollid } = useParams();
-  
+
+  const color = dotColor;
 
   useEffect(() => {
     axios
@@ -43,12 +45,13 @@ const Polldisplay = (props) => {
       .then((result) => result.data)
       .then((data) => setPoll(data));
   }, [pollid]);
-  
+
   const handleRadioChange = (event) => {
     event.preventDefault();
     if (!isAuthenticated) {
       alert("You need to login before to vote!");
-      navigate('/');
+      // navigate("/");
+      return;
     }
 
     const myFormData = new FormData(event.target);
@@ -73,25 +76,23 @@ const Polldisplay = (props) => {
     };
 
     if (user) {
-      vote_added.user_id = user.email
-    };
+      vote_added.user_id = user.email;
+    }
 
     axios
     .post(`http://mapocracy-api.azurewebsites.net/vote`, vote_added)
     // .then(() => navigate("/"))
-    .then(alert("Vote succed!"))
+    .then(alert("Vote sending to registration!"))
     .catch((error) => {
-      console.error("There was an error in vote adding process!", error);
-    });
+      if (error.response) {
+        alert(`Opps! You ${error.response.data} in the same poll`);
+      }});
 
-    // axios
-    // .get(`http://mapocracy-api.azurewebsites.net/poll`)
-    // .then((result) => result.data)
-    // .then((data) => setPoll(data));
-    // const index = 1;
-    // console.log("Index & poll = ", index, poll);
-    // navigate("/", {state: {index, poll}});
-    navigate("/");
+    axios
+    .get(`http://mapocracy-api.azurewebsites.net/poll/${pollid}`)
+    .then((result) => result.data)
+    .then((data) => setPoll(data));
+
   };
 
   return (
@@ -113,17 +114,12 @@ const Polldisplay = (props) => {
             spacing={{ xs: 1, md: 1 }}
             columns={{ xs: 2, sm: 10, md: 12 }}
           >
+            <Typography variant="h4">{poll.name}</Typography>
 
-            {/* <Typography>{poll.answers && poll.answers[0] && poll.answers[0].content}</Typography> */}
-            <h4><Typography>{poll.name}</Typography></h4>
-            
             <Typography variant="h6" color="primary">
               {state ? state.host_name : poll.user_id}
-
             </Typography>
-            <Typography>
-              {poll.description}
-            </Typography>
+            <Typography>{poll.description}</Typography>
           </Box>
           <Box gridColumn="span 4">
             <Item></Item>
@@ -132,21 +128,30 @@ const Polldisplay = (props) => {
       </div>
       <Grid container spacing={2}>
         <Grid item>
-          <ButtonBase sx={{ width: 900, height: 350 }}>
+          <Box sx={{ minWidth: 900, minHeight: 350 }}>
             {poll.answers && (
               <Arcmap
-                style={{ minHeight: "300px" }}
+                style={{ minHeight: "500px" }}
                 center={[poll.longitude, poll.latitude]}
                 voteList={poll.answers}
                 zoom={10}
               />
             )}
-          </ButtonBase>
+          </Box>
         </Grid>
         <Grid item xs={12} sm container>
           <Grid item xs container direction="column" spacing={2}>
             <Grid item xs>
-              <Box sx={{ border: "2px solid #000", borderRadius:"10px", boxShadow: 24, bgcolor: "background.paper", p: 9  }}>
+              <Box
+                sx={{
+                  border: "2px solid #000",
+                  borderRadius: "10px",
+                  boxShadow: 24,
+                  bgcolor: "background.paper",
+                  minHeight: "500px",
+                  p: 9,
+                }}
+              >
                 <form onSubmit={handleRadioChange}>
                   <FormControl
                     id="radios"
@@ -154,16 +159,42 @@ const Polldisplay = (props) => {
                     variant="standard"
                     border={2}
                   >
-                    <RadioGroup aria-labelledby="radios" name="quiz">
+                    <RadioGroup
+                      sx={{ marginBottom: "20px" }}
+                      aria-labelledby="radios"
+                      name="quiz"
+                    >
                       {poll.id &&
-                        poll.answers.map((answer) => {
+                        poll.answers.map((answer, index) => {
                           return (
-                            <FormControlLabel
-                              key={answer.id}
-                              value={answer.content}
-                              control={<Radio />}
-                              label={answer.content}
-                            />
+                            <Box key={answer+index}>
+                              <FormControlLabel
+                                key={answer.id}
+                                sx={{ fontSize: "24px" }}
+                                value={answer.content}
+                                control={<Radio />}
+                                label={answer.content}
+                              />
+                              <Box
+                                sx={{ display: "flex", alignItems: "center" }}
+                              >
+                                <Avatar
+                                  sx={{
+                                    bgcolor: color[index],
+                                    width: "20px",
+                                    height: "20px",
+                                    marginRight: "10px",
+                                  }}
+                                >
+                                  {" "}
+                                </Avatar>
+                                <Box sx={{ marginRight: "15px" }}>
+                                  {" "}
+                                  <i className="fa-solid fa-user"></i>
+                                </Box>
+                                <Typography>{answer.vote_count}</Typography>
+                              </Box>
+                            </Box>
                           );
                         })}
                     </RadioGroup>
