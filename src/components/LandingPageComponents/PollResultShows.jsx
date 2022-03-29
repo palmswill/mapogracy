@@ -71,7 +71,7 @@ const Pollresultshow = (props) => {
                     </div>
                   </section>
                   {sortedAnswers.map((answer, index) => {
-                    if (index !== 0 && index !== 1) return <></>; ///we only want the first two (if there is two)
+                    if (index !== 0 && index !== 1) return <React.Fragment key={index}></React.Fragment>; ///we only want the first two (if there is two)
                     return (
                       <div
                         key={`${answer.content + index}`}
