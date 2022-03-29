@@ -43,6 +43,7 @@ const DrawableArcmap = ({
     "North America",
     "South America",
     "Oceania",
+    "Africa"
   ];
 
   const [region, onRegionChange] = useInput(

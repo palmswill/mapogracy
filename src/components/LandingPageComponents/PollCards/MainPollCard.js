@@ -36,12 +36,8 @@ const Mainpollcard = ({ poll }) => {
   return (
     <>
       <Box sx={{ display: "flex", flexWrap: "wrap" }}>
-        <Typography variant="h6" marginLeft="2%">
-          {`${name} - hosted by `}
-          <Box component="span" sx={{ color: "primary.main" }}>
-            {!first_name && !last_name && ` ${user_id}`}
-            {(first_name || last_name) && `${first_name}  ${last_name}`}
-          </Box>
+        <Typography variant="h4" marginLeft="2%">
+          {`${name}`}
         </Typography>
         <Box
           component="span"
@@ -56,6 +52,21 @@ const Mainpollcard = ({ poll }) => {
           <i className="fa-solid fa-user"></i>
           {<span>{totalVotes}</span>}
         </Box>
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "end",
+          gap: "1ch",
+          marginLeft: "2%",
+        }}
+      >
+        <Typography variant="h6">{`hosted by`}</Typography>
+        <Typography variant="h6" color="primary.main">
+          {!first_name && !last_name && ` ${user_id}`}
+          {(first_name || last_name) && `${first_name}  ${last_name}`}
+        </Typography>
       </Box>
 
       <Grid
@@ -72,7 +83,7 @@ const Mainpollcard = ({ poll }) => {
             zoom={10}
           />
         </Grid>
-        <Grid sx={{ minWidth: "150px",position:"relative" }} item xs={3}>
+        <Grid sx={{ minWidth: "150px", position: "relative" }} item>
           <List sx={{ width: "100%", bgcolor: "inherit", marginTop: "10%" }}>
             {sortedAnswers.map((answer, index) => {
               return (
@@ -81,11 +92,12 @@ const Mainpollcard = ({ poll }) => {
                   sx={{
                     paddingBlock: 0,
                     display: "flex",
-                    flexDirection: "row",
                   }}
                 >
                   <ListItemText>
-                    <Typography variant="h6">{answer.content}</Typography>
+                    <Typography sx={{ flexGrow: 1 }} variant="h6">
+                      {answer.content}
+                    </Typography>
                     <Box
                       sx={{
                         display: "flex",
