@@ -157,7 +157,7 @@ const Polldisplay = (props) => {
                   <Arcmap
                     style={{ minHeight: "500px" }}
                     center={[poll.longitude, poll.latitude]}
-                    voteList={sortedAnswers}
+                    voteList={poll.visibility?sortedAnswers:[]}
                     zoom={10}
                   />
                 )}
@@ -223,7 +223,7 @@ const Polldisplay = (props) => {
                                       {" "}
                                       <i className="fa-solid fa-user"></i>
                                     </Box>
-                                    <Typography>{answer.vote_count}</Typography>
+                                    <Typography>{poll.visibility?answer.vote_count:""}</Typography>
                                   </Box>
                                 </Box>
                               );
