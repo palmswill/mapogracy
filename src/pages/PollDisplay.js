@@ -81,7 +81,6 @@ const Polldisplay = (props) => {
 
     axios
     .post(`http://mapocracy-api.azurewebsites.net/vote`, vote_added)
-    // .then(() => navigate("/"))
     .then(alert("Vote sending to registration!"))
     .catch((error) => {
       if (error.response) {
