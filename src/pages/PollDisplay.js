@@ -151,8 +151,8 @@ const Polldisplay = (props) => {
             </Box>
           </div>
           <Grid container spacing={2}>
-            <Grid item>
-              <Box sx={{ minWidth: 900, minHeight: 350 }}>
+            <Grid item xs={8}>
+              <Box sx={{ width:"100%", minHeight: 350 }}>
                 {poll.answers && (
                   <Arcmap
                     style={{ minHeight: "500px" }}
@@ -163,7 +163,7 @@ const Polldisplay = (props) => {
                 )}
               </Box>
             </Grid>
-            <Grid item xs={12} sm container>
+            <Grid item xs={4} sm container>
               <Grid item xs container direction="column" spacing={2}>
                 <Grid item xs>
                   <Box

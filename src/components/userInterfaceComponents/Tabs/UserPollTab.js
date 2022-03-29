@@ -4,6 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import axios from "axios";
+import "../../../styles/app.scss"
 
 const UserPollTab = () => {
   const [polls, setPolls] = useState([]);
@@ -67,7 +68,6 @@ const UserPollTab = () => {
         {}
         {polls.map((contents, index) => {
           let totalVotes = 0;
-          console.log(contents)
 
           contents.answers.forEach((answer) => {
             totalVotes += answer.vote_count;
@@ -78,7 +78,7 @@ const UserPollTab = () => {
             .sort((a, b) => b.vote_count - a.vote_count);
 
           return (
-            <Grid item xs={4} sm={4} md={4} key={index}>
+            <Grid  item xs={4} sm={4} md={4} key={`${index+contents.name}`}>
               <div
                 className="map-result"
                 onClick={(e) =>
@@ -92,6 +92,7 @@ const UserPollTab = () => {
                 }
               >
                 <Paper
+                  className="base"
                   sx={{ minHeight: "200px", color: "primary", padding: "20px" }}
                   onClick={()=>navigate(`/polls/${contents.id}`)}
                 >
@@ -108,7 +109,7 @@ const UserPollTab = () => {
                     </div>
                   </section>
                   {sortedAnswers.map((answer, index) => {
-                    if (index !== 0 && index !== 1) return <></>; ///we only want the first two (if there is two)
+                    if (index !== 0 && index !== 1) return <React.Fragment key={`${answer.content + index}`} ></React.Fragment>; ///we only want the first two (if there is two)
                     return (
                       <div
                         key={`${answer.content + index}`}
