@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import { styled } from "@mui/material/styles";
+// import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
@@ -19,13 +19,13 @@ import FormControl from "@mui/material/FormControl";
 import { dotColor } from "../helpers/mapHelpers";
 import PollDisplayLoader from "../components/LandingPageComponents/LoadingSkeletons/PollDisplayLoader";
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#18181B" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(2),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
+// const Item = styled(Paper)(({ theme }) => ({
+//   backgroundColor: theme.palette.mode === "dark" ? "#18181B" : "#fff",
+//   ...theme.typography.body2,
+//   padding: theme.spacing(2),
+//   textAlign: "center",
+//   color: theme.palette.text.secondary,
+// }));
 
 const Polldisplay = (props) => {
   // let navigate = useNavigate();
