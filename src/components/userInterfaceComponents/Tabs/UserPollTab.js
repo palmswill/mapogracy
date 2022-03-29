@@ -20,38 +20,16 @@ const UserPollTab = () => {
     axios
       .get(`https://mapocracy-api.azurewebsites.net/user/${user.email}/poll`)
       .then((res) => res.data)
-      .then((result) => setPolls(result));
+      .then((result) => setPolls(result))
+      .catch((error) => {
+        console.log('Error: ', error.response)
+      });
 
-    // let one = `http://mapocracy-api.azurewebsites.net/poll?time=current`;
-    // let two = `http://mapocracy-api.azurewebsites.net/user/${user.email}/poll?time=current`;
-    // const requestOne = axios.get(one);
-    // const requestTwo = axios.get(two);
-    // axios
-    //   .all([requestOne, requestTwo])
-    //   .then(
-    //     axios.spread((...responses) => {
-    //       const responseOne = responses[0];
-    //       const responseTwo = responses[1];
-
-    //       setPolls(responseOne.data);
-    //       setOwners(responseTwo.data);
-    //     })
-    //   )
-    //   .catch((errors) => {
-    //     console.error(errors);
-    //   });
   }, [user]);
 
   function handleClick(e) {
     e.preventDefault();
 
-    // let host_name = '';
-    // if (!first && !last) {
-    //   host_name = polls.user_id;
-    // } else {
-    //   host_name = `${first} ${last}`;
-    // };
-    // navigate(`/polls/${id}`, { state: {id, host_name}});
   }
 
   // resultArray = polls.filter(poll => poll.user_id === 'test4@email.com');
