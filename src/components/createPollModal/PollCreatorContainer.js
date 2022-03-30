@@ -16,6 +16,8 @@ export default React.memo(function PollCreatorContainer({ toggleModal }) {
 
   const poll = useRef({
     user_id: user.email,
+    visibility:true,
+    emailList:[]
   });
 
   if (userInfo.longitude) {
@@ -95,26 +97,26 @@ export default React.memo(function PollCreatorContainer({ toggleModal }) {
         />
       ),
     },
-    {
-      name: "WHO DO YOU WANT TO ASK?",
-      card: (
-        <EmailListCard
-          key="emailList"
-          handleSetState={handleSetState}
-          poll={poll}
-        />
-      ),
-    },
-    {
-      name: "DO YOU WANT OTHERS TO KNOW WHEN THEY VOTE?",
-      card: (
-        <VisibilityCard
-          key="visibility"
-          handleSetState={handleSetState}
-          poll={poll}
-        />
-      ),
-    },
+    // {
+    //   name: "WHO DO YOU WANT TO ASK?",
+    //   card: (
+    //     <EmailListCard
+    //       key="emailList"
+    //       handleSetState={handleSetState}
+    //       poll={poll}
+    //     />
+    //   ),
+    // },
+    // {
+    //   name: "DO YOU WANT OTHERS TO KNOW WHEN THEY VOTE?",
+    //   card: (
+    //     <VisibilityCard
+    //       key="visibility"
+    //       handleSetState={handleSetState}
+    //       poll={poll}
+    //     />
+    //   ),
+    // },
     {
       name: "",
       card: (
