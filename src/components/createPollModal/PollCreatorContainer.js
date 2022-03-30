@@ -29,7 +29,7 @@ export default React.memo(function PollCreatorContainer({ toggleModal }) {
   useEffect(() => {
     axios
       .get(
-        `http://mapocracy-api.azurewebsites.net/user/${user.email}
+        `https://mapocracy-api.azurewebsites.net/user/${user.email}
     `
       )
       .then((res) => res.data)
