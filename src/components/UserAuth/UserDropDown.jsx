@@ -21,7 +21,7 @@ export default function UserDropDown() {
 
   React.useEffect(() => {
     axios
-      .get(`http://mapocracy-api.azurewebsites.net/user/${user.email}`)
+      .get(`https://mapocracy-api.azurewebsites.net/user/${user.email}`)
       .then((res) => res.data)
       .then((result) => setUserName(result.first_name));
   }, [user.email]);
