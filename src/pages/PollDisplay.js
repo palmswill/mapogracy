@@ -201,7 +201,7 @@ const Polldisplay = (props) => {
                                     value={answer.content}
                                     control={<Radio />}
                                     label={answer.content}
-                                    disabled={disableVote}
+                                    disabled={disableVote ||! isAuthenticated}
                                   />
                                   <Box
                                     sx={{
@@ -230,7 +230,7 @@ const Polldisplay = (props) => {
                             })}
                         </RadioGroup>
                         <Box ><Typography variant="h6">{`Total: ${totalVote} votes`}</Typography></Box>
-                        {!disableVote && (
+                        {!disableVote && isAuthenticated && (
                           <Button
                             sx={{ mt: 1, mr: 1 }}
                             type="submit"
