@@ -79,7 +79,7 @@ const Mainpollcard = ({ poll }) => {
           <Arcmap
             style={{ minHeight: "300px" }}
             center={center}
-            voteList={answers}
+            voteList={sortedAnswers}
             zoom={10}
           />
         </Grid>
