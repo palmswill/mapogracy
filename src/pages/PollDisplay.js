@@ -86,7 +86,7 @@ const Polldisplay = (props) => {
     }
 
     axios
-      .post(`http://mapocracy-api.azurewebsites.net/vote`, vote_added)
+      .post(`https://mapocracy-api.azurewebsites.net/vote`, vote_added)
       .then(alert("Vote sending to registration!"))
       .catch((error) => {
         if (error.response) {
@@ -95,7 +95,7 @@ const Polldisplay = (props) => {
       });
 
     axios
-      .get(`http://mapocracy-api.azurewebsites.net/poll/${pollid}`)
+      .get(`https://mapocracy-api.azurewebsites.net/poll/${pollid}`)
       .then((result) => result.data)
       .then((data) => setPoll(data));
   };
