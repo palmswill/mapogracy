@@ -49,7 +49,7 @@ export default function AccountTab() {
   const handleUserInfoSubmit = () => {
     axios
       .put(
-        "http://mapocracy-api.azurewebsites.net/user/update",
+        "https://mapocracy-api.azurewebsites.net/user/update",
         JSON.stringify(userInfo),
         config
       )

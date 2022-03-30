@@ -41,7 +41,7 @@ const Polldisplay = (props) => {
 
   useEffect(() => {
     axios
-      .get(`http://mapocracy-api.azurewebsites.net/poll/${pollid}`)
+      .get(`https://mapocracy-api.azurewebsites.net/poll/${pollid}`)
       .then((result) => result.data)
       .then((data) => setPoll(data));
   }, [pollid]);
