@@ -68,7 +68,7 @@ export default function AccountTab() {
   useEffect(() => {
     if (!user) return;
     axios
-      .get(`http://mapocracy-api.azurewebsites.net/user/${user.email}`)
+      .get(`https://mapocracy-api.azurewebsites.net/user/${user.email}`)
       .then((res) => res.data)
 
       .then((result) => setUserInfo(result))
