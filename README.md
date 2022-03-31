@@ -49,7 +49,7 @@ This project was supported by  [The Mapocracy- API](https://github.com/alou64/ma
 * [Material UI](https://mui.com/)
 
 
-For back end, please see [The Mapocracy- API](https://github.com/alou64/mapocracy-api).
+For back end, please check out [The Mapocracy- API](https://github.com/alou64/mapocracy-api).
 
 
 
