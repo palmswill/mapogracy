@@ -52,7 +52,7 @@ This project was supported by  [The Mapocracy- API](https://github.com/alou64/ma
 For back end, please check out [The Mapocracy- API](https://github.com/alou64/mapocracy-api).
 
 
-
+<br/>
 
 ## Getting Started
 
