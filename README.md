@@ -64,21 +64,21 @@ To install the app, run:
  <br/>
 
 
-#####Environmental Variables
+##### Environmental Variables
 
 Please open an `.env` file , and fill in the following environmental variables:
 
 ###### Auth0
-`REACT_APP_AUTH0_DOMAIN`
+`REACT_APP_AUTH0_DOMAIN`\
 `REACT_APP_CLIENT_ID`
 
-Both can be found in application tab of auth0  dashboard. Please also set up for the page redirect to function:
-`Allowed Callback URLs`
-`Allowed Logout URLs`
+Both can be found in application tab of auth0  dashboard. Please also set up for the page redirect to function:\
+`Allowed Callback URLs`\
+`Allowed Logout URLs`\
 `Allowed Web Origins`
-
 <br/>
-###### Arcgis API
+
+###### ArcgisAPI
 `REACT_APP_ARCGIS_KEY`
 
 Please see [API Keys](https://developers.arcgis.com/documentation/mapping-apis-and-services/security/tutorials/create-and-manage-an-api-key/).
