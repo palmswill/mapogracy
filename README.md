@@ -2,6 +2,7 @@ Mapocracy
 ==============
 ![](https://github.com/palmswill/mapogracy/blob/main/public/front-top.png)
 <br/>
+
 ![](https://github.com/palmswill/mapogracy/blob/main/public/poll-display.png)
 <br/>
 
