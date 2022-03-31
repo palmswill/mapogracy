@@ -56,19 +56,21 @@ For back end, please check out [The Mapocracy- API](https://github.com/alou64/ma
 
 ## Getting Started
 
-##### Intallation
+### Intallation
+===
 
 To install the app, run: 
- ### `npm install`
+### `npm install`
 
  <br/>
 
 
-##### Environmental Variables
+###  Environmental Variables
+===
 
 Please open an `.env` file , and fill in the following environmental variables:
 
-###### Auth0
+#### Auth0
 `REACT_APP_AUTH0_DOMAIN`\
 `REACT_APP_CLIENT_ID`
 
@@ -78,13 +80,14 @@ Both can be found in application tab of auth0  dashboard. Please also set up for
 `Allowed Web Origins`
 <br/>
 
-###### ArcgisAPI
+#### ArcgisAPI
 `REACT_APP_ARCGIS_KEY`
 
 Please see [API Keys](https://developers.arcgis.com/documentation/mapping-apis-and-services/security/tutorials/create-and-manage-an-api-key/).
 
 
-##### Starting the project
+### Starting the project
+===
 
 To start the project, run:
 ### `npm start`
@@ -106,7 +109,7 @@ You may also see any lint errors in the console.
 * @mui/material: 5.5.1
 * axios: 0.26.1
 * date-fns: 2.28.0
-* react: 17.0.2,
+* react: 17.0.2
 * react-router-dom: 6.2.2
 * sass: 1.49.9
 
