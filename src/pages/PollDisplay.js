@@ -151,8 +151,8 @@ const Polldisplay = (props) => {
             </Box>
           </div>
           <Grid container spacing={2}>
-            <Grid item>
-              <Box sx={{ minWidth: 900, minHeight: 350 }}>
+            <Grid item xs={8}>
+              <Box sx={{ width:"100%", minHeight: 350 }}>
                 {poll.answers && (
                   <Arcmap
                     style={{ minHeight: "500px" }}
@@ -163,7 +163,7 @@ const Polldisplay = (props) => {
                 )}
               </Box>
             </Grid>
-            <Grid item xs={12} sm container>
+            <Grid item xs={4} sm container>
               <Grid item xs container direction="column" spacing={2}>
                 <Grid item xs>
                   <Box
@@ -201,7 +201,7 @@ const Polldisplay = (props) => {
                                     value={answer.content}
                                     control={<Radio />}
                                     label={answer.content}
-                                    disabled={disableVote}
+                                    disabled={disableVote ||! isAuthenticated}
                                   />
                                   <Box
                                     sx={{
@@ -230,7 +230,7 @@ const Polldisplay = (props) => {
                             })}
                         </RadioGroup>
                         <Box ><Typography variant="h6">{`Total: ${totalVote} votes`}</Typography></Box>
-                        {!disableVote && (
+                        {!disableVote && isAuthenticated && (
                           <Button
                             sx={{ mt: 1, mr: 1 }}
                             type="submit"

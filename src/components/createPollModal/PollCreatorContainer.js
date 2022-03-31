@@ -4,8 +4,8 @@ import { Button } from "@mui/material";
 import Quesioncard from "./cards/QuestionCard";
 import Multiinputcard from "./cards/MultiInputCard";
 import DrawableMap from "../map/DrawableMap";
-import EmailListCard from "./cards/EmailListCard";
-import VisibilityCard from "./cards/VisibilityCard";
+// import EmailListCard from "./cards/EmailListCard";
+// import VisibilityCard from "./cards/VisibilityCard";
 import DateCard from "./cards/DateCard";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
@@ -16,6 +16,8 @@ export default React.memo(function PollCreatorContainer({ toggleModal }) {
 
   const poll = useRef({
     user_id: user.email,
+    visibility:true,
+    emailList:[]
   });
 
   if (userInfo.longitude) {
@@ -95,26 +97,26 @@ export default React.memo(function PollCreatorContainer({ toggleModal }) {
         />
       ),
     },
-    {
-      name: "WHO DO YOU WANT TO ASK?",
-      card: (
-        <EmailListCard
-          key="emailList"
-          handleSetState={handleSetState}
-          poll={poll}
-        />
-      ),
-    },
-    {
-      name: "DO YOU WANT OTHERS TO KNOW WHEN THEY VOTE?",
-      card: (
-        <VisibilityCard
-          key="visibility"
-          handleSetState={handleSetState}
-          poll={poll}
-        />
-      ),
-    },
+    // {
+    //   name: "WHO DO YOU WANT TO ASK?",
+    //   card: (
+    //     <EmailListCard
+    //       key="emailList"
+    //       handleSetState={handleSetState}
+    //       poll={poll}
+    //     />
+    //   ),
+    // },
+    // {
+    //   name: "DO YOU WANT OTHERS TO KNOW WHEN THEY VOTE?",
+    //   card: (
+    //     <VisibilityCard
+    //       key="visibility"
+    //       handleSetState={handleSetState}
+    //       poll={poll}
+    //     />
+    //   ),
+    // },
     {
       name: "",
       card: (
