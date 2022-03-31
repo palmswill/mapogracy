@@ -37,7 +37,7 @@ This project was supported by  [The Mapocracy- API](https://github.com/alou64/ma
 
 
 
-####Authorization
+#### Authorization
 * [Auth0](https://auth0.com/)
 ####Map Display
 * [ArcGIS API](https://developers.arcgis.com/)
@@ -57,7 +57,7 @@ For back end, please check out [The Mapocracy- API](https://github.com/alou64/ma
 ## Getting Started
 
 ### Intallation
-===
+
 
 To install the app, run: 
 ### `npm install`
@@ -66,7 +66,7 @@ To install the app, run:
 
 
 ###  Environmental Variables
-===
+
 
 Please open an `.env` file , and fill in the following environmental variables:
 
@@ -87,7 +87,7 @@ Please see [API Keys](https://developers.arcgis.com/documentation/mapping-apis-a
 
 
 ### Starting the project
-===
+
 
 To start the project, run:
 ### `npm start`
