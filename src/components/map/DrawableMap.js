@@ -20,16 +20,15 @@ import useInput from "../../hooks/useInput";
 const DrawableArcmap = ({
   width = "100%", //width of map
   height = "100%", //height of map
-  mapCenter = [-118.244, 34.052], //center of map
   zoom = 5, //zoom level
-  area = { radius: "500", points: [[-118.244, 34.052]] },
+  center = [-118.244, 34.052],
+  pollRadius = 500,
   handleSetState,
   poll,
 }) => {
-  const isCircle = area.radius;
-  const areaPoints = useRef(area.points ? area.points : []);
+  const [mapCenter, setMapCenter] = useState(center);
 
-  const [radius, setRadius] = useState(area.radius);
+  const [radius, setRadius] = useState(pollRadius);
 
   const mapStyle = {
     height,
@@ -43,7 +42,7 @@ const DrawableArcmap = ({
     "North America",
     "South America",
     "Oceania",
-    "Africa"
+    "Africa",
   ];
 
   const [region, onRegionChange] = useInput(
@@ -56,34 +55,28 @@ const DrawableArcmap = ({
     "viewDivCreate"
   );
 
-  useEffect(()=>{
-    handleSetState("region",region);
-  },[region,handleSetState])
+  useEffect(() => {
+    handleSetState("region", region);
+  }, [region, handleSetState]);
 
   useEffect(() => {
     PointGraphicsLayerRef.current.removeAll();
     GeometryGraphicsLayerRef.current.removeAll();
-    setPoint(areaPoints.current[0], PointGraphicsLayerRef.current);
-    setCircle(areaPoints.current[0], radius, GeometryGraphicsLayerRef.current);
-  }, [
-    isCircle,
-    GeometryGraphicsLayerRef,
-    PointGraphicsLayerRef,
-    radius,
-  ]);
+    setPoint(mapCenter, PointGraphicsLayerRef.current);
+    setCircle(mapCenter, radius, GeometryGraphicsLayerRef.current);
+  }, [mapCenter, GeometryGraphicsLayerRef, PointGraphicsLayerRef, radius]);
 
   useEffect(() => {
     handleSetState("radius", Number(radius));
-    
-  }, [radius,handleSetState]);
+  }, [radius, handleSetState]);
 
   const handleRadiusChange = (e) => {
     setRadius(e.target.value);
     handleSetState("radius", Number(e.target.value));
     PointGraphicsLayerRef.current.removeAll();
     GeometryGraphicsLayerRef.current.removeAll();
-    setPoint(areaPoints.current[0], PointGraphicsLayerRef.current);
-    setCircle(areaPoints.current[0], radius, GeometryGraphicsLayerRef.current);
+    setPoint(mapCenter, PointGraphicsLayerRef.current);
+    setCircle(mapCenter, radius, GeometryGraphicsLayerRef.current);
   };
 
   // viewport click event listener
@@ -91,17 +84,12 @@ const DrawableArcmap = ({
     viewRef.current.on("click", (e) => {
       PointGraphicsLayerRef.current.removeAll();
       GeometryGraphicsLayerRef.current.removeAll();
-      if (isCircle) {
-        const coords = getClickedCoordinates(e);
-        handleSetState("center", [coords[1],coords[0]]);
-        areaPoints.current[0] = coords;
-        setPoint(areaPoints.current[0], PointGraphicsLayerRef.current);
-        setCircle(
-          areaPoints.current[0],
-          radius,
-          GeometryGraphicsLayerRef.current
-        );
-      }
+
+      const coords = getClickedCoordinates(e);
+      handleSetState("center", [coords[1], coords[0]]);
+      setMapCenter(coords);
+      setPoint(mapCenter, PointGraphicsLayerRef.current);
+      setCircle(mapCenter, radius, GeometryGraphicsLayerRef.current);
     });
   }, [
     radius,
@@ -109,8 +97,7 @@ const DrawableArcmap = ({
     PointGraphicsLayerRef,
     viewRef,
     handleSetState,
-    area,
-    isCircle,
+    mapCenter,
   ]);
 
   return (

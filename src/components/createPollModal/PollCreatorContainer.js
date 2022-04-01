@@ -16,15 +16,15 @@ export default React.memo(function PollCreatorContainer({ toggleModal }) {
 
   const poll = useRef({
     user_id: user.email,
-    visibility:true,
-    emailList:[]
+    visibility: true,
+    emailList: [],
   });
 
   if (userInfo.longitude) {
     poll.current.center = [userInfo.latitude, userInfo.longitude];
   }
 
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(3);
 
   useEffect(() => {
     axios
@@ -82,18 +82,9 @@ export default React.memo(function PollCreatorContainer({ toggleModal }) {
           key="location"
           width="80%"
           height="20vw"
-          mapCenter={
-            poll.current.center
-              ? [poll.current.center[1], poll.current.center[0]]
-              : [-118.244, 34.052]
-          }
+          center={poll.current.cente || [-118.244, 34.052]}
           poll={poll}
-          area={{
-            radius: poll.current.radius ? poll.current.radius : 500,
-            points: poll.current.center
-              ? [[poll.current.center[1], poll.current.center[0]]]
-              : [[-118.244, 34.052]],
-          }}
+          pollRadius={poll.current.radius || poll.current.radius}
         />
       ),
     },
@@ -222,4 +213,4 @@ export default React.memo(function PollCreatorContainer({ toggleModal }) {
       </CardWrapper>
     </>
   );
-})
+});
