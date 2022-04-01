@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Select,
   TextField,
@@ -21,12 +21,13 @@ const DrawableArcmap = ({
   width = "100%", //width of map
   height = "100%", //height of map
   zoom = 5, //zoom level
-  center = [-118.244, 34.052],
+  center,
   pollRadius = 500,
   handleSetState,
   poll,
 }) => {
-  const [mapCenter, setMapCenter] = useState(center);
+  // acrgis map takes in [long,lat] but db has [lat,long]
+  const [mapCenter, setMapCenter] = useState([center[1],center[0]]);
 
   const [radius, setRadius] = useState(pollRadius);
 
@@ -64,7 +65,8 @@ const DrawableArcmap = ({
     GeometryGraphicsLayerRef.current.removeAll();
     setPoint(mapCenter, PointGraphicsLayerRef.current);
     setCircle(mapCenter, radius, GeometryGraphicsLayerRef.current);
-  }, [mapCenter, GeometryGraphicsLayerRef, PointGraphicsLayerRef, radius]);
+    handleSetState("center",[mapCenter[1],mapCenter[0]]);
+  }, [mapCenter, GeometryGraphicsLayerRef, PointGraphicsLayerRef, radius,handleSetState]);
 
   useEffect(() => {
     handleSetState("radius", Number(radius));
@@ -86,7 +88,7 @@ const DrawableArcmap = ({
       GeometryGraphicsLayerRef.current.removeAll();
 
       const coords = getClickedCoordinates(e);
-      handleSetState("center", [coords[1], coords[0]]);
+      console.log(coords);
       setMapCenter(coords);
       setPoint(mapCenter, PointGraphicsLayerRef.current);
       setCircle(mapCenter, radius, GeometryGraphicsLayerRef.current);

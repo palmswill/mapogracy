@@ -4,8 +4,8 @@ import { Button } from "@mui/material";
 import Quesioncard from "./cards/QuestionCard";
 import Multiinputcard from "./cards/MultiInputCard";
 import DrawableMap from "../map/DrawableMap";
-import EmailListCard from "./cards/EmailListCard";
-import VisibilityCard from "./cards/VisibilityCard";
+// import EmailListCard from "./cards/EmailListCard";
+// import VisibilityCard from "./cards/VisibilityCard";
 import DateCard from "./cards/DateCard";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
@@ -21,10 +21,13 @@ export default React.memo(function PollCreatorContainer({ toggleModal }) {
   });
 
   if (userInfo.longitude) {
+    if (!poll.current.center){
     poll.current.center = [userInfo.latitude, userInfo.longitude];
+    }
   }
+  
 
-  const [index, setIndex] = useState(3);
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
     axios
@@ -34,6 +37,8 @@ export default React.memo(function PollCreatorContainer({ toggleModal }) {
       )
       .then((res) => res.data)
       .then((result) => setUserInfo(result));
+
+      
   }, [user]);
 
   const handleSetState = (propName, newState) => {
@@ -82,7 +87,7 @@ export default React.memo(function PollCreatorContainer({ toggleModal }) {
           key="location"
           width="80%"
           height="20vw"
-          center={poll.current.cente || [-118.244, 34.052]}
+          center={poll.current.center || [-118.244, 34.052]}
           poll={poll}
           pollRadius={poll.current.radius || poll.current.radius}
         />
