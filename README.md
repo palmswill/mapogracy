@@ -17,6 +17,8 @@ Mapocracy
 
 Mapocracy is a platform created for users to voice and represent themselves through their geographic location. Polls traditionally are only done by governments or news agencies, Mapocracy breaks the barrier, provides the platform that lets anyone, whether you are a politician or a taxi driver, to represents themselves by creating their polls or casting  votes. With the help of geolocation, we can pinpoint the location and use it to represent their regional groups. 
 
+Live demo can be viewed [here](https://mapocracy.herokuapp.com/).
+
 This project was supported by  [The Mapocracy- API](https://github.com/alou64/mapocracy-api).
 
 
@@ -115,6 +117,6 @@ You may also see any lint errors in the console.
 
 
 ## Contributors
-* [William Liu](https://github.com/palmswill) 
+* William Liu (repo owner) - [LinkedIn](https://www.linkedin.com/in/williamliucs/) 
 * [Alou64](https://github.com/alou64)
 * [Ezechiel ITIMBIEN KAKANA](https://github.com/eze1er) 
