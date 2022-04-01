@@ -70,12 +70,12 @@ const Mainpollcard = ({ poll }) => {
       </Box>
 
       <Grid
-        sx={{ height: "90%", margin: "5px" }}
+        sx={{ width:"100%", height: "90%" }}
         wrap="wrap-reverse"
         container
         spacing={1}
       >
-        <Grid item xs={9}>
+        <Grid item sx={{minWidth:"66%",flex:1}}>
           <Arcmap
             style={{ minHeight: "300px" }}
             center={center}
@@ -83,7 +83,7 @@ const Mainpollcard = ({ poll }) => {
             zoom={10}
           />
         </Grid>
-        <Grid sx={{ minWidth: "150px", position: "relative" }} item>
+        <Grid sx={{ minWidth: "300px", position: "relative" }} item>
           <List sx={{ width: "100%", bgcolor: "inherit", marginTop: "10%" }}>
             {sortedAnswers.map((answer, index) => {
               return (

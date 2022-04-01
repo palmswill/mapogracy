@@ -30,7 +30,7 @@ const TopPoll = () => {
         sx={{
           minHeight: "400px",
           boxSizing: "border-box",
-          padding: "2%",
+          padding: "15px",
           border: "black solid 1px",
 
           position: "relative",
