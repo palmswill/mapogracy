@@ -41,7 +41,7 @@ This project was supported by  [The Mapocracy- API](https://github.com/alou64/ma
 
 #### Authorization
 * [Auth0](https://auth0.com/)
-####Map Display
+#### Map Display
 * [ArcGIS API](https://developers.arcgis.com/)
 #### Web
 * React
