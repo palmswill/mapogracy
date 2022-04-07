@@ -41,7 +41,7 @@ const Polldisplay = (props) => {
 
   useEffect(() => {
     axios
-      .get(`http://mapocracy-api.azurewebsites.net/poll/${pollid}`)
+      .get(`https://mapocracy-api.azurewebsites.net/poll/${pollid}`)
       .then((result) => result.data)
       .then((data) => setPoll(data));
   }, [pollid]);
@@ -86,7 +86,7 @@ const Polldisplay = (props) => {
     }
 
     axios
-      .post(`http://mapocracy-api.azurewebsites.net/vote`, vote_added)
+      .post(`https://mapocracy-api.azurewebsites.net/vote`, vote_added)
       .then(alert("Vote sending to registration!"))
       .catch((error) => {
         if (error.response) {
@@ -95,7 +95,7 @@ const Polldisplay = (props) => {
       });
 
     axios
-      .get(`http://mapocracy-api.azurewebsites.net/poll/${pollid}`)
+      .get(`https://mapocracy-api.azurewebsites.net/poll/${pollid}`)
       .then((result) => result.data)
       .then((data) => setPoll(data));
   };
@@ -151,7 +151,7 @@ const Polldisplay = (props) => {
             </Box>
           </div>
           <Grid container spacing={2}>
-            <Grid item xs={8}>
+            <Grid item sx={{minWidth:"66%",flex:1}}>
               <Box sx={{ width:"100%", minHeight: 350 }}>
                 {poll.answers && (
                   <Arcmap
@@ -163,8 +163,8 @@ const Polldisplay = (props) => {
                 )}
               </Box>
             </Grid>
-            <Grid item xs={4} sm container>
-              <Grid item xs container direction="column" spacing={2}>
+            <Grid item  sm container>
+              <Grid item sx container direction="column" spacing={2}>
                 <Grid item xs>
                   <Box
                     sx={{

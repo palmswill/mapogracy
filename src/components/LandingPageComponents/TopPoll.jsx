@@ -12,7 +12,7 @@ const TopPoll = () => {
 
   useEffect(() => {
     axios
-      .get("http://mapocracy-api.azurewebsites.net/poll?order=popularity")
+      .get("https://mapocracy-api.azurewebsites.net/poll?order=popularity")
       .then((res) => res.data)
       .then((result) => {
         return setNewestPoll(result[0]);
@@ -30,7 +30,7 @@ const TopPoll = () => {
         sx={{
           minHeight: "400px",
           boxSizing: "border-box",
-          padding: "2%",
+          padding: "15px",
           border: "black solid 1px",
 
           position: "relative",

@@ -49,7 +49,7 @@ export default function AccountTab() {
   const handleUserInfoSubmit = () => {
     axios
       .put(
-        "http://mapocracy-api.azurewebsites.net/user/update",
+        "https://mapocracy-api.azurewebsites.net/user/update",
         JSON.stringify(userInfo),
         config
       )
@@ -68,7 +68,7 @@ export default function AccountTab() {
   useEffect(() => {
     if (!user) return;
     axios
-      .get(`http://mapocracy-api.azurewebsites.net/user/${user.email}`)
+      .get(`https://mapocracy-api.azurewebsites.net/user/${user.email}`)
       .then((res) => res.data)
 
       .then((result) => setUserInfo(result))
